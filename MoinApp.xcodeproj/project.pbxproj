@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45424BFC1A4377D100D0CF6F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 45424BFB1A4377D100D0CF6F /* README.md */; };
 		45437E6D1A3DFC5100A9BFE7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E6C1A3DFC5100A9BFE7 /* MainTableViewController.m */; };
 		45437E701A3E24A400A9BFE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E6F1A3E24A400A9BFE7 /* LoginViewController.m */; };
 		45437E741A3E28F200A9BFE7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E731A3E28F200A9BFE7 /* User.m */; };
@@ -339,7 +338,6 @@
 				45EA35211A3DF17300F557ED /* AppDelegate.m in Sources */,
 				45EA351E1A3DF17300F557ED /* main.m in Sources */,
 				45F6959E1A40F45A00FFBD1A /* APIErrorHandler.m in Sources */,
-				45424BFC1A4377D100D0CF6F /* README.md in Sources */,
 				45437E6D1A3DFC5100A9BFE7 /* MainTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

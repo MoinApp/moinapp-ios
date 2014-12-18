@@ -185,6 +185,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     }
     
     // Configure the cell...
+    cell.backgroundColor = [UIColor clearColor];
+    
     User *user = nil;
     // get the user object
     switch (indexPath.section) {

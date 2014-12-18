@@ -15,9 +15,23 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self setUIColors];
+    
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void)setUIColors
+{
+    // Teddy
+    /* UIColor *tintColor = [UIColor colorWithRed:255/255 green:40/255 blue:0/255 alpha:1.0];
+    UIColor *backColor = [UIColor colorWithRed:2/255 green:88/255 blue:117/255 alpha:1.0]; */
+    //
+    UIColor *tintColor = [UIColor colorWithRed:159.0f/255 green:0.0f/255 blue:19.0f/255 alpha:1.0];
+    
+    [self.window setTintColor:tintColor];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
