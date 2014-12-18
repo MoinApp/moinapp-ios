@@ -9,8 +9,8 @@ Communicates with the [server](https://github.com/MoinApp/moinapp-server/) via i
 ## Requirements
 
 - OS: iOS 8
-- Device: iPhone 4s, 5, 5C, 5S, 6, 6 Plus
+- Device: iPhone 4s and up
 
-### Bugs
+## Bugs
 
 Bug reports are welcome. Post them [here](https://github.com/MoinApp/moinapp-ios/issues).
