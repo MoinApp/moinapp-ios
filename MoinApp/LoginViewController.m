@@ -24,6 +24,7 @@
 }
 - (void)setupTextfields
 {
+    // add button state setters
     [self.textfieldLoginUsername addTarget:self
                                     action:@selector(textfieldDidChange:)
                           forControlEvents:UIControlEventEditingChanged];
@@ -77,7 +78,7 @@
 }
 */
 
-#pragma mark View Events
+#pragma mark - View Events
 
 - (IBAction)buttonLoginTouch:(UIButton *)sender {
     NSString *username = self.textfieldLoginUsername.text;
@@ -95,6 +96,7 @@
     [self doSignupWithUsername:username password:password email:email];
 }
 
+#pragma mark TextField Events
 - (void)textfieldDidChange:(UITextField*)textfield
 {
     [self setButtonStates];
@@ -109,7 +111,8 @@
     [self addScrollViewContentHeight:-80.0 andSetOffsetRelativeToSignupUsername:textfield.frame.origin.y - 80.0];
 }
 
-#pragma mark View Work
+#pragma mark - Work
+#pragma mark View
 
 - (void)setUIEnabled:(BOOL)isEnabled
 {
