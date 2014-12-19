@@ -43,8 +43,7 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self createRefreshControl];
-    // hide the searchbar at first
-    [self.tableView setContentOffset:CGPointMake(0, kSearchBarHeight) animated:YES];
+    [self hideSearchBar];
     
     [self presentLoginViewController];
 }
@@ -53,6 +52,12 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     [self.refreshControl addTarget:self
                             action:@selector(refreshControlPulled)
                   forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)hideSearchBar
+{
+    // hide the searchbar at first
+    [self.tableView setContentOffset:CGPointMake(0, kSearchBarHeight) animated:YES];
 }
 
 - (void)presentLoginViewController
@@ -447,6 +452,10 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     
     if ( recentUsers != recents ) {
         recents = recentUsers;
+        
+        if ( recents.count > 0 ) {
+            [self hideSearchBar];
+        }
     }
     
     filteredResults = [NSArray arrayWithArray:recentUsers];
