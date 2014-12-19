@@ -8,6 +8,11 @@
 
 #import "LoginViewController.h"
 
+@interface LoginViewController ()
+- (void)textfieldDidBeginEditing:(UITextField *)textfield;
+- (void)textfieldDidEndEditing:(UITextField *)textfield;
+@end
+
 @implementation LoginViewController
 
 - (void)viewDidLoad {
@@ -19,7 +24,7 @@
 }
 - (void)setupTextfields
 {
-    [self.textfieldLoginPassword addTarget:self
+    [self.textfieldLoginUsername addTarget:self
                                     action:@selector(textfieldDidChange:)
                           forControlEvents:UIControlEventEditingChanged];
     [self.textfieldLoginPassword addTarget:self
@@ -35,6 +40,26 @@
     [self.textfieldSignupEmail addTarget:self
                                   action:@selector(textfieldDidChange:)
                         forControlEvents:UIControlEventEditingChanged];
+    
+    // make content view scrollable when editing
+    [self.textfieldSignupUsername addTarget:self
+                                    action:@selector(textfieldDidBeginEditing:)
+                           forControlEvents:UIControlEventEditingDidBegin];
+    [self.textfieldSignupPassword addTarget:self
+                                     action:@selector(textfieldDidBeginEditing:)
+                           forControlEvents:UIControlEventEditingDidBegin];
+    [self.textfieldSignupEmail addTarget:self
+                                     action:@selector(textfieldDidBeginEditing:)
+                           forControlEvents:UIControlEventEditingDidBegin];
+    [self.textfieldSignupUsername addTarget:self
+                                     action:@selector(textfieldDidEndEditing:)
+                           forControlEvents:UIControlEventEditingDidEnd];
+    [self.textfieldSignupPassword addTarget:self
+                                     action:@selector(textfieldDidEndEditing:)
+                           forControlEvents:UIControlEventEditingDidEnd];
+    [self.textfieldSignupEmail addTarget:self
+                                     action:@selector(textfieldDidEndEditing:)
+                           forControlEvents:UIControlEventEditingDidEnd];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +100,15 @@
     [self setButtonStates];
 }
 
+- (void)textfieldDidBeginEditing:(UITextField *)textfield
+{
+    [self addScrollViewContentHeight:80.0 andSetOffsetRelativeToSignupUsername:textfield.frame.origin.y + 80.0];
+}
+- (void)textfieldDidEndEditing:(UITextField *)textfield
+{
+    [self addScrollViewContentHeight:-80.0 andSetOffsetRelativeToSignupUsername:textfield.frame.origin.y - 80.0];
+}
+
 #pragma mark View Work
 
 - (void)setUIEnabled:(BOOL)isEnabled
@@ -109,6 +143,24 @@
     
     BOOL enabled = ( hasUsername && hasPassword && hasEmail );
     self.buttonSignup.enabled = enabled;
+}
+
+- (void)addScrollViewContentHeight:(CGFloat)height andSetOffsetRelativeToSignupUsername:(CGFloat)offset
+{
+    CGFloat relativeOffset = offset -self.textfieldSignupUsername.frame.origin.y;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.5];
+    
+    CGSize newSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + height + relativeOffset);
+    self.scrollView.contentSize = newSize;
+    
+    NSLog(@"height: %f", self.contentView.frame.size.height);
+    
+    self.scrollView.contentOffset = CGPointMake(0, relativeOffset);
+    [UIView commitAnimations];
+
 }
 
 #pragma mark Work

@@ -14,6 +14,9 @@
 
 @interface LoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UITextField *textfieldLoginUsername;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldLoginPassword;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLogin;
