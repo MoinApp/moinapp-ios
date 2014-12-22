@@ -198,7 +198,7 @@
                                   otherButtonTitles:nil] show];
             } else {
                 // success
-                NSString *session = [response objectForKey:@"message"];
+                NSString *session = [response objectForKey:@"token"];
                 [[APIClient client] setSession:session];
                 
                 [self dismissViewControllerAnimated:true completion:nil];

@@ -153,11 +153,13 @@ static APIClient *client = nil;
         return nil;
     }
     
+    
     NSDictionary *params = @{ @"username": username, @"password": password };
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
     return [manager POST:[self getAbsolutePath:kMoinAPIPathLogin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
         completion(nil, (NSDictionary *)responseObject, [NSNumber numberWithBool:YES]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(error, operation.responseObject, [NSNumber numberWithBool:NO]);
@@ -198,19 +200,19 @@ static APIClient *client = nil;
     }
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
-    
+
     return [manager GET:[self getAbsolutePath:kMoinAPIPathRecents] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *response = (NSDictionary *)responseObject;
+        NSArray *response = (NSArray *)responseObject;
         NSMutableArray *users = [[NSMutableArray alloc] init];
         
-        for ( NSDictionary *userDict in [response objectForKey:@"message"] ) {
+        for ( NSDictionary *userDict in response ) {
             User *user = [[User alloc] initWithDictionary:userDict];
             
             [users addObject:user];
         }
         
-        completion(nil, response, users);
+        completion(nil, nil, users);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(error, operation.responseObject, nil);
@@ -235,16 +237,16 @@ static APIClient *client = nil;
     
     return [manager GET:[self getAbsolutePath:kMoinAPIUserSearch] parameters:params  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *response = (NSDictionary *)responseObject;
+        NSArray *response = (NSArray *)responseObject;
         NSMutableArray *users = [[NSMutableArray alloc] init];
         
-        for ( NSDictionary *userDict in [response objectForKey:@"message"] ) {
+        for ( NSDictionary *userDict in response ) {
             User *user = [[User alloc] initWithDictionary:userDict];
             
             [users addObject:user];
         }
         
-        completion(nil, response, users);
+        completion(nil, nil, users);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(error, operation.responseObject, nil);
