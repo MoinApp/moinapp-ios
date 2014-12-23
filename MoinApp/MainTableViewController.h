@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <UIKit+AFNetworking.h>
+#import <QuartzCore/CALayer.h>
 #import <HTProgressHUD/HTProgressHUD.h>
 #import <HTProgressHUD/HTProgressHUDFadeZoomAnimation.h>
 #import <HTProgressHUD/HTProgressHUDRingIndicatorView.h>

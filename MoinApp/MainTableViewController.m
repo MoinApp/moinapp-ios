@@ -207,6 +207,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // fill in the data
     cell.textLabel.text = user.username;
     
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.masksToBounds = NO;
     UIImage *profileImage = [user profileImage];
     if ( !profileImage ) {
         
@@ -216,10 +218,12 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         [cell.imageView setImageWithURLRequest:request
                               placeholderImage:[User placeholderImage]
                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                           
                                            // save the image
                                            [user setProfileImage:image];
                                            // show the image
                                            _cell.imageView.image = image;
+                                           
                                        }
                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                            NSLog(@"Error loading image for %@.", user.username);
