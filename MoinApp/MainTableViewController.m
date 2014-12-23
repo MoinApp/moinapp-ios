@@ -119,6 +119,30 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
             }
         }
         
+        if ( counter == 0 ) {
+            // If we have no data to display
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+            label.textColor = [UIColor grayColor];
+            label.numberOfLines = 0;
+            label.textAlignment = NSTextAlignmentCenter;
+            
+            if ( ![self hasSearchResults] ) {
+                label.text = @"Loading data. Please wait...";
+            } else {
+                label.text = @"You have no recents contacts. Search for a user in the search box!";
+            }
+            
+            [label sizeToFit];
+            
+            self.tableView.backgroundView = label;
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        } else {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            if ( self.tableView.backgroundView != nil ) {
+                self.tableView.backgroundView = nil;
+            }
+        }
+        
     } else {
         
         if ( [self hasSearchResults] ) {
@@ -128,30 +152,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
             counter++;
         }
         
-    }
-    
-    if ( counter == 0 ) {
-        // If we have no data to display
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        label.textColor = [UIColor grayColor];
-        label.numberOfLines = 0;
-        label.textAlignment = NSTextAlignmentCenter;
-        
-        if ( ![self hasSearchResults] ) {
-            label.text = @"Loading data. Please wait...";
-        } else {
-            label.text = @"You have no recents contacts. Search for a user in the search box!";
-        }
-        
-        [label sizeToFit];
-        
-        self.tableView.backgroundView = label;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    } else {
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        if ( self.tableView.backgroundView != nil ) {
-            self.tableView.backgroundView = nil;
-        }
     }
     
     return counter;
