@@ -16,9 +16,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
 
 + (BOOL)handleError:(APIError *)error
 {
-    NSError *pureError = (NSError *)error;
-    
-    return [APIErrorHandler handleError:pureError withResponse:error.response];
+    return [APIErrorHandler handleError:error.error withResponse:error.response];
 }
 + (BOOL)handleError:(NSError *)error withResponse:(NSDictionary *)response
 {
