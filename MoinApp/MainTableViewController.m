@@ -8,8 +8,6 @@
 
 #import "MainTableViewController.h"
 
-static int const kSearchBarHeight = 44;
-
 static NSString *const ERROR = @"ERROR";
 
 static NSString *const kLoginSegue = @"showLogin";
@@ -43,7 +41,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self createRefreshControl];
-    [self hideSearchBar];
     
     [self presentLoginViewController];
 }
@@ -52,12 +49,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     [self.refreshControl addTarget:self
                             action:@selector(refreshControlPulled)
                   forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)hideSearchBar
-{
-    // hide the searchbar at first
-    [self.tableView setContentOffset:CGPointMake(0, kSearchBarHeight) animated:YES];
 }
 
 - (void)presentLoginViewController
@@ -207,8 +198,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // fill in the data
     cell.textLabel.text = user.username;
     
-    cell.imageView.clipsToBounds = YES;
-    cell.imageView.layer.masksToBounds = NO;
     UIImage *profileImage = [user profileImage];
     if ( !profileImage ) {
         
@@ -232,6 +221,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     } else {
         cell.imageView.image = profileImage;
     }
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
@@ -458,10 +449,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         // sort by username
         NSArray *sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES], nil];
         recents = [recentUsers sortedArrayUsingDescriptors:sortDescriptors];
-        
-        if ( recents.count > 0 ) {
-            [self hideSearchBar];
-        }
     }
     
     filteredResults = [NSArray arrayWithArray:recents];
