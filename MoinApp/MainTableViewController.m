@@ -359,6 +359,10 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     NSString *searchText = timer.userInfo;
     searchDelay = nil;
     
+    if ( [searchText isEqualToString:@""] ) {
+        return;
+    }
+    
     NSLog(@"Searching for %@...", searchText);
     APIClient *client = [APIClient client];
     searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
