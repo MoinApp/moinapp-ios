@@ -25,6 +25,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     AFHTTPRequestOperation *searchOperation;
     NSArray *serverSearchResults;
     
+    NSTimer *searchDelay;
+    
     UIAlertView *alertViewLogout;
 }
 @end
@@ -87,31 +89,46 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 {
     filteredResults = nil;
     serverSearchResults = nil;
-    searchOperation = nil;
-    
-    // TODO: check if this really doesn't break anything!
-    // first check seems ok
 }
 
 #pragma mark - Table view data source
+
+- (BOOL)hasRecents
+{
+    return ( recents && recents.count > 0 );
+}
+- (BOOL)hasSearchResults
+{
+    return ( filteredResults && filteredResults.count > 0 );
+}
+- (BOOL)hasServerResults
+{
+    return ( serverSearchResults && serverSearchResults.count > 0 );
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     
     int counter = 0;
     
-    // only show sections that acutally have relevant content for the user
-    if ( filteredResults ) {
-        if ( filteredResults.count > 0 || serverSearchResults.count > 0  ) {
+    if ( tableView == self.tableView ) {
+        
+        if ( [self hasRecents] ) {
+            if ( [self hasSearchResults] ) {
+                counter = 1;
+            }
+        }
+        
+    } else {
+        
+        if ( [self hasSearchResults] ) {
             counter++;
         }
-    }
-    if ( serverSearchResults ) {
-        if ( serverSearchResults.count > 0 ) {
+        if ( [self hasServerResults] ) {
             counter++;
         }
+        
     }
-    
     
     if ( counter == 0 ) {
         // If we have no data to display
@@ -120,7 +137,7 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         label.numberOfLines = 0;
         label.textAlignment = NSTextAlignmentCenter;
         
-        if ( !recents ) {
+        if ( ![self hasSearchResults] ) {
             label.text = @"Loading data. Please wait...";
         } else {
             label.text = @"You have no recents contacts. Search for a user in the search box!";
@@ -136,40 +153,59 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
             self.tableView.backgroundView = nil;
         }
     }
+    
     return counter;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
-    switch (section) {
-        case kMainTableViewSectionRecentsId:
+    if ( tableView == self.tableView ) {
+        return [filteredResults count];
+    } else {
+        
+        int idRecents = kMainTableViewSectionRecentsId;
+        int idServer = kMainTableViewSectionServerResultsId;
+        
+        if ( ![self hasSearchResults] ) {
+            idRecents--;
+            idServer--;
+        }
+        
+        if ( section == idRecents ) {
             return [filteredResults count];
-            break;
-        case kMainTableViewSectionServerResultsId:
+        } else if ( section == idServer ) {
             return [serverSearchResults count];
-            break;
-        default:
-            return 0;
-            break;
+        }
+        
     }
+    
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case kMainTableViewSectionRecentsId:
+    if ( tableView == self.tableView ) {
+        return kMainTableViewSectionRecentsTitle;
+    } else {
+        
+        int idRecents = kMainTableViewSectionRecentsId;
+        int idServer = kMainTableViewSectionServerResultsId;
+        
+        if ( ![self hasSearchResults] ) {
+            idRecents--;
+            idServer--;
+        }
+        
+        if ( section == idRecents ) {
             return kMainTableViewSectionRecentsTitle;
-            break;
-            
-        case kMainTableViewSectionServerResultsId:
+        } else if ( section == idServer ) {
             return kMainTableViewSectionServerResultsTitle;
-            break;
-            
-        default:
-            return ERROR;
-            break;
+        }
+        
     }
+    
+    return @"ERROR";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -188,14 +224,17 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     
     User *user = nil;
     // get the user object
-    switch (indexPath.section) {
-        case kMainTableViewSectionRecentsId:
-            user = [filteredResults objectAtIndex:indexPath.item];
-            break;
-            
-        case kMainTableViewSectionServerResultsId:
-            user = [serverSearchResults objectAtIndex:indexPath.item];
-            break;
+    int idRecents = kMainTableViewSectionRecentsId;
+    int idServer = kMainTableViewSectionServerResultsId;
+    
+    if ( ![self hasSearchResults] ) {
+        idRecents--;
+        idServer--;
+    }
+    if ( indexPath.section == idRecents ) {
+        user = [filteredResults objectAtIndex:indexPath.item];
+    } else if ( indexPath.section == idServer ) {
+        user = [serverSearchResults objectAtIndex:indexPath.item];
     }
     
     // fill in the data
@@ -205,7 +244,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     if ( !profileImage ) {
         
         __block UITableViewCell *_cell = cell;
-        NSLog(@"Getting image from %@", user.gravatarImageURL);
         NSURLRequest* request = [NSURLRequest requestWithURL:[user gravatarImageURL]];
         [cell.imageView setImageWithURLRequest:request
                               placeholderImage:[User placeholderImage]
@@ -288,14 +326,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 {
     [self filterRecentsByUsernameWithText:searchText];
 }
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self filterRecentsByUsernameWithText:nil];
-}
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    [self filterRecentsByUsernameWithText:nil];
-}
 
 - (void)filterRecentsByUsernameWithText:(NSString *)searchText
 {
@@ -303,57 +333,71 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         [searchOperation cancel];
     }
     
-    if ( !searchText || [searchText isEqualToString:@""] ) {
-        [self updateRecentsWithArray:recents];
-        searchOperation = nil;
-        serverSearchResults = nil;
-    } else {
-        // search in recents
-        NSString *usernameFilter = [NSString stringWithFormat:@"*%@*", searchText];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(username like %@)", usernameFilter];
+    // search in recents
+    NSString *usernameFilter = [NSString stringWithFormat:@"*%@*", searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(username LIKE[cd] %@)", usernameFilter];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:recents];
+    filteredResults = [array filteredArrayUsingPredicate:predicate];
+    
+    // search on the server (after delay)
+    serverSearchResults = nil;
+    
+    if ( searchDelay && searchDelay.isValid ) {
+        [searchDelay invalidate];
+    }
+    searchDelay = [NSTimer scheduledTimerWithTimeInterval:[Constants searchDelay]
+                                                   target:self
+                                                 selector:@selector(performServerSearch:)
+                                                 userInfo:searchText
+                                                  repeats:NO];
+    
+    [self reloadSearchTableView];
+}
+- (void)performServerSearch:(NSTimer *)timer
+{
+    NSString *searchText = timer.userInfo;
+    searchDelay = nil;
+    
+    NSLog(@"Searching for %@...", searchText);
+    APIClient *client = [APIClient client];
+    searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
         
-        NSMutableArray *array = [NSMutableArray arrayWithArray:recents];
-        filteredResults = [array filteredArrayUsingPredicate:predicate];
+        if ( !error && !data ) {
+            // we were cancelled
+            return;
+        }
         
-        // search on the server...
-        serverSearchResults = nil;
-        APIClient *client = [APIClient client];
-        searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
+        if ( ![APIErrorHandler handleError:error] ) {
             
-            if ( !error && !data ) {
-                // we were cancelled
-                return;
-            }
+            NSMutableArray *users = [NSMutableArray arrayWithArray:(NSArray *)data];
             
-            if ( ![APIErrorHandler handleError:error] ) {
-                
-                NSMutableArray *users = [NSMutableArray arrayWithArray:(NSArray *)data];
-                
-                if ( users ) {
-                    // remove recents from server results
-                    for ( User* recentUser in recents) {
-                        NSString *usernameFilter = [NSString stringWithFormat:@"*%@*", recentUser.username];
-                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(username like %@)", usernameFilter];
-                        
-                        [users filterUsingPredicate:predicate];
-                    }
+            if ( users ) {
+                // remove recents from server results
+                for ( User* recentUser in recents) {
+                    NSString *usernameFilter = [NSString stringWithFormat:@"%@", recentUser.username];
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(NOT username LIKE[cd] %@)", usernameFilter];
                     
-                    serverSearchResults = [users copy];
-                    
-                    // TODO: fix this without deprecation!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                    [self.searchDisplayController.searchResultsTableView reloadData];
-#pragma clang diagnostic pop
-                    
+                    [users filterUsingPredicate:predicate];
                 }
                 
+                serverSearchResults = [users copy];
+                
+                [self reloadSearchTableView];
+                
             }
             
-        }];
-    }
-    
-    [self.tableView reloadData];
+        }
+        
+    }];
+}
+- (void)reloadSearchTableView
+{
+    // TODO: fix this without deprecation!
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.searchDisplayController.searchResultsTableView reloadData];
+#pragma clang diagnostic pop
 }
 
 #pragma mark - Server Interaction

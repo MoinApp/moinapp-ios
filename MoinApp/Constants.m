@@ -13,4 +13,9 @@
 {
     return [UIColor colorWithRed:227.0f/255 green:0.0f/255 blue:84.0f/255 alpha:1.0];
 }
+
++ (NSTimeInterval)searchDelay
+{
+    return 0.35f;
+}
 @end

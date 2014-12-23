@@ -11,4 +11,5 @@
 
 @interface Constants : NSError
 + (UIColor*)styleColor;
++ (NSTimeInterval)searchDelay;
 @end
