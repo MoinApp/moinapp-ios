@@ -451,14 +451,16 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     }
     
     if ( recentUsers != recents ) {
-        recents = recentUsers;
+        // sort by username
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES], nil];
+        recents = [recentUsers sortedArrayUsingDescriptors:sortDescriptors];
         
         if ( recents.count > 0 ) {
             [self hideSearchBar];
         }
     }
     
-    filteredResults = [NSArray arrayWithArray:recentUsers];
+    filteredResults = [NSArray arrayWithArray:recents];
     
     [self.tableView reloadData];
 }
