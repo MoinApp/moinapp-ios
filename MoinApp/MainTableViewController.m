@@ -329,8 +329,17 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 
 - (void)filterRecentsByUsernameWithText:(NSString *)searchText
 {
+    // cancel pending operations
     if ( searchOperation.isExecuting ) {
         [searchOperation cancel];
+    }
+    if ( searchDelay.isValid ) {
+        [searchDelay invalidate];
+    }
+    
+    if ( [searchText isEqualToString:@""] ) {
+        [self updateRecentsWithArray:recents];
+        return;
     }
     
     // search in recents
@@ -343,9 +352,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // search on the server (after delay)
     serverSearchResults = nil;
     
-    if ( searchDelay && searchDelay.isValid ) {
-        [searchDelay invalidate];
-    }
     searchDelay = [NSTimer scheduledTimerWithTimeInterval:[Constants searchDelay]
                                                    target:self
                                                  selector:@selector(performServerSearch:)
@@ -358,10 +364,6 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 {
     NSString *searchText = timer.userInfo;
     searchDelay = nil;
-    
-    if ( [searchText isEqualToString:@""] ) {
-        return;
-    }
     
     NSLog(@"Searching for %@...", searchText);
     APIClient *client = [APIClient client];
