@@ -14,9 +14,11 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
 
 #pragma mark - Handle Error (UI)
 
-+ (BOOL)handleError:(NSError *)error
++ (BOOL)handleError:(APIError *)error
 {
-    return [APIErrorHandler handleError:error withResponse:nil];
+    NSError *pureError = (NSError *)error;
+    
+    return [APIErrorHandler handleError:pureError withResponse:error.response];
 }
 + (BOOL)handleError:(NSError *)error withResponse:(NSDictionary *)response
 {
@@ -64,18 +66,18 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
 
 # pragma mark - Errors
 
-+ (NSError *)errorNotAuthorized
++ (APIError *)errorNotAuthorized
 {
     NSError *error = [NSError errorWithDomain:kMoinErrorDomain code:kMoinErrorNotAuthorized userInfo:nil];
     
-    return error;
+    return [APIError errorWithError:error andResponse:nil];
 }
 
-+ (NSError *)errorObjectNil
++ (APIError *)errorObjectNil
 {
     NSError *error = [NSError errorWithDomain:kMoinErrorDomain code:kMoinErrorObjectNil userInfo:nil];
     
-    return error;
+    return [APIError errorWithError:error andResponse:nil];
 }
 
 @end

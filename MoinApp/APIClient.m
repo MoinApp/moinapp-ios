@@ -144,12 +144,19 @@ static APIClient *client = nil;
     return ( [self session] != nil );
 }
 
+- (void)saveSessionTokenFromResponse:(NSDictionary *)response
+{
+    NSString *token = [response objectForKey:@"token"];
+    
+    self.session = token;
+}
+
 #pragma mark Authorization Requests
 
 - (AFHTTPRequestOperation *)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(APIRequestCompletionHandler)completion
 {
     if ( !username || !password ) {
-        completion([APIErrorHandler errorObjectNil], nil, nil);
+        completion([APIErrorHandler errorObjectNil], nil);
         return nil;
     }
     
@@ -159,17 +166,21 @@ static APIClient *client = nil;
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
     return [manager POST:[self getAbsolutePath:kMoinAPIPathLogin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self saveSessionTokenFromResponse:responseObject];
 
-        completion(nil, (NSDictionary *)responseObject, [NSNumber numberWithBool:YES]);
+        completion(nil, [NSNumber numberWithBool:YES]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(error, operation.responseObject, [NSNumber numberWithBool:NO]);
+        APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+        
+        completion(apiError, [NSNumber numberWithBool:NO]);
     }];
 }
 
 - (void)logoutWithCompletion:(APIRequestCompletionHandler)completion
 {
     self.session = nil;
-    completion(nil, nil, nil);
+    completion(nil, nil);
 }
 
 - (AFHTTPRequestOperation *)signupWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email completion:(APIRequestCompletionHandler)completion
@@ -181,10 +192,14 @@ static APIClient *client = nil;
     return [manager POST:[self getAbsolutePath:kMoinAPIPathSignup]
               parameters:params
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                     completion(nil, (NSDictionary *)responseObject, [NSNumber numberWithBool:YES]);
+                     [self saveSessionTokenFromResponse:responseObject];
+                     
+                     completion(nil, [NSNumber numberWithBool:YES]);
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     completion(error, operation.responseObject, [NSNumber numberWithBool:NO]);
+                     APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+                     
+                     completion(apiError, [NSNumber numberWithBool:NO]);
                  }];
 }
 
@@ -193,9 +208,9 @@ static APIClient *client = nil;
 - (AFHTTPRequestOperation *)getRecentsWithCompletion:(APIRequestCompletionHandler)completion
 {
     if ( ![self isAuthorized] ) {
-        NSError *error = [APIErrorHandler errorNotAuthorized];
+        APIError *error = [APIErrorHandler errorNotAuthorized];
         
-        completion(error, nil, nil);
+        completion(error, nil);
         return nil;
     }
     
@@ -203,8 +218,8 @@ static APIClient *client = nil;
 
     return [manager GET:[self getAbsolutePath:kMoinAPIPathRecents] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSArray *response = (NSArray *)responseObject;
         NSMutableArray *users = [[NSMutableArray alloc] init];
+        NSArray *response = (NSArray *)responseObject;
         
         for ( NSDictionary *userDict in response ) {
             User *user = [[User alloc] initWithDictionary:userDict];
@@ -212,19 +227,21 @@ static APIClient *client = nil;
             [users addObject:user];
         }
         
-        completion(nil, nil, users);
+        completion(nil, users);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(error, operation.responseObject, nil);
+        APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+        
+        completion(apiError, nil);
     }];
 }
 
 - (AFHTTPRequestOperation *)getUsersWithUsername:(NSString *)username completion:(APIRequestCompletionHandler)completion
 {
     if ( ![self isAuthorized] ) {
-        NSError *error = [APIErrorHandler errorNotAuthorized];
+        APIError *error = [APIErrorHandler errorNotAuthorized];
         
-        completion(error, nil, nil);
+        completion(error, nil);
         return nil;
     }
     
@@ -246,10 +263,12 @@ static APIClient *client = nil;
             [users addObject:user];
         }
         
-        completion(nil, nil, users);
+        completion(nil, users);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(error, operation.responseObject, nil);
+        APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+        
+        completion(apiError, nil);
     }];
 }
 
@@ -262,9 +281,9 @@ static APIClient *client = nil;
 - (AFHTTPRequestOperation *)moinUserWithName:(NSString *)username completion:(APIRequestCompletionHandler)completion
 {
     if ( ![self isAuthorized] ) {
-        NSError *error = [APIErrorHandler errorNotAuthorized];
+        APIError *error = [APIErrorHandler errorNotAuthorized];
         
-        completion(error, nil, nil);
+        completion(error, nil);
         return nil;
     }
     
@@ -274,10 +293,12 @@ static APIClient *client = nil;
     
     return [manager POST:[self getAbsolutePath:kMoinAPIPathMoin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        completion(nil, (NSDictionary *)responseObject, [NSNumber numberWithBool:YES]);
+        completion(nil, [NSNumber numberWithBool:YES]);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(error, operation.responseObject, [NSNumber numberWithBool:NO]);
+        APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+        
+        completion(apiError, [NSNumber numberWithBool:NO]);
     }];
 }
 

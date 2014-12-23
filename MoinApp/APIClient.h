@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 
+#import "APIError.h"
 #import "APIErrorHandler.h"
 #import "User.h"
 
-typedef void(^APIRequestCompletionHandler)(NSError*, NSDictionary*, id);
+typedef void(^APIRequestCompletionHandler)(APIError*, id);
 
 @interface APIClient : NSObject
 + (APIClient *)client;

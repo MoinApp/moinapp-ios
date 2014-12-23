@@ -320,14 +320,14 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         // search on the server...
         serverSearchResults = nil;
         APIClient *client = [APIClient client];
-        searchOperation = [client getUsersWithUsername:searchText completion:^(NSError *error, NSDictionary *response, id data) {
+        searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
             
-            if ( !response && !data ) {
+            if ( !error && !data ) {
                 // we were cancelled
                 return;
             }
             
-            if ( ![APIErrorHandler handleError:error withResponse:response] ) {
+            if ( ![APIErrorHandler handleError:error] ) {
                 
                 NSMutableArray *users = [NSMutableArray arrayWithArray:(NSArray *)data];
                 
@@ -362,10 +362,10 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 
 - (void)logout
 {
-    [[APIClient client] logoutWithCompletion:^(NSError *error, NSDictionary *response, id data) {
+    [[APIClient client] logoutWithCompletion:^(APIError *error, id data) {
         if ( error ) {
             [[[UIAlertView alloc] initWithTitle:@"We're sorry"
-                                        message:error.localizedDescription
+                                        message:error.error.localizedDescription
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil]
@@ -393,9 +393,9 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         [self.searchBar resignFirstResponder];
     }
     
-    [[APIClient client] moinUser:user completion:^(NSError *error, NSDictionary *response, id data) {
+    [[APIClient client] moinUser:user completion:^(APIError *error, id data) {
         
-        if ( ![APIErrorHandler handleError:error withResponse:response] ) {
+        if ( ![APIErrorHandler handleError:error] ) {
             
             BOOL success = [(NSNumber*)data boolValue];
             NSString *message = nil;
@@ -403,8 +403,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
             if ( success ) {
                 message = @"Success";
             } else {
-                NSLog(@"%@", response);
-                message = [NSString stringWithFormat:@"%@", [response objectForKey:@"message"]];
+                NSLog(@"%@", error);
+                message = [NSString stringWithFormat:@"%@", [error.response objectForKey:@"message"]];
             }
             [progressHUD setText:message];
             [progressHUD hideAfterDelay:1.2 animated:YES];
@@ -419,13 +419,13 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 {
     [self.refreshControl beginRefreshing];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
-    [[APIClient client] getRecentsWithCompletion:^(NSError *error, NSDictionary *response, id data) {
+    [[APIClient client] getRecentsWithCompletion:^(APIError *error, id data) {
         
-        if ( error.code == [APIErrorHandler errorNotAuthorized].code ) {
+        if ( error.error.code == [APIErrorHandler errorNotAuthorized].error.code ) {
             return;
         }
         
-        if ( ![APIErrorHandler handleError:error withResponse:response] ) {
+        if ( ![APIErrorHandler handleError:error] ) {
             
             NSArray *recentUsers = (NSArray *)data;
             

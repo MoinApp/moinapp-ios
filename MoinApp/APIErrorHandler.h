@@ -9,18 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "APIError.h"
+
 extern NSString *const kMoinErrorDomain;
 typedef enum {
     kMoinErrorNotAuthorized = 1,
     kMoinErrorObjectNil = 2
 } MoinErrorCode;
 
-@interface APIErrorHandler : NSObject
+@interface APIErrorHandler : NSObject 
 
-+ (BOOL)handleError:(NSError *)error;
++ (BOOL)handleError:(APIError *)error;
 + (BOOL)handleError:(NSError *)error withResponse:(NSDictionary *)response;
 
-+ (NSError *)errorNotAuthorized;
-+ (NSError *)errorObjectNil;
++ (APIError *)errorNotAuthorized;
++ (APIError *)errorObjectNil;
 
 @end

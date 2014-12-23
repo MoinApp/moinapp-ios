@@ -150,7 +150,7 @@
 
 - (void)addScrollViewContentHeight:(CGFloat)height andSetOffsetRelativeToSignupUsername:(CGFloat)offset
 {
-    CGFloat relativeOffset = offset -self.textfieldSignupUsername.frame.origin.y;
+    CGFloat relativeOffset = offset - self.textfieldSignupUsername.frame.origin.y;
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -158,8 +158,6 @@
     
     CGSize newSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + height + relativeOffset);
     self.scrollView.contentSize = newSize;
-    
-    NSLog(@"height: %f", self.contentView.frame.size.height);
     
     self.scrollView.contentOffset = CGPointMake(0, relativeOffset);
     [UIView commitAnimations];
@@ -180,27 +178,17 @@
         [self.textfieldLoginPassword setText:password];
     }
     
-    [self loginWithUsername:username Password:password completion:^(NSError *error, NSDictionary *response, id data) {
+    [self loginWithUsername:username Password:password completion:^(APIError *error, id data) {
         
         BOOL loggedIn = [(NSNumber*)data boolValue];
         
         [self setUIEnabled:YES];
         [self.activityLogin stopAnimating];
         
-        if ( ![APIErrorHandler handleError:error withResponse:response] ) {
+        if ( ![APIErrorHandler handleError:error] ) {
             
-            if ( !loggedIn ) {
-                // error
-                [[[UIAlertView alloc] initWithTitle:[response objectForKey:@"code"]
-                                            message:[response objectForKey:@"message"]
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil] show];
-            } else {
+            if ( loggedIn ) {
                 // success
-                NSString *session = [response objectForKey:@"token"];
-                [[APIClient client] setSession:session];
-                
                 [self dismissViewControllerAnimated:true completion:nil];
             }
             
@@ -227,27 +215,17 @@
         self.textfieldSignupEmail.text = email;
     }
     
-    [self signupWithUsername:username password:password email:email completion:^(NSError *error, NSDictionary *response, id data) {
+    [self signupWithUsername:username password:password email:email completion:^(APIError *error, id data) {
         
         BOOL signedUp = [(NSNumber*)data boolValue];
         
         [self setUIEnabled:YES];
         [self.activitySignup stopAnimating];
         
-        if ( ![APIErrorHandler handleError:error withResponse:response] ) {
+        if ( ![APIErrorHandler handleError:error] ) {
             
-            if ( !signedUp ) {
-                // error
-                [[[UIAlertView alloc] initWithTitle:[response objectForKey:@"code"]
-                                            message:[response objectForKey:@"message"]
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil] show];
-            } else {
+            if ( signedUp ) {
                 // success
-                NSString *session = [response objectForKey:@"message"];
-                [[APIClient client] setSession:session];
-                
                 [self dismissViewControllerAnimated:true completion:nil];
             }
             
