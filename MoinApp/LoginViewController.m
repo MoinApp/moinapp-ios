@@ -164,6 +164,11 @@
 
 }
 
+- (void)done
+{
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 #pragma mark Work
 
 - (void)doLoginWithUsername:(NSString *)username Password:(NSString *)password
@@ -189,7 +194,7 @@
             
             if ( loggedIn ) {
                 // success
-                [self dismissViewControllerAnimated:true completion:nil];
+                [self done];
             }
             
         }
@@ -226,7 +231,7 @@
             
             if ( signedUp ) {
                 // success
-                [self dismissViewControllerAnimated:true completion:nil];
+                [self done];
             }
             
         }
