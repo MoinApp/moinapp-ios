@@ -48,8 +48,8 @@ static APIClient *client = nil;
 
 - (NSString *)sessionFilename
 {
-    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingString:@"Documents"];
-    NSString *filePath = [documentsDirectory stringByAppendingString:@"session"];
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"session"];
     
     return filePath;
 }
