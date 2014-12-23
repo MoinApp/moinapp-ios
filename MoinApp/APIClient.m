@@ -60,7 +60,11 @@ static APIClient *client = nil;
     NSError *error = nil;
     if ( sessionToken ) {
         
-        [sessionToken writeToFile:filename atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        BOOL result = [sessionToken writeToFile:filename atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        if ( !result )
+        {
+            NSLog(@"Could not write session to disk.");
+        }
         
     } else {
         
