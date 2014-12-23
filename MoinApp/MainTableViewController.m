@@ -41,14 +41,17 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self createRefreshControl];
-    
-    [self presentLoginViewController];
 }
 - (void)createRefreshControl
 {
     [self.refreshControl addTarget:self
                             action:@selector(refreshControlPulled)
                   forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self presentLoginViewController];
 }
 
 - (void)presentLoginViewController
