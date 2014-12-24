@@ -47,7 +47,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
         
         body = [NSString stringWithFormat:@"%@", [response objectForKey:@"message"]];
     } else {
-        title = [NSString stringWithFormat:@"Unexpected server error (%d)", error.code];
+        title = [NSString stringWithFormat:@"Unexpected server error (%ld)", error.code];
         
         body = [NSString stringWithFormat:@"%@", error.localizedDescription];
     }
