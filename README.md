@@ -14,3 +14,13 @@ Communicates with the [server](https://github.com/MoinApp/moinapp-server/) via i
 ## Bugs
 
 Bug reports are welcome. Post them [here](https://github.com/MoinApp/moinapp-ios/issues).
+
+## Development
+
+1. Clone the repo: `git clone https://github.com/MoinApp/moinapp-ios.git`.
+2. Install Pods: `pod install`. For further information, see http://cocoapods.org/.
+3. Open `MoinApp.xcworkspace`. Do **not** open the `.xcproj`.
+
+## Release
+
+Download *here* (not yet released).
