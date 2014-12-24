@@ -23,10 +23,12 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 @interface MainTableViewController ()
 {
     NSArray *recents;
+    BOOL isReloadingRecents;
     
     NSArray *filteredResults;
     AFHTTPRequestOperation *searchOperation;
     NSArray *serverSearchResults;
+    BOOL isSearching;
     
     NSTimer *searchDelay;
     
@@ -58,6 +60,8 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self reloadRecentUsers];
+    
     [self presentLoginViewController];
 }
 
@@ -74,9 +78,11 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     [self reloadRecentUsers];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark - General
+
+- (void)isWorking:(BOOL)working
 {
-    [self reloadRecentUsers];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = working;
 }
 
 #pragma mark - UIViewController Restoration
@@ -119,15 +125,15 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 
 - (BOOL)hasRecents
 {
-    return ( recents && recents.count > 0 );
+    return ( recents.count > 0 );
 }
 - (BOOL)hasSearchResults
 {
-    return ( filteredResults && filteredResults.count > 0 );
+    return ( filteredResults.count > 0 );
 }
 - (BOOL)hasServerResults
 {
-    return ( serverSearchResults && serverSearchResults.count > 0 );
+    return ( serverSearchResults.count > 0 );
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,24 +143,15 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     
     if ( tableView == self.tableView ) {
         
-        if ( [self hasRecents] ) {
-            if ( [self hasSearchResults] ) {
-                counter = 1;
-            }
-        }
+        counter = 1;
         
-        if ( counter == 0 ) {
+        if ( ![self hasSearchResults] ) {
             // If we have no data to display
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
             label.textColor = [UIColor grayColor];
             label.numberOfLines = 0;
             label.textAlignment = NSTextAlignmentCenter;
-            
-            if ( ![self hasSearchResults] ) {
-                label.text = @"Loading data. Please wait...";
-            } else {
-                label.text = @"You have no recents contacts. Search for a user in the search box!";
-            }
+            label.text = @"Search for a user in the search box!";
             
             [label sizeToFit];
             
@@ -334,6 +331,15 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 {
     [self filterRecentsByUsernameWithText:searchText];
 }
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    isSearching = YES;
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    isSearching = NO;
+    [self updateRecentsWithArray:recents];
+}
 
 - (void)filterRecentsByUsernameWithText:(NSString *)searchText
 {
@@ -343,11 +349,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     }
     if ( searchDelay.isValid ) {
         [searchDelay invalidate];
-    }
-    
-    if ( [searchText isEqualToString:@""] ) {
-        [self updateRecentsWithArray:recents];
-        return;
     }
     
     // search in recents
@@ -372,6 +373,10 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 {
     NSString *searchText = timer.userInfo;
     searchDelay = nil;
+    
+    if ( [searchText isEqualToString:@""] ) {
+        return;
+    }
     
     APIClient *client = [APIClient client];
     searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
@@ -417,7 +422,9 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 
 - (void)logout
 {
+    [self isWorking:YES];
     [[APIClient client] logoutWithCompletion:^(APIError *error, id data) {
+        [self isWorking:NO];
         if ( error ) {
             [[[UIAlertView alloc] initWithTitle:@"We're sorry"
                                         message:error.error.localizedDescription
@@ -427,7 +434,8 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
              show];
         } else {
             
-            recents = nil;
+            [self updateRecentsWithArray:[NSArray arrayWithObjects:nil]];
+            
             [self clearUnimportantMemory];
             [self presentLoginViewController];
             
@@ -476,14 +484,16 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 }
 - (void)reloadRecentUsers
 {
-    if ( [self isReloadingRecents] ) {
+    if ( isReloadingRecents ) {
         return;
     }
+    isReloadingRecents = YES;
     
     [self.refreshControl beginRefreshing];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
     [[APIClient client] getRecentsWithCompletion:^(APIError *error, id data) {
         
+        isReloadingRecents = NO;
         if ( error.error.code == [APIErrorHandler errorNotAuthorized].error.code ) {
             return;
         }
@@ -521,7 +531,12 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     
     filteredResults = [NSArray arrayWithArray:recents];
     
-    [self.tableView reloadData];
+    if ( !isSearching ) {
+        
+        NSLog(@"Recents: %d", recents.count);
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
 }
 
 /*
