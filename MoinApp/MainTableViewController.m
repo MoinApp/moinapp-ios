@@ -365,11 +365,10 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     NSString *searchText = timer.userInfo;
     searchDelay = nil;
     
-    NSLog(@"Searching for %@...", searchText);
     APIClient *client = [APIClient client];
     searchOperation = [client getUsersWithUsername:searchText completion:^(APIError *error, id data) {
         
-        if ( !error && !data ) {
+        if ( ( !error && !data ) || ( error.error.code == -999 ) ) {
             // we were cancelled
             return;
         }
