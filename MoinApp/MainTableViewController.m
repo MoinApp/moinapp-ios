@@ -28,7 +28,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     NSArray *filteredResults;
     AFHTTPRequestOperation *searchOperation;
     NSArray *serverSearchResults;
-    BOOL isSearching;
     
     NSTimer *searchDelay;
     
@@ -204,7 +203,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     if ( tableView == self.tableView ) {
         return kMainTableViewSectionRecentsTitle;
     } else {
-        
         int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
         int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
         
@@ -333,12 +331,16 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    isSearching = YES;
+    [self.searchBar setShowsCancelButton:YES animated:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    isSearching = NO;
-    [self updateRecentsWithArray:recents];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchBar.text = @"";
 }
 
 - (void)filterRecentsByUsernameWithText:(NSString *)searchText
@@ -530,12 +532,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     }
     
     filteredResults = [NSArray arrayWithArray:recents];
-    
-    if ( !isSearching ) {
-        
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-    }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 /*
