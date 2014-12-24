@@ -69,6 +69,8 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     NSString *session = [[APIClient client] session];
     if ( session == nil ) {
         [[self navigationController] performSegueWithIdentifier:kLoginSegue sender:self];
+    } else {
+        [[PushController sharedController] registerForUserNotifications];
     }
 }
 

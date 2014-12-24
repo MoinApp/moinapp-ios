@@ -17,6 +17,7 @@ static NSString *const kMoinAPIAuthorizationHeader = @"authorization";
 // API Paths
 static NSString *const kMoinAPIPathLogin = @"/api/auth";
 static NSString *const kMoinAPIPathSignup = @"/api/signup";
+static NSString *const kMoinAPIPathRegisterAPN = @"/api/addapn";
 static NSString *const kMoinAPIPathRecents = @"/api/user/recents";
 static NSString *const kMoinAPIPathMoin = @"/api/moin";
 static NSString *const kMoinAPIUserSearch = @"/api/user";
@@ -202,6 +203,24 @@ static APIClient *client = nil;
                      [self saveSessionTokenFromResponse:responseObject];
                      
                      completion(nil, [NSNumber numberWithBool:YES]);
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
+                     
+                     completion(apiError, [NSNumber numberWithBool:NO]);
+                 }];
+}
+
+- (AFHTTPRequestOperation *)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken withCompletion:(APIRequestCompletionHandler)completion
+{
+    NSDictionary *params = @{ @"apnDeviceToken": deviceToken };
+    
+    AFHTTPRequestOperationManager *manager = [APIClient httpManager];
+    
+    return [manager POST:[self getAbsolutePath:kMoinAPIPathRegisterAPN]
+              parameters:params
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     completion(nil, responseObject);
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      APIError *apiError = [APIError errorWithAFHTTPRequest:operation];
