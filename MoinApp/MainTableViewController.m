@@ -182,7 +182,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     // Return the number of rows in the section.
     
     if ( tableView == self.tableView ) {
-        return [filteredResults count];
+        return [recents count];
     } else {
         
         int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
@@ -222,9 +222,9 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = nil;
-    /* if ( tableView == self.tableView ) {
+    if ( tableView == self.tableView ) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:kMainTableViewCellReuseIdentifier forIndexPath:indexPath];
-    }  */
+    }
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kMainTableViewCellReuseIdentifier];
         cell.textLabel.text = @"Username";
