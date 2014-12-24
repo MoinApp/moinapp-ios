@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		45122B811A4A076500A2F7F3 /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 45122B801A4A076500A2F7F3 /* APIError.m */; };
-		45122B831A4A156500A2F7F3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45122B821A4A156500A2F7F3 /* QuartzCore.framework */; };
 		45122B861A4A184A00A2F7F3 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 45122B851A4A184A00A2F7F3 /* Constants.m */; };
 		45437E6D1A3DFC5100A9BFE7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E6C1A3DFC5100A9BFE7 /* MainTableViewController.m */; };
 		45437E701A3E24A400A9BFE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E6F1A3E24A400A9BFE7 /* LoginViewController.m */; };
@@ -72,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45122B831A4A156500A2F7F3 /* QuartzCore.framework in Frameworks */,
 				63C405D7B646BAD8DA058E40 /* libPods-MoinApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +260,7 @@
 				TargetAttributes = {
 					45EA35171A3DF17300F557ED = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = Y2TG6MC867;
 					};
 					45EA35301A3DF17400F557ED = {
 						CreatedOnToolsVersion = 6.1;
@@ -477,10 +476,12 @@
 			baseConfigurationReference = 2CEB049E44C0658A43077ABD /* Pods-MoinApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = MoinApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fd505fa6-bfeb-41cb-a007-ae64d878d30b";
 			};
 			name = Debug;
 		};
@@ -489,10 +490,12 @@
 			baseConfigurationReference = F01415DCF3803EFE5F4F4609 /* Pods-MoinApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = MoinApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fd505fa6-bfeb-41cb-a007-ae64d878d30b";
 			};
 			name = Release;
 		};
