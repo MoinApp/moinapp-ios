@@ -287,6 +287,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         selectedUser = [serverSearchResults objectAtIndex:indexPath.item];
     }
     
+    [self dismissSearchDisplay];
     [self sendMoinToUser:selectedUser];
 }
 
@@ -411,12 +412,21 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         
     }];
 }
+
+#pragma mark SearchDisplayController
 - (void)reloadSearchTableView
 {
     // TODO: fix this without deprecation!
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [self.searchDisplayController.searchResultsTableView reloadData];
+#pragma clang diagnostic pop
+}
+- (void)dismissSearchDisplay
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.searchDisplayController setActive:NO animated:YES];
 #pragma clang diagnostic pop
 }
 
