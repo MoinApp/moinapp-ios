@@ -533,7 +533,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     
     if ( !isSearching ) {
         
-        NSLog(@"Recents: %d", recents.count);
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
