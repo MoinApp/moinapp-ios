@@ -486,9 +486,9 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
             NSString *text = [NSString stringWithFormat:@"Last refresh: %@", dateString];
             
             [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
-            [self.refreshControl endRefreshing];
-            
         }
+        
+        [self.refreshControl endRefreshing];
     }];
 }
 - (void)updateRecentsWithArray:(NSArray *)recentUsers
