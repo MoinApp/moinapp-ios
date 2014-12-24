@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import <UIKit+AFNetworking.h>
 
 #import "APIError.h"
 #import "APIErrorHandler.h"

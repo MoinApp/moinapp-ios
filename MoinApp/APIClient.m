@@ -125,6 +125,9 @@ static APIClient *client = nil;
     [manager setRequestSerializer:requestSerializer];
     [manager setResponseSerializer:responseSerializer];
     
+    // automatically add activity indicator to every request
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
     return manager;
 }
 
