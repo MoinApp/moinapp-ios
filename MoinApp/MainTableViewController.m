@@ -16,6 +16,7 @@ static int const kMainTableViewSectionRecentsId = 0;
 static NSString *const kMainTableViewSectionRecentsTitle = @"Your recent contacts";
 static int const kMainTableViewSectionServerResultsId = 1;
 static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search results";
+#define START_SECTION ( ( [self hasSearchResults] ) ? kMainTableViewSectionRecentsId : kMainTableViewSectionRecentsId-1 )
 
 @interface MainTableViewController ()
 {
@@ -164,13 +165,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         return [filteredResults count];
     } else {
         
-        int idRecents = kMainTableViewSectionRecentsId;
-        int idServer = kMainTableViewSectionServerResultsId;
-        
-        if ( ![self hasSearchResults] ) {
-            idRecents--;
-            idServer--;
-        }
+        int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
+        int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
         
         if ( section == idRecents ) {
             return [filteredResults count];
@@ -189,13 +185,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
         return kMainTableViewSectionRecentsTitle;
     } else {
         
-        int idRecents = kMainTableViewSectionRecentsId;
-        int idServer = kMainTableViewSectionServerResultsId;
-        
-        if ( ![self hasSearchResults] ) {
-            idRecents--;
-            idServer--;
-        }
+        int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
+        int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
         
         if ( section == idRecents ) {
             return kMainTableViewSectionRecentsTitle;
@@ -224,13 +215,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     
     User *user = nil;
     // get the user object
-    int idRecents = kMainTableViewSectionRecentsId;
-    int idServer = kMainTableViewSectionServerResultsId;
-    
-    if ( ![self hasSearchResults] ) {
-        idRecents--;
-        idServer--;
-    }
+    int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
+    int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
     if ( indexPath.section == idRecents ) {
         user = [filteredResults objectAtIndex:indexPath.item];
     } else if ( indexPath.section == idServer ) {
@@ -274,14 +260,13 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 {
     User *selectedUser = nil;
     
-    switch (indexPath.section) {
-        case kMainTableViewSectionRecentsId:
-            selectedUser = [filteredResults objectAtIndex:indexPath.item];
-            break;
-            
-        case kMainTableViewSectionServerResultsId:
-            selectedUser = [serverSearchResults objectAtIndex:indexPath.item];
-            break;
+    int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
+    int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
+    
+    if ( indexPath.section == idRecents ) {
+        selectedUser = [filteredResults objectAtIndex:indexPath.item];
+    } else if ( indexPath.section == idServer ) {
+        selectedUser = [serverSearchResults objectAtIndex:indexPath.item];
     }
     
     [self sendMoinToUser:selectedUser];
