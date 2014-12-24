@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 + (UIImage*)placeholderImage;
 

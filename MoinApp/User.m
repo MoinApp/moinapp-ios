@@ -9,6 +9,11 @@
 
 #import "User.h"
 
+static NSString *const kUserCodingKeyId = @"userId";
+static NSString *const kUserCodingKeyUsername = @"username";
+static NSString *const kUserCodingKeyEmailHash = @"emailHash";
+static NSString *const kUserCodingKeyProfileImage = @"profileImage";
+
 static NSString *const kGravatarImageBaseUrl = @"http://www.gravatar.com/avatar/";
 
 @interface User ()
@@ -20,6 +25,30 @@ static NSString *const kGravatarImageBaseUrl = @"http://www.gravatar.com/avatar/
 
 @implementation User
 @synthesize userId, username, emailHash, profileImage;
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.userId forKey:kUserCodingKeyId];
+    [aCoder encodeObject:self.username forKey:kUserCodingKeyUsername];
+    [aCoder encodeObject:self.emailHash forKey:kUserCodingKeyEmailHash];
+    [aCoder encodeObject:self.profileImage forKey:kUserCodingKeyProfileImage];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if ( self = [self init] ) {
+        
+        self.userId = [aDecoder decodeObjectForKey:kUserCodingKeyId];
+        self.username = [aDecoder decodeObjectForKey:kUserCodingKeyUsername];
+        self.emailHash = [aDecoder decodeObjectForKey:kUserCodingKeyEmailHash];
+        self.profileImage = [aDecoder decodeObjectForKey:kUserCodingKeyProfileImage];
+        
+    }
+    
+    return self;
+}
 
 #pragma mark - Class
 

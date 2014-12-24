@@ -18,6 +18,8 @@ static int const kMainTableViewSectionServerResultsId = 1;
 static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search results";
 #define START_SECTION ( ( [self hasSearchResults] ) ? kMainTableViewSectionRecentsId : kMainTableViewSectionRecentsId-1 )
 
+static NSString *const kMainTableViewCodingKeyRecents = @"recents";
+
 @interface MainTableViewController ()
 {
     NSArray *recents;
@@ -33,6 +35,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
 @end
 
 @implementation MainTableViewController
+
+#pragma mark - Load
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +79,24 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     [self reloadRecentUsers];
 }
 
+#pragma mark - UIViewController Restoration
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeObject:recents forKey:kMainTableViewCodingKeyRecents];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSArray *savedRecents = [coder decodeObjectForKey:kMainTableViewCodingKeyRecents];
+    
+    [self updateRecentsWithArray:savedRecents];
+}
+
+#pragma mark - Memory
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -92,7 +114,8 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     serverSearchResults = nil;
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view
+#pragma mark Data source
 
 - (BOOL)hasRecents
 {
@@ -254,7 +277,7 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     return cell;
 }
 
-#pragma mark - Table view events
+#pragma mark Table view events
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -447,8 +470,16 @@ static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search
     }];
 }
 
+- (BOOL)isReloadingRecents
+{
+    return ( [self.refreshControl isRefreshing] );
+}
 - (void)reloadRecentUsers
 {
+    if ( [self isReloadingRecents] ) {
+        return;
+    }
+    
     [self.refreshControl beginRefreshing];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
     [[APIClient client] getRecentsWithCompletion:^(APIError *error, id data) {
