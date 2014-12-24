@@ -1,6 +1,7 @@
 language: objective-c
 xcode_workspace: MoinApp.xcworkspace
 xcode_scheme: MoinApp
+sudo: false
 before_install:
 - KEY_CHAIN=ios-build.keychain
 - security create-keychain -p travis $KEY_CHAIN
