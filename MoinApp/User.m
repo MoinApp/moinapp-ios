@@ -86,7 +86,7 @@ static NSString *const kGravatarImageBaseUrl = @"http://www.gravatar.com/avatar/
 }
 - (NSURL*)gravatarImageURLWithSize:(NSInteger)size
 {
-    NSString *endString = [NSString stringWithFormat:@"%@%@?s=%ld", kGravatarImageBaseUrl, _emailHash, (long)size];
+    NSString *endString = [NSString stringWithFormat:@"%@%@?s=%ld&d=404", kGravatarImageBaseUrl, _emailHash, (long)size];
     
     return [NSURL URLWithString:endString];;
 }
