@@ -86,18 +86,14 @@
 {
     if ( application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateInactive ) {
         
-        NSString *body = [NSString stringWithFormat:@"Received Moin from %@.", user.username];
-        __block NSString *buttonTitleSendMoin = @"Send Moin";
+        NSString *body = [NSString stringWithFormat:@"from %@", user.username];
+        __block NSString *buttonTitleSendMoin = @"ReMoin";
         
         [UIAlertView showWithTitle:@"Moin"
                            message:body
-                 cancelButtonTitle:@"Close"
+                 cancelButtonTitle:@"Dismiss"
                  otherButtonTitles:@[buttonTitleSendMoin]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                              if ( buttonIndex == [alertView cancelButtonIndex] ) {
-                                  return;
-                              }
-                              
                               if ( [[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:buttonTitleSendMoin] ) {
                                   [self sendMoinToUser:user withCompletion:nil];
                               }
