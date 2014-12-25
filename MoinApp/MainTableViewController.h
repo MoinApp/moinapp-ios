@@ -23,8 +23,6 @@
 
 @interface MainTableViewController : UITableViewController <UISearchBarDelegate>
 
-- (void)applicationDidBecomeActive:(UIApplication *)application;
-
 - (IBAction)buttonLogout:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @end

@@ -82,11 +82,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     }
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    [self reloadRecentUsers];
-}
-
 #pragma mark - General
 
 - (void)isWorking:(BOOL)working
