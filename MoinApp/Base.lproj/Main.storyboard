@@ -45,7 +45,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Moin" id="ZIA-lf-i9v">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="5l9-OP-uVQ">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="5l9-OP-uVQ">
                             <connections>
                                 <action selector="buttonLogout:" destination="1W6-kd-ULe" id="Fxm-Me-UwZ"/>
                             </connections>
@@ -98,11 +98,11 @@
                                                     <constraint firstAttribute="height" constant="21" id="tKW-BM-VN9"/>
                                                 </constraints>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="Welcome!">
+                                                    <fragment content="Moin">
                                                         <attributes>
                                                             <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
