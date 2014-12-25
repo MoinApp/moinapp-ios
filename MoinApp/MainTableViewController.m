@@ -31,8 +31,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     NSArray *serverSearchResults;
     
     NSTimer *searchDelay;
-    
-    UIAlertView *alertViewLogout;
 }
 @end
 
@@ -306,27 +304,17 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 #pragma mark - UINavigationBar
 
 - (IBAction)buttonLogout:(UIBarButtonItem *)sender {
-    alertViewLogout = [[UIAlertView alloc] initWithTitle:@"Logout"
-                               message:@"Are you sure you want to logout?"
-                               delegate:self
-                     cancelButtonTitle:@"No"
-                     otherButtonTitles:@"Yes", nil];
-    
-    [alertViewLogout show];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if ( alertView == alertViewLogout ) {
-        // remove reference
-        alertViewLogout = nil;
-        
-        if ( buttonIndex == 0 ) {
-            // cancel
-        } else if ( buttonIndex == 1 ) { // Yes
-            [self logout];
-        }
-    }
+    [UIAlertView showWithTitle:@"Sign Out"
+                       message:@"Are you sure you want to sign out?"
+             cancelButtonTitle:@"No"
+             otherButtonTitles:@[@"Yes"]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if ( buttonIndex == [alertView cancelButtonIndex] ) {
+                              return;
+                          }
+                          
+                          [self logout];
+                      }];
 }
 
 #pragma mark - UIRefreshControl

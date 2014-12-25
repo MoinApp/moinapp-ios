@@ -12,6 +12,7 @@
 #import <HTProgressHUD/HTProgressHUD.h>
 #import <HTProgressHUD/HTProgressHUDFadeZoomAnimation.h>
 #import <HTProgressHUD/HTProgressHUDRingIndicatorView.h>
+#import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 #import <NSDate+DateTools.h>
 #import "Constants.h"
 #import "APIClient.h"
@@ -20,7 +21,7 @@
 #import "User.h"
 #import "PushController.h"
 
-@interface MainTableViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate>
+@interface MainTableViewController : UITableViewController <UISearchBarDelegate>
 
 - (void)applicationDidBecomeActive:(UIApplication *)application;
 
