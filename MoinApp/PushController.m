@@ -84,7 +84,7 @@
 }
 - (void)application:(UIApplication *)application didReceiveMoinFromUser:(User *)user
 {
-    if ( application.applicationState == UIApplicationStateActive ) {
+    if ( application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateInactive ) {
         
         NSString *body = [NSString stringWithFormat:@"Received Moin from %@.", user.username];
         __block NSString *buttonTitleSendMoin = @"Send Moin";
