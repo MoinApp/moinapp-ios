@@ -484,11 +484,12 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
                 message = [NSString stringWithFormat:@"%@", [error.response objectForKey:@"message"]];
             }
             [progressHUD setText:message];
-            [progressHUD hideAfterDelay:1.2 animated:YES];
             
             [self reloadRecentUsers];
             
         }
+        
+        [progressHUD hideAfterDelay:1.2 animated:YES];
     }];
 }
 
