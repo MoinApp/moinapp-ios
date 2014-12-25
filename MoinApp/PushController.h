@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "APIClient.h"
 

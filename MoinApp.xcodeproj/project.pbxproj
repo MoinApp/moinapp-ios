@@ -14,6 +14,10 @@
 		45437E741A3E28F200A9BFE7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45437E731A3E28F200A9BFE7 /* User.m */; };
 		458BB51B1A4B76C8004D355D /* PushController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458BB51A1A4B76C8004D355D /* PushController.m */; };
 		458BB5221A4CC0EC004D355D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 458BB5241A4CC0EC004D355D /* Localizable.strings */; };
+		458BB5331A4CCB56004D355D /* moin1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 458BB52F1A4CCB56004D355D /* moin1.wav */; };
+		458BB5341A4CCB56004D355D /* moin3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 458BB5301A4CCB56004D355D /* moin3.wav */; };
+		458BB5351A4CCB56004D355D /* moin4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 458BB5311A4CCB56004D355D /* moin4.wav */; };
+		458BB5361A4CCB56004D355D /* moin5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 458BB5321A4CCB56004D355D /* moin5.wav */; };
 		45EA351E1A3DF17300F557ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EA351D1A3DF17300F557ED /* main.m */; };
 		45EA35211A3DF17300F557ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EA35201A3DF17300F557ED /* AppDelegate.m */; };
 		45EA35271A3DF17300F557ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA35251A3DF17300F557ED /* Main.storyboard */; };
@@ -55,6 +59,10 @@
 		458BB5261A4CC16B004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		458BB5281A4CC16B004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		458BB52A1A4CC56C004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		458BB52F1A4CCB56004D355D /* moin1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin1.wav; sourceTree = "<group>"; };
+		458BB5301A4CCB56004D355D /* moin3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin3.wav; sourceTree = "<group>"; };
+		458BB5311A4CCB56004D355D /* moin4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin4.wav; sourceTree = "<group>"; };
+		458BB5321A4CCB56004D355D /* moin5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin5.wav; sourceTree = "<group>"; };
 		45EA35181A3DF17300F557ED /* MoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45EA351C1A3DF17300F557ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45EA351D1A3DF17300F557ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,9 +168,21 @@
 		458BB52B1A4CC7AF004D355D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				458BB52E1A4CCB3C004D355D /* Sounds */,
 				45EA35281A3DF17400F557ED /* Images.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		458BB52E1A4CCB3C004D355D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				458BB52F1A4CCB56004D355D /* moin1.wav */,
+				458BB5301A4CCB56004D355D /* moin3.wav */,
+				458BB5311A4CCB56004D355D /* moin4.wav */,
+				458BB5321A4CCB56004D355D /* moin5.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		45EA350F1A3DF17300F557ED = {
@@ -321,9 +341,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				45EA35271A3DF17300F557ED /* Main.storyboard in Resources */,
+				458BB5351A4CCB56004D355D /* moin4.wav in Resources */,
+				458BB5331A4CCB56004D355D /* moin1.wav in Resources */,
 				458BB5221A4CC0EC004D355D /* Localizable.strings in Resources */,
 				45EA352C1A3DF17400F557ED /* LaunchScreen.xib in Resources */,
+				458BB5361A4CCB56004D355D /* moin5.wav in Resources */,
 				45EA35291A3DF17400F557ED /* Images.xcassets in Resources */,
+				458BB5341A4CCB56004D355D /* moin3.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

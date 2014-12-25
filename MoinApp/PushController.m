@@ -11,6 +11,8 @@
 @interface PushController ()
 {
     UIUserNotificationSettings *_userNotificationSettings;
+    
+    AVAudioPlayer *audioPlayer;
 }
 @end
 
@@ -78,26 +80,54 @@
 {
     NSLog(@"Received Remote Notification. Info: %@", userInfo);
     
+    NSDictionary *apsDict = [userInfo objectForKey:@"aps"];
+    NSString *soundName = [apsDict objectForKey:@"sound"];
+    
     NSDictionary *senderDict = [userInfo objectForKey:@"sender"];
     User *sender = [[User alloc] initWithDictionary:senderDict];
-    [self application:application didReceiveMoinFromUser:sender];
+    
+    [self application:application didReceiveMoinFromUser:sender withSoundfile:soundName];
 }
-- (void)application:(UIApplication *)application didReceiveMoinFromUser:(User *)user
+- (void)application:(UIApplication *)application didReceiveMoinFromUser:(User *)user withSoundfile:(NSString *)soundfileName
 {
     if ( application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateInactive ) {
+        [self displayMoin:user soundName:soundfileName];
+    }
+}
+
+- (void)displayMoin:(User *)sender soundName:(NSString *)soundName
+{
+    NSString *body = [NSString stringWithFormat:NSLocalizedString(@"from %@", @"Description text when having received a Moin. %@ is the user."), sender.username];
+    __block NSString *buttonTitleSendMoin = NSLocalizedString(@"ReMoin", @"Verb to send back a Moin.");
+    
+    [self playSound:soundName];
+    [UIAlertView showWithTitle:NSLocalizedString(@"Moin", @"Moin")
+                       message:body
+             cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
+             otherButtonTitles:@[buttonTitleSendMoin]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if ( [[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:buttonTitleSendMoin] ) {
+                              [self sendMoinToUser:sender withCompletion:nil];
+                          }
+                      }];
+}
+- (void)playSound:(NSString *)filename
+{
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:filename];
+    
+    if ( [[NSFileManager defaultManager] fileExistsAtPath:filePath] ) {
+        NSURL *fileURL = [NSURL URLWithString:filePath];
+        NSError *error = nil;
         
-        NSString *body = [NSString stringWithFormat:NSLocalizedString(@"from %@", @"Description text when having received a Moin. %@ is the user."), user.username];
-        __block NSString *buttonTitleSendMoin = NSLocalizedString(@"ReMoin", @"Verb to send back a Moin.");
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
         
-        [UIAlertView showWithTitle:NSLocalizedString(@"Moin", @"Moin")
-                           message:body
-                 cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
-                 otherButtonTitles:@[buttonTitleSendMoin]
-                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                              if ( [[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:buttonTitleSendMoin] ) {
-                                  [self sendMoinToUser:user withCompletion:nil];
-                              }
-                          }];
+        if ( error ) {
+            NSLog(@"Error loading sound file \"%@\": %@", filePath, error);
+        } else {
+            [audioPlayer play];
+        }
+    } else {
+        NSLog(@"Notification sound not found.");
     }
 }
 
