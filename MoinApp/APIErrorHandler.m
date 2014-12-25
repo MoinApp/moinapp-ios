@@ -21,7 +21,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
 + (BOOL)handleError:(NSError *)error withResponse:(NSDictionary *)response
 {
     if ( !error ) {
-        return false;
+        return NO;
     }
     
     NSString *title = nil;
@@ -59,7 +59,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
                       otherButtonTitles:nil]
      show];
     
-    return true;
+    return YES;
 }
 
 # pragma mark - Errors

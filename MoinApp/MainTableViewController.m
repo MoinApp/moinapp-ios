@@ -472,10 +472,11 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     
     [[APIClient client] moinUser:user completion:^(APIError *error, id data) {
         
+        NSString *message = nil;
         if ( ![APIErrorHandler handleError:error] ) {
             
             BOOL success = [(NSNumber*)data boolValue];
-            NSString *message = nil;
+            
             
             if ( success ) {
                 message = @"Success";
@@ -483,12 +484,14 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
                 NSLog(@"%@", error);
                 message = [NSString stringWithFormat:@"%@", [error.response objectForKey:@"message"]];
             }
-            [progressHUD setText:message];
             
             [self reloadRecentUsers];
             
+        } else {
+            message = @"Error";
         }
         
+        [progressHUD setText:message];
         [progressHUD hideAfterDelay:1.2 animated:YES];
     }];
 }
