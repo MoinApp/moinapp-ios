@@ -17,7 +17,7 @@ static NSString *const kMoinAPIAuthorizationHeader = @"authorization";
 // API Paths
 static NSString *const kMoinAPIPathLogin = @"/api/auth";
 static NSString *const kMoinAPIPathSignup = @"/api/signup";
-static NSString *const kMoinAPIPathRegisterAPN = @"/api/addapn";
+static NSString *const kMoinAPIPathRegisterAPN = @"/api/user/addapn";
 static NSString *const kMoinAPIPathRecents = @"/api/user/recents";
 static NSString *const kMoinAPIPathMoin = @"/api/moin";
 static NSString *const kMoinAPIUserSearch = @"/api/user";
