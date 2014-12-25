@@ -52,6 +52,9 @@
 		458BB5191A4B76C8004D355D /* PushController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushController.h; sourceTree = "<group>"; };
 		458BB51A1A4B76C8004D355D /* PushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushController.m; sourceTree = "<group>"; };
 		458BB5231A4CC0EC004D355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		458BB5261A4CC16B004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		458BB5271A4CC16B004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		458BB5281A4CC16B004D355D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		45EA35181A3DF17300F557ED /* MoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45EA351C1A3DF17300F557ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45EA351D1A3DF17300F557ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 45EA350F1A3DF17300F557ED;
 			productRefGroup = 45EA35191A3DF17300F557ED /* Products */;
@@ -398,6 +402,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				458BB5231A4CC0EC004D355D /* Base */,
+				458BB5281A4CC16B004D355D /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = SOURCE_ROOT;
@@ -406,6 +411,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				45EA35261A3DF17300F557ED /* Base */,
+				458BB5271A4CC16B004D355D /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				45EA352B1A3DF17400F557ED /* Base */,
+				458BB5261A4CC16B004D355D /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

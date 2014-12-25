@@ -1,0 +1,51 @@
+
+/* Class = "IBUITableViewController"; title = "MainTableViewController"; ObjectID = "1W6-kd-ULe"; */
+"1W6-kd-ULe.title" = "MainTableViewController";
+
+/* Class = "IBUISearchDisplayController"; searchResultsTitle = "Search results"; ObjectID = "3cT-hJ-bnK"; */
+"3cT-hJ-bnK.searchResultsTitle" = "Suchergebnisse";
+
+/* Class = "IBUIBarButtonItem"; title = "Sign Out"; ObjectID = "5l9-OP-uVQ"; */
+"5l9-OP-uVQ.title" = "Abmelden";
+
+/* Class = "IBUIButton"; normalTitle = "Sign up!"; ObjectID = "7JB-5h-NC3"; */
+"7JB-5h-NC3.normalTitle" = "Account erstellen!";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "93L-Qf-d7l"; */
+"93L-Qf-d7l.placeholder" = "Passwort";
+
+/* Class = "IBUITextField"; placeholder = "Gravatar Email (for Profile Image)"; ObjectID = "C9T-78-Rev"; */
+"C9T-78-Rev.placeholder" = "Gravatar Email (für Profilbild)";
+
+/* Class = "IBUILabel"; text = "Username"; ObjectID = "Hbi-0Z-R4z"; */
+"Hbi-0Z-R4z.text" = "Benutzername";
+
+/* Class = "IBUITextField"; placeholder = "Username"; ObjectID = "Tz3-Sk-dGl"; */
+"Tz3-Sk-dGl.placeholder" = "Benutzername";
+
+/* Class = "IBUILabel"; text = "Need an Account?"; ObjectID = "V8Y-Tj-Egs"; */
+"V8Y-Tj-Egs.text" = "Noch keinen Account?";
+
+/* Class = "IBUINavigationItem"; title = "Moin"; ObjectID = "ZIA-lf-i9v"; */
+"ZIA-lf-i9v.title" = "Moin";
+
+/* Class = "IBUITextField"; placeholder = "Username"; ObjectID = "bo7-cM-ZIV"; */
+"bo7-cM-ZIV.placeholder" = "Benutzername";
+
+/* Class = "IBUISearchBar"; placeholder = "Search for username..."; ObjectID = "gsj-fW-vRy"; */
+"gsj-fW-vRy.placeholder" = "Nach Benutzername suchen...";
+
+/* Class = "IBUINavigationController"; title = "NavigationController"; ObjectID = "i94-4u-sLU"; */
+"i94-4u-sLU.title" = "NavigationController";
+
+/* Class = "IBUIViewController"; title = "LoginViewController"; ObjectID = "kYs-TC-ETC"; */
+"kYs-TC-ETC.title" = "LoginViewController";
+
+/* Class = "IBUILabel"; text = "Please login to use MoinApp:"; ObjectID = "qiR-aH-NyT"; */
+"qiR-aH-NyT.text" = "Bitte loggen Sie sich ein, um Moin zu benutzen:";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "uwk-QA-3uX"; */
+"uwk-QA-3uX.placeholder" = "Passwort";
+
+/* Class = "IBUIButton"; normalTitle = "Login"; ObjectID = "vjh-L5-qei"; */
+"vjh-L5-qei.normalTitle" = "Anmelden";
