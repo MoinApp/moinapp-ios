@@ -24,6 +24,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 {
     NSArray *recents;
     BOOL isReloadingRecents;
+    NSDate *lastRecentsReload;
     
     NSArray *filteredResults;
     AFHTTPRequestOperation *searchOperation;
@@ -47,6 +48,15 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    lastRecentsReload = [NSDate date];
+    
+    NSTimer *refreshControlTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                                    target:self
+                                                                  selector:@selector(updateRefreshControlRelativeDate)
+                                                                  userInfo:nil
+                                                                   repeats:YES];
+    refreshControlTimer.tolerance = 10.0;
     
     [self createRefreshControl];
 }
@@ -505,15 +515,6 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
             NSArray *recentUsers = (NSArray *)data;
             
             [self updateRecentsWithArray:recentUsers];
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateStyle:NSDateFormatterMediumStyle];
-            [formatter setTimeStyle:NSDateFormatterMediumStyle];
-            NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-            
-            NSString *text = [NSString stringWithFormat:@"Last refresh: %@", dateString];
-            
-            [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
         }
         
         [self.refreshControl endRefreshing];
@@ -529,10 +530,22 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         // sort by username
         NSArray *sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"username" ascending:YES], nil];
         recents = [recentUsers sortedArrayUsingDescriptors:sortDescriptors];
+        
+        // update the date string
+        lastRecentsReload = [NSDate date];
+        [self updateRefreshControlRelativeDate];
     }
     
     filteredResults = [NSArray arrayWithArray:recents];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark Refresh Control Text
+- (void)updateRefreshControlRelativeDate
+{
+    NSString *dateString = lastRecentsReload.timeAgoSinceNow;
+    
+    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:dateString]];
 }
 
 /*
