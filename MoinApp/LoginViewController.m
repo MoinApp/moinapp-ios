@@ -185,12 +185,12 @@
     
     [self loginWithUsername:username Password:password completion:^(APIError *error, id data) {
         
-        BOOL loggedIn = [(NSNumber*)data boolValue];
-        
         [self setUIEnabled:YES];
         [self.activityLogin stopAnimating];
         
         if ( ![APIErrorHandler handleError:error] ) {
+            
+            BOOL loggedIn = [(NSNumber*)data boolValue];
             
             if ( loggedIn ) {
                 // success

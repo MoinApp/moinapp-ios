@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface Constants : NSError
+@interface Constants : NSObject
 + (UIColor*)styleColor;
 + (NSTimeInterval)searchDelay;
 @end

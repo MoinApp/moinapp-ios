@@ -45,7 +45,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    //MainTableViewController *view = (MainTableViewController *)self.window.rootViewController;
+    // reset badge number
+    application.applicationIconBadgeNumber = 0;
+    
     UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
     MainTableViewController *view = (MainTableViewController *)navController.topViewController;
     [view applicationDidBecomeActive:application];
@@ -62,6 +64,26 @@
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
 {
     return YES;
+}
+
+#pragma mark - APN (Push)
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [[PushController sharedController] application:application didRegisterUserNotificationSettings:notificationSettings];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [[PushController sharedController] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [[PushController sharedController] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [[PushController sharedController] application:application didReceiveRemoteNotification:userInfo];
 }
 
 @end

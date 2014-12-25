@@ -79,6 +79,8 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     NSString *session = [[APIClient client] session];
     if ( session == nil ) {
         [[self navigationController] performSegueWithIdentifier:kLoginSegue sender:self];
+    } else {
+        [[PushController sharedController] registerForUserNotifications];
     }
 }
 
@@ -297,6 +299,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         selectedUser = [serverSearchResults objectAtIndex:indexPath.item];
     }
     
+    [self dismissSearchDisplay];
     [self sendMoinToUser:selectedUser];
 }
 
@@ -421,12 +424,21 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         
     }];
 }
+
+#pragma mark SearchDisplayController
 - (void)reloadSearchTableView
 {
     // TODO: fix this without deprecation!
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [self.searchDisplayController.searchResultsTableView reloadData];
+#pragma clang diagnostic pop
+}
+- (void)dismissSearchDisplay
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.searchDisplayController setActive:NO animated:YES];
 #pragma clang diagnostic pop
 }
 
@@ -468,12 +480,13 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         [self.searchBar resignFirstResponder];
     }
     
-    [[APIClient client] moinUser:user completion:^(APIError *error, id data) {
+    [[PushController sharedController] sendMoinToUser:user withCompletion:^(APIError *error, id data) {
         
+        NSString *message = nil;
         if ( ![APIErrorHandler handleError:error] ) {
             
             BOOL success = [(NSNumber*)data boolValue];
-            NSString *message = nil;
+            
             
             if ( success ) {
                 message = @"Success";
@@ -481,12 +494,15 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
                 NSLog(@"%@", error);
                 message = [NSString stringWithFormat:@"%@", [error.response objectForKey:@"message"]];
             }
-            [progressHUD setText:message];
-            [progressHUD hideAfterDelay:1.2 animated:YES];
             
             [self reloadRecentUsers];
             
+        } else {
+            message = @"Error";
         }
+        
+        [progressHUD setText:message];
+        [progressHUD hideAfterDelay:1.2 animated:YES];
     }];
 }
 

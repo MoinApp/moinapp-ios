@@ -18,6 +18,7 @@
 #import "APIErrorHandler.h"
 #import "LoginViewController.h"
 #import "User.h"
+#import "PushController.h"
 
 @interface MainTableViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate>
 

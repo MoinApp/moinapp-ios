@@ -25,6 +25,7 @@ typedef void(^APIRequestCompletionHandler)(APIError*, id);
 - (AFHTTPRequestOperation *)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(APIRequestCompletionHandler)completion;
 - (void)logoutWithCompletion:(APIRequestCompletionHandler)completion;
 - (AFHTTPRequestOperation *)signupWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email completion:(APIRequestCompletionHandler)completion;
+- (AFHTTPRequestOperation *)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken withCompletion:(APIRequestCompletionHandler)completion;
 
 - (AFHTTPRequestOperation *)getRecentsWithCompletion:(APIRequestCompletionHandler)completion;
 - (AFHTTPRequestOperation *)getUsersWithUsername:(NSString *)username completion:(APIRequestCompletionHandler)completion;
