@@ -157,6 +157,14 @@
 			name = en;
 			sourceTree = "<group>";
 		};
+		458BB52B1A4CC7AF004D355D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				45EA35281A3DF17400F557ED /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		45EA350F1A3DF17300F557ED = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +189,8 @@
 		45EA351A1A3DF17300F557ED /* MoinApp */ = {
 			isa = PBXGroup;
 			children = (
+				458BB52B1A4CC7AF004D355D /* Resources */,
 				45437E691A3DFC1000A9BFE7 /* Views */,
-				45EA35281A3DF17400F557ED /* Images.xcassets */,
 				45122B841A4A184A00A2F7F3 /* Constants.h */,
 				45122B851A4A184A00A2F7F3 /* Constants.m */,
 				45437E6A1A3DFC2300A9BFE7 /* Controllers */,
