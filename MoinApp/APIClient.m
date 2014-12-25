@@ -213,6 +213,16 @@ static APIClient *client = nil;
 
 - (AFHTTPRequestOperation *)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken withCompletion:(APIRequestCompletionHandler)completion
 {
+    NSString *deviceTokenString = [deviceToken description];
+    deviceTokenString = [[[deviceTokenString
+                           stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                          stringByReplacingOccurrencesOfString:@">" withString:@""]
+                         stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return [self registerForRemoteNotificationsWithDeviceTokenString:deviceTokenString withCompletion:completion];
+}
+- (AFHTTPRequestOperation *)registerForRemoteNotificationsWithDeviceTokenString:(NSString *)deviceToken withCompletion:(APIRequestCompletionHandler)completion
+{
     NSDictionary *params = @{ @"apnDeviceToken": deviceToken };
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
