@@ -86,12 +86,12 @@
 {
     if ( application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateInactive ) {
         
-        NSString *body = [NSString stringWithFormat:@"from %@", user.username];
-        __block NSString *buttonTitleSendMoin = @"ReMoin";
+        NSString *body = [NSString stringWithFormat:NSLocalizedString(@"from %@", @"Description text when having received a Moin. %@ is the user."), user.username];
+        __block NSString *buttonTitleSendMoin = NSLocalizedString(@"ReMoin", @"Verb to send back a Moin.");
         
-        [UIAlertView showWithTitle:@"Moin"
+        [UIAlertView showWithTitle:NSLocalizedString(@"Moin", @"Moin")
                            message:body
-                 cancelButtonTitle:@"Dismiss"
+                 cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
                  otherButtonTitles:@[buttonTitleSendMoin]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                               if ( [[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:buttonTitleSendMoin] ) {

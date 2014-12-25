@@ -37,7 +37,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
                                                      options:0
                                                        range:NSMakeRange(0, [title length])
                                                 withTemplate:@"$1 $2"];
-        NSRegularExpression *regexErrorWord = [NSRegularExpression regularExpressionWithPattern:@"Error"
+        NSRegularExpression *regexErrorWord = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@"Error", @"Error")
                                                                                         options:0
                                                                                           error:nil];
         title = [regexErrorWord stringByReplacingMatchesInString:title
@@ -47,7 +47,8 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
         
         body = [NSString stringWithFormat:@"%@", [response objectForKey:@"message"]];
     } else {
-        title = [NSString stringWithFormat:@"Unexpected server error (%ld)", (long)error.code];
+        NSString *titleFormat = NSLocalizedString(@"Unexpected server error (%ld)", @"Title if an unexpected error occurs. %ld is the error code.");
+        title = [NSString stringWithFormat:titleFormat, (long)error.code];
         
         body = [NSString stringWithFormat:@"%@", error.localizedDescription];
     }
@@ -55,7 +56,7 @@ NSString *const kMoinErrorDomain = @"MPMoinErrorDomain";
     [[[UIAlertView alloc] initWithTitle:title
                                 message:body
                                delegate:nil
-                      cancelButtonTitle:@"OK"
+                      cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
                       otherButtonTitles:nil]
      show];
     

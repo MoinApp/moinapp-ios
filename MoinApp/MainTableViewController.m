@@ -13,7 +13,6 @@ static NSString *const ERROR = @"ERROR";
 static NSString *const kLoginSegue = @"showLogin";
 static NSString *const kMainTableViewCellReuseIdentifier = @"cellUser";
 static int const kMainTableViewSectionRecentsId = 0;
-static NSString *const kMainTableViewSectionRecentsTitle = @"Your recent contacts";
 static int const kMainTableViewSectionServerResultsId = 1;
 static NSString *const kMainTableViewSectionServerResultsTitle = @"Server search results";
 #define START_SECTION ( ( [self hasSearchResults] ) ? kMainTableViewSectionRecentsId : kMainTableViewSectionRecentsId-1 )
@@ -205,21 +204,24 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    NSString *recentsTitle = NSLocalizedString(@"Your friends", @"Title for the friends in the main table view.");
+    NSString *serverResultsTitle = NSLocalizedString(@"Other users", @"Title for other users, they search results.");
+    
     if ( tableView == self.tableView ) {
-        return kMainTableViewSectionRecentsTitle;
+        return recentsTitle;
     } else {
         int idRecents = START_SECTION + kMainTableViewSectionRecentsId;
         int idServer = START_SECTION + kMainTableViewSectionServerResultsId;
         
         if ( section == idRecents ) {
-            return kMainTableViewSectionRecentsTitle;
+            return recentsTitle;
         } else if ( section == idServer ) {
-            return kMainTableViewSectionServerResultsTitle;
+            return serverResultsTitle;
         }
         
     }
     
-    return @"ERROR";
+    return NSLocalizedString(@"Error", @"Error");
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -230,7 +232,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     }
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kMainTableViewCellReuseIdentifier];
-        cell.textLabel.text = @"Username";
+        cell.textLabel.text = NSLocalizedString(@"Username", @"Username");
     }
     
     // Configure the cell...
@@ -299,10 +301,10 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 #pragma mark - UINavigationBar
 
 - (IBAction)buttonLogout:(UIBarButtonItem *)sender {
-    [UIAlertView showWithTitle:@"Sign Out"
-                       message:@"Are you sure you want to sign out?"
-             cancelButtonTitle:@"No"
-             otherButtonTitles:@[@"Yes"]
+    [UIAlertView showWithTitle:NSLocalizedString(@"Sign out", @"Title for the AlertView when tapping 'Sign Out'.")
+                       message:NSLocalizedString(@"Are you sure you want to sign out?", @"Ask the user if he is sure to sign out.")
+             cancelButtonTitle:NSLocalizedString(@"No", @"No")
+             otherButtonTitles:@[NSLocalizedString(@"Yes", @"Yes")]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                           if ( buttonIndex == [alertView cancelButtonIndex] ) {
                               return;
@@ -433,10 +435,10 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     [[APIClient client] logoutWithCompletion:^(APIError *error, id data) {
         [self isWorking:NO];
         if ( error ) {
-            [[[UIAlertView alloc] initWithTitle:@"We're sorry"
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
                                         message:error.error.localizedDescription
                                        delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
                               otherButtonTitles:nil]
              show];
         } else {
@@ -454,7 +456,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 {
     __block HTProgressHUD *progressHUD = [[HTProgressHUD alloc] init];
     progressHUD.animation = [HTProgressHUDFadeZoomAnimation animation];
-    [progressHUD.textLabel setText:@"Sending moin..."];
+    [progressHUD.textLabel setText:NSLocalizedString(@"Sending Moin...", @"Status text when sending a moin.")];
     
     [progressHUD showInView:self.view animated:YES];
     
@@ -472,7 +474,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
             
             
             if ( success ) {
-                message = @"Success";
+                message = NSLocalizedString(@"Success", @"Success");
             } else {
                 NSLog(@"%@", error);
                 message = [NSString stringWithFormat:@"%@", [error.response objectForKey:@"message"]];
@@ -481,7 +483,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
             [self reloadRecentUsers];
             
         } else {
-            message = @"Error";
+            message = NSLocalizedString(@"Error", @"Error");
         }
         
         [progressHUD setText:message];
@@ -501,7 +503,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     isReloadingRecents = YES;
     
     [self.refreshControl beginRefreshing];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Refreshing...", @"Text of the refresh control when the friends list is reloading.")];
     [[APIClient client] getRecentsWithCompletion:^(APIError *error, id data) {
         
         isReloadingRecents = NO;
