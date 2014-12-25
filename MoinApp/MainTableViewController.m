@@ -470,7 +470,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
         [self.searchBar resignFirstResponder];
     }
     
-    [[APIClient client] moinUser:user completion:^(APIError *error, id data) {
+    [[PushController sharedController] sendMoinToUser:user withCompletion:^(APIError *error, id data) {
         
         NSString *message = nil;
         if ( ![APIErrorHandler handleError:error] ) {

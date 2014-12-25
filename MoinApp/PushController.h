@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 
 #import "APIClient.h"
 
@@ -23,4 +24,7 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo;
+
+#pragma mark - Send Moin
+- (void)sendMoinToUser:(User *)user withCompletion:(APIRequestCompletionHandler)completion;
 @end

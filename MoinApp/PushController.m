@@ -78,14 +78,38 @@
 {
     NSLog(@"Received Remote Notification. Info: %@", userInfo);
     
+    NSDictionary *senderDict = [userInfo objectForKey:@"sender"];
+    User *sender = [[User alloc] initWithDictionary:senderDict];
+    [self application:application didReceiveMoinFromUser:sender];
+}
+- (void)application:(UIApplication *)application didReceiveMoinFromUser:(User *)user
+{
     if ( application.applicationState == UIApplicationStateActive ) {
-        [[[UIAlertView alloc] initWithTitle:@"Moin"
-                                    message:@"Received moin."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil]
-         show];
+        
+        NSString *body = [NSString stringWithFormat:@"Received Moin from %@.", user.username];
+        __block NSString *buttonTitleSendMoin = @"Send Moin";
+        
+        [UIAlertView showWithTitle:@"Moin"
+                           message:body
+                 cancelButtonTitle:@"Close"
+                 otherButtonTitles:@[buttonTitleSendMoin]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if ( buttonIndex == [alertView cancelButtonIndex] ) {
+                                  return;
+                              }
+                              
+                              if ( [[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:buttonTitleSendMoin] ) {
+                                  [self sendMoinToUser:user withCompletion:nil];
+                              }
+                          }];
     }
+}
+
+#pragma mark - Send Moin
+
+- (void)sendMoinToUser:(User *)user withCompletion:(APIRequestCompletionHandler)completion;
+{
+    [[APIClient client] moinUser:user completion:completion];
 }
 
 @end
