@@ -487,7 +487,7 @@
 				INFOPLIST_FILE = MoinApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fd505fa6-bfeb-41cb-a007-ae64d878d30b";
+				PROVISIONING_PROFILE = "782094a8-7276-4d65-808f-cf73360c7261";
 			};
 			name = Debug;
 		};
@@ -501,7 +501,7 @@
 				INFOPLIST_FILE = MoinApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fd505fa6-bfeb-41cb-a007-ae64d878d30b";
+				PROVISIONING_PROFILE = "782094a8-7276-4d65-808f-cf73360c7261";
 			};
 			name = Release;
 		};
