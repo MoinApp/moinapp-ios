@@ -20,15 +20,15 @@ static NSString *const kMoinAPIPathSignup = @"/api/signup";
 static NSString *const kMoinAPIPathRegisterAPN = @"/api/user/addapn";
 static NSString *const kMoinAPIPathRecents = @"/api/user/recents";
 static NSString *const kMoinAPIPathMoin = @"/api/moin";
-static NSString *const kMoinAPIUserSearch = @"/api/user";
+static NSString *const kMoinAPIPathUserSearch = @"/api/user";
 
 @interface APIClient ()
 {
     NSString *_session;
 }
 
-- (NSString *)getAbsolutePath:(NSString *)path withHost:(NSString *)host;
-- (NSString *)getAbsolutePath:(NSString *)path;
+- (NSString *)absolutePath:(NSString *)path withHost:(NSString *)host;
+- (NSString *)absolutePath:(NSString *)path;
 @end
 
 @implementation APIClient
@@ -136,15 +136,15 @@ static APIClient *client = nil;
 
 #pragma mark Helpers
 
-- (NSString *)getAbsolutePath:(NSString *)path withHost:(NSString *)host
+- (NSString *)absolutePath:(NSString *)path withHost:(NSString *)host
 {
     NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:path];
     
     return [url absoluteString];
 }
-- (NSString *)getAbsolutePath:(NSString *)path
+- (NSString *)absolutePath:(NSString *)path
 {
-    return [self getAbsolutePath:path withHost:kMoinAPIServerHost];
+    return [self absolutePath:path withHost:kMoinAPIServerHost];
 }
 
 - (BOOL)isAuthorized
@@ -173,7 +173,7 @@ static APIClient *client = nil;
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
-    return [manager POST:[self getAbsolutePath:kMoinAPIPathLogin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [manager POST:[self absolutePath:kMoinAPIPathLogin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self saveSessionTokenFromResponse:responseObject];
 
@@ -197,7 +197,7 @@ static APIClient *client = nil;
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
-    return [manager POST:[self getAbsolutePath:kMoinAPIPathSignup]
+    return [manager POST:[self absolutePath:kMoinAPIPathSignup]
               parameters:params
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      [self saveSessionTokenFromResponse:responseObject];
@@ -217,7 +217,7 @@ static APIClient *client = nil;
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
-    return [manager POST:[self getAbsolutePath:kMoinAPIPathRegisterAPN]
+    return [manager POST:[self absolutePath:kMoinAPIPathRegisterAPN]
               parameters:params
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      completion(nil, responseObject);
@@ -242,7 +242,7 @@ static APIClient *client = nil;
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
 
-    return [manager GET:[self getAbsolutePath:kMoinAPIPathRecents] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [manager GET:[self absolutePath:kMoinAPIPathRecents] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSMutableArray *users = [[NSMutableArray alloc] init];
         NSArray *response = (NSArray *)responseObject;
@@ -278,7 +278,7 @@ static APIClient *client = nil;
     
     NSDictionary *params = @{ @"username": username };
     
-    return [manager GET:[self getAbsolutePath:kMoinAPIUserSearch] parameters:params  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [manager GET:[self absolutePath:kMoinAPIPathUserSearch] parameters:params  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *response = (NSArray *)responseObject;
         NSMutableArray *users = [[NSMutableArray alloc] init];
@@ -317,7 +317,7 @@ static APIClient *client = nil;
     
     AFHTTPRequestOperationManager *manager = [APIClient httpManager];
     
-    return [manager POST:[self getAbsolutePath:kMoinAPIPathMoin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [manager POST:[self absolutePath:kMoinAPIPathMoin] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         completion(nil, [NSNumber numberWithBool:YES]);
         
