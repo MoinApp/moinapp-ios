@@ -11,8 +11,6 @@
 @interface PushController ()
 {
     UIUserNotificationSettings *_userNotificationSettings;
-    
-    AVAudioPlayer *audioPlayer;
 }
 @end
 
@@ -91,16 +89,24 @@
 - (void)application:(UIApplication *)application didReceiveMoinFromUser:(User *)user withSoundfile:(NSString *)soundfileName
 {
     if ( application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateInactive ) {
-        [self displayMoin:user soundName:soundfileName];
+        BOOL wasInForeground = ( application.applicationState == UIApplicationStateActive );
+        
+        [self displayMoin:user soundName:soundfileName afterBackgroundNotification:!wasInForeground];
     }
 }
 
-- (void)displayMoin:(User *)sender soundName:(NSString *)soundName
+- (void)displayMoin:(User *)sender soundName:(NSString *)soundName afterBackgroundNotification:(BOOL)wasInBackground
 {
     NSString *body = [NSString stringWithFormat:NSLocalizedString(@"from %@", @"Description text when having received a Moin. %@ is the user."), sender.username];
     __block NSString *buttonTitleSendMoin = NSLocalizedString(@"ReMoin", @"Verb to send back a Moin.");
     
-    [self playSound:soundName];
+    if ( !wasInBackground ) {
+        // only play sound and vibrate (if the user has it turned on, anyway)
+        // if we are in foreground. In background state, the user has already
+        // heard (and/or felt) the notification by the system
+        [self playSound:soundName];
+    }
+
     [UIAlertView showWithTitle:NSLocalizedString(@"Moin", @"Moin")
                        message:body
              cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Close a notification dialog.")
@@ -117,15 +123,17 @@
     
     if ( [[NSFileManager defaultManager] fileExistsAtPath:filePath] ) {
         NSURL *fileURL = [NSURL URLWithString:filePath];
-        NSError *error = nil;
         
-        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+        __block SystemSoundID audioEffect;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) fileURL, &audioEffect);
+        AudioServicesPlayAlertSound(audioEffect);
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         
-        if ( error ) {
-            NSLog(@"Error loading sound file \"%@\": %@", filePath, error);
-        } else {
-            [audioPlayer play];
-        }
+        dispatch_time_t dispatch_disposeSound = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+        dispatch_after(dispatch_disposeSound, dispatch_get_main_queue(), ^{
+            AudioServicesDisposeSystemSoundID(audioEffect);
+            NSLog(@"Disposed sound.");
+        });
     } else {
         NSLog(@"Notification sound not found.");
     }
