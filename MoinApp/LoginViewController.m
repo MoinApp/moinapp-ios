@@ -63,6 +63,13 @@
                            forControlEvents:UIControlEventEditingDidEnd];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    id<GAITracker> gaTracker = [[GAI sharedInstance] trackerWithTrackingId:[Constants googleAnalyticsTrackingID]];
+    [gaTracker set:kGAIScreenName value:@"Main TableView"];
+    [gaTracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

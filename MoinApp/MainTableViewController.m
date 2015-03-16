@@ -66,6 +66,10 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    id<GAITracker> gaTracker = [[GAI sharedInstance] trackerWithTrackingId:[Constants googleAnalyticsTrackingID]];
+    [gaTracker set:kGAIScreenName value:@"Main TableView"];
+    [gaTracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
     [self reloadRecentUsers];
     
     [self presentLoginViewController];
