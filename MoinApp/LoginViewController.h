@@ -13,6 +13,7 @@
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 #import "AFNetworking/AFNetworking.h"
+#import "Constants.h"
 #import "APIClient.h"
 #import "APIErrorHandler.h"
 
