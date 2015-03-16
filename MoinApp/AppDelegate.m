@@ -31,6 +31,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self initializeGoogleAnalytics];
+    
     NSDictionary *remoteNotificationInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if ( remoteNotificationInfo ) {
         NSLog(@"Remote Notification: %@", remoteNotificationInfo);
@@ -38,6 +40,16 @@
     }
     
     return YES;
+}
+- (void)initializeGoogleAnalytics
+{
+    // track all uncaught exceptions
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // set dispatch interval to x seconds
+    [GAI sharedInstance].dispatchInterval = 5.0;
+    
+    // set tracking ID
+    [[GAI sharedInstance] trackerWithTrackingId:[Constants googleAnalyticsTrackingID]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

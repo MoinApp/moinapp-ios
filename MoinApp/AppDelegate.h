@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "MainTableViewController.h"
 #import "PushController.h"
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

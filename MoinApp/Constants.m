@@ -18,4 +18,8 @@
 {
     return 0.35f;
 }
++ (NSString*)googleAnalyticsTrackingID
+{
+    return @"UA-59543236-1";
+}
 @end

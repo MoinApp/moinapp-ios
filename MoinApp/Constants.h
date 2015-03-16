@@ -12,4 +12,5 @@
 @interface Constants : NSObject
 + (UIColor*)styleColor;
 + (NSTimeInterval)searchDelay;
++ (NSString*)googleAnalyticsTrackingID;
 @end
