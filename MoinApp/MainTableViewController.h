@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GoogleAnalytics-iOS-SDK/GAI.h>
-#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
-#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIFields.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <UIKit+AFNetworking.h>
 #import <QuartzCore/CALayer.h>
 #import <HTProgressHUD/HTProgressHUD.h>
