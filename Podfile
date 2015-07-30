@@ -6,7 +6,7 @@ target 'MoinApp' do
     pod 'HTProgressHUD', '~> 0.2.1'
     pod 'DateTools', '~> 1.4.3'
     pod 'UIAlertView+Blocks', '~> 0.8.1'
-    pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
+    pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
 end
 
 target 'MoinAppTests' do
