@@ -46,7 +46,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    lastRecentsReload = [NSDate date];
+    lastRecentsReload = [NSDate dateWithTimeIntervalSince1970:0];
     
     NSTimer *refreshControlTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                                     target:self
@@ -548,7 +548,12 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
 #pragma mark Refresh Control Text
 - (void)updateRefreshControlRelativeDate
 {
-    NSString *dateString = lastRecentsReload.timeAgoSinceNow;
+    NSString *dateString = nil;
+    if ( lastRecentsReload.timeIntervalSince1970 > 0 ) {
+        dateString = lastRecentsReload.timeAgoSinceNow;
+    } else {
+        dateString = @"Never";
+    }
     
     [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:dateString]];
 }
