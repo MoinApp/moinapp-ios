@@ -46,7 +46,7 @@
     // track all uncaught exceptions
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     // set dispatch interval to x seconds
-    [GAI sharedInstance].dispatchInterval = 5.0;
+    [GAI sharedInstance].dispatchInterval = 30.0;
     
     // set tracking ID
     [[GAI sharedInstance] trackerWithTrackingId:[Constants googleAnalyticsTrackingID]];
