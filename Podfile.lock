@@ -21,23 +21,21 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DateTools (1.4.3)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - GoogleAnalytics (3.13.0)
   - HTProgressHUD (0.2.1)
   - UIAlertView+Blocks (0.8.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - DateTools (~> 1.4.3)
-  - GoogleAnalytics-iOS-SDK (~> 3.10)
+  - GoogleAnalytics (~> 3.13)
   - HTProgressHUD (~> 0.2.1)
   - UIAlertView+Blocks (~> 0.8.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   DateTools: c3d055af2c4d039c1791b5bffb1444ad1db32219
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   HTProgressHUD: 14ecb00aa05e6ed75fdb8b859be5473d3f001175
   UIAlertView+Blocks: 45c3d3b7194906702d3e9a14c7ece5581505646d
 
