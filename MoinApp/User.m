@@ -14,7 +14,7 @@ static NSString *const kUserCodingKeyUsername = @"username";
 static NSString *const kUserCodingKeyEmailHash = @"emailHash";
 static NSString *const kUserCodingKeyProfileImage = @"profileImage";
 
-static NSString *const kGravatarImageBaseUrl = @"http://www.gravatar.com/avatar/";
+static NSString *const kGravatarImageBaseUrl = @"https://www.gravatar.com/avatar/";
 
 @interface User ()
 {

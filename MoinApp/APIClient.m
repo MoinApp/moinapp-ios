@@ -140,7 +140,7 @@ static APIClient *client = nil;
 
 - (NSString *)absolutePath:(NSString *)path withHost:(NSString *)host
 {
-    NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:path];
+    NSURL *url = [[NSURL alloc] initWithScheme:@"https" host:host path:path];
     
     return [url absoluteString];
 }
