@@ -447,7 +447,7 @@ static NSString *const kMainTableViewCodingKeyRecents = @"recents";
              show];
         } else {
             
-            [self updateRecentsWithArray:[NSArray arrayWithObjects:nil]];
+            [self updateRecentsWithArray:[NSArray array]];
             
             [self clearUnimportantMemory];
             [self presentLoginViewController];
