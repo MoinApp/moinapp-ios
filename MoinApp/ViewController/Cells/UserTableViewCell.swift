@@ -15,7 +15,8 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
 
     func configure(withUser user: User) {
-        self.avatarImageView.image = nil
         self.usernameLabel.text = user.username
+
+        self.avatarImageView.image = UIImage(named: "default")
     }
 }
