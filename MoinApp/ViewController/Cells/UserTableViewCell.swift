@@ -16,7 +16,5 @@ class UserTableViewCell: UITableViewCell {
 
     func configure(withUser user: User) {
         self.usernameLabel.text = user.username
-
-        self.avatarImageView.image = UIImage(named: "default")
     }
 }

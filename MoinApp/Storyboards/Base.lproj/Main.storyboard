@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,33 +18,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="71" id="1xf-kJ-6NP" customClass="UserTableViewCell" customModule="MoinApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="71"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="70" id="1xf-kJ-6NP" customClass="UserTableViewCell" customModule="MoinApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1xf-kJ-6NP" id="dgt-db-ybY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kCa-hl-3wL">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="kCa-hl-3wL">
                                             <rect key="frame" x="8" y="3" width="64" height="64"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="64" id="P7x-SY-o2b"/>
+                                                <constraint firstAttribute="width" secondItem="kCa-hl-3wL" secondAttribute="height" id="ZUy-wK-iAu"/>
+                                                <constraint firstAttribute="width" constant="64" id="dMW-q7-Ayq"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i61-tx-KRc">
-                                            <rect key="frame" x="80" y="19.5" width="287" height="31.5"/>
+                                            <rect key="frame" x="84" y="6" width="285" height="57.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="57" id="Iqe-6S-gQz"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="i61-tx-KRc" firstAttribute="centerY" secondItem="dgt-db-ybY" secondAttribute="centerY" id="0xQ-xv-kqy"/>
-                                        <constraint firstItem="kCa-hl-3wL" firstAttribute="top" secondItem="dgt-db-ybY" secondAttribute="top" constant="3" id="Fyz-lC-HMU"/>
-                                        <constraint firstAttribute="bottom" secondItem="kCa-hl-3wL" secondAttribute="bottom" constant="3" id="gvA-Pd-tI1"/>
-                                        <constraint firstAttribute="trailing" secondItem="i61-tx-KRc" secondAttribute="trailing" constant="8" id="hR7-bo-dLO"/>
-                                        <constraint firstItem="i61-tx-KRc" firstAttribute="leading" secondItem="kCa-hl-3wL" secondAttribute="trailing" constant="8" id="i7f-Ya-KTm"/>
-                                        <constraint firstItem="kCa-hl-3wL" firstAttribute="leading" secondItem="dgt-db-ybY" secondAttribute="leading" constant="8" id="x2Q-Hl-Ay1"/>
+                                        <constraint firstAttribute="bottom" secondItem="i61-tx-KRc" secondAttribute="bottom" constant="6" id="8yu-jD-5ac"/>
+                                        <constraint firstAttribute="trailing" secondItem="i61-tx-KRc" secondAttribute="trailing" constant="6" id="M5D-m3-HPb"/>
+                                        <constraint firstItem="i61-tx-KRc" firstAttribute="leading" secondItem="kCa-hl-3wL" secondAttribute="trailing" constant="12" id="NOz-Sd-72F"/>
+                                        <constraint firstItem="kCa-hl-3wL" firstAttribute="centerY" secondItem="i61-tx-KRc" secondAttribute="centerY" id="UD2-4V-hFS"/>
+                                        <constraint firstItem="i61-tx-KRc" firstAttribute="top" secondItem="dgt-db-ybY" secondAttribute="top" constant="6" id="rKv-2B-jHR"/>
+                                        <constraint firstItem="kCa-hl-3wL" firstAttribute="leading" secondItem="dgt-db-ybY" secondAttribute="leading" constant="8" id="xcw-d0-1kt"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -80,4 +85,7 @@
             <point key="canvasLocation" x="135" y="-125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="default" width="246" height="246"/>
+    </resources>
 </document>
