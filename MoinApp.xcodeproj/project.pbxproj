@@ -12,6 +12,8 @@
 		4597EF161F81654800392D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4597EF151F81654800392D86 /* Assets.xcassets */; };
 		4597EF191F81654800392D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597EF171F81654800392D86 /* LaunchScreen.storyboard */; };
 		4597EF241F8165F300392D86 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF231F8165F300392D86 /* UsersTableViewController.swift */; };
+		4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF271F81683400392D86 /* UserTableViewCell.swift */; };
+		4597EF2B1F8168ED00392D86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF2A1F8168ED00392D86 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		4597EF181F81654800392D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4597EF1A1F81654800392D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4597EF231F8165F300392D86 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		4597EF271F81683400392D86 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		4597EF2A1F8168ED00392D86 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 				4597EF211F8165CE00392D86 /* Storyboards */,
 				4597EF0E1F81654800392D86 /* AppDelegate.swift */,
 				4597EF221F8165DC00392D86 /* ViewController */,
+				4597EF291F8168DF00392D86 /* Models */,
 			);
 			path = MoinApp;
 			sourceTree = "<group>";
@@ -83,9 +88,26 @@
 		4597EF221F8165DC00392D86 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4597EF261F81682800392D86 /* Cells */,
 				4597EF231F8165F300392D86 /* UsersTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4597EF261F81682800392D86 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4597EF271F81683400392D86 /* UserTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4597EF291F8168DF00392D86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4597EF2A1F8168ED00392D86 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4597EF2B1F8168ED00392D86 /* User.swift in Sources */,
 				4597EF241F8165F300392D86 /* UsersTableViewController.swift in Sources */,
+				4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */,
 				4597EF0F1F81654800392D86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
