@@ -33,4 +33,18 @@ class UsersTableViewController: UITableViewController {
 
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipient = self.mockData[indexPath.row]
+
+        let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.name)...", preferredStyle: .alert)
+        self.present(alertController, animated: true) {
+            // TODO: really send the moin
+            sleep(1)
+
+            alertController.dismiss(animated: true) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
+    }
 }
