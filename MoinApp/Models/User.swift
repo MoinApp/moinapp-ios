@@ -9,5 +9,8 @@
 import Foundation
 
 struct User {
-    let username: String
+    let id: String
+    let name: String
+    let password: String?
+    let email: String
 }

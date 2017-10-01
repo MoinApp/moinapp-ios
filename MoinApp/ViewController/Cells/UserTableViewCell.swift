@@ -15,6 +15,6 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
 
     func configure(withUser user: User) {
-        self.usernameLabel.text = user.username
+        self.usernameLabel.text = user.name
     }
 }
