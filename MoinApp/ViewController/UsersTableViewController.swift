@@ -16,6 +16,12 @@ class UsersTableViewController: UITableViewController {
         User(id: "3", name: "Gerrits Puff", password: nil, email: ""),
     ]
 
+    private var restManager: RestManager!
+
+    override func viewDidLoad() {
+        self.restManager = RestManager(urlSession: URLSession.shared)
+    }
+
 //MARK: UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,12 +45,20 @@ class UsersTableViewController: UITableViewController {
 
         let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.name)...", preferredStyle: .alert)
         self.present(alertController, animated: true) {
-            // TODO: really send the moin
-            sleep(1)
+            self.restManager.moin(user: recipient.name, completion: { (result: Result<Bool>) in
 
-            alertController.dismiss(animated: true) {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
+                OperationQueue.main.addOperation {
+                    switch result {
+                    case .error(let error):
+                        alertController.message = "Failed to moin \( recipient.name ): \( error )."
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    default:
+                        alertController.dismiss(animated: true) {
+                            tableView.deselectRow(at: indexPath, animated: true)
+                        }
+                    }
+                }
+            })
         }
     }
 }

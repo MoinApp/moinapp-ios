@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		458693D91F88E061008D52BC /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458693D81F88E061008D52BC /* RestManager.swift */; };
+		458693DB1F88E080008D52BC /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458693DA1F88E080008D52BC /* Result.swift */; };
 		4597EF0F1F81654800392D86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF0E1F81654800392D86 /* AppDelegate.swift */; };
 		4597EF141F81654800392D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597EF121F81654800392D86 /* Main.storyboard */; };
 		4597EF161F81654800392D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4597EF151F81654800392D86 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		458693D81F88E061008D52BC /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
+		458693DA1F88E080008D52BC /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		4597EF0B1F81654800392D86 /* MoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4597EF0E1F81654800392D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4597EF131F81654800392D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		458693D71F88E058008D52BC /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				458693D81F88E061008D52BC /* RestManager.swift */,
+				458693DA1F88E080008D52BC /* Result.swift */,
+			);
+			path = Rest;
+			sourceTree = "<group>";
+		};
 		4597EF021F81654800392D86 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +118,7 @@
 		4597EF291F8168DF00392D86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				458693D71F88E058008D52BC /* Rest */,
 				4597EF2A1F8168ED00392D86 /* User.swift */,
 			);
 			path = Models;
@@ -182,7 +196,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458693DB1F88E080008D52BC /* Result.swift in Sources */,
 				4597EF2B1F8168ED00392D86 /* User.swift in Sources */,
+				458693D91F88E061008D52BC /* RestManager.swift in Sources */,
 				4597EF241F8165F300392D86 /* UsersTableViewController.swift in Sources */,
 				4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */,
 				4597EF0F1F81654800392D86 /* AppDelegate.swift in Sources */,
