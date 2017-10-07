@@ -31,6 +31,12 @@
                                                 <constraint firstAttribute="width" secondItem="kCa-hl-3wL" secondAttribute="height" id="ZUy-wK-iAu"/>
                                                 <constraint firstAttribute="width" constant="64" id="dMW-q7-Ayq"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i61-tx-KRc">
                                             <rect key="frame" x="84" y="6" width="285" height="57.5"/>
