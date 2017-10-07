@@ -22,6 +22,36 @@ class UsersTableViewController: UITableViewController {
         self.restManager = RestManager(urlSession: URLSession.shared)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        let loginController = UIAlertController(title: "Login", message: nil, preferredStyle: .alert)
+        loginController.addAction(UIAlertAction(title: "Login", style: .default, handler: { (_) in
+            guard let textFields = loginController.textFields else {
+                return
+            }
+
+            let textFieldUsername = textFields[0]
+            let textFieldPassword = textFields[1]
+
+            self.restManager.authenticate(as: textFieldUsername.text!, password: textFieldPassword.text!, completion: { (result) in
+                switch result {
+                case .error(let error):
+                    print("Could not login: \(error).")
+                default:
+                    break
+                }
+            })
+        }))
+        loginController.addTextField { (textField) in
+            textField.placeholder = "Username"
+        }
+        loginController.addTextField { (textField) in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
+
+        self.present(loginController, animated: true, completion: nil)
+    }
+
 //MARK: UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -11,6 +11,7 @@ import Foundation
 enum RestManagerError : Error {
     case invalidState
     case invalidPayload
+    case invalidResponse
 
     case endpointError(Int, RestError?)
 }
@@ -18,10 +19,37 @@ enum RestManagerError : Error {
 class RestManager {
     private let baseURL = URL(string: "https://moinapp.herokuapp.com/api")!
 
+    private let decoder = JSONDecoder()
+    private let encoder = JSONEncoder()
     private let urlSession: URLSession
+    private let tokenManager: TokenManager
 
     init(urlSession: URLSession) {
         self.urlSession = urlSession
+
+        self.tokenManager = TokenManager(urlSession: self.urlSession)
+    }
+
+    func authenticate(as username: String, password: String, completion: @escaping (Result<Bool>) -> Void) {
+        let userLogin = UserLogin(name: username, password: password)
+
+        self.request(endpoint: "/users/auth", withData: userLogin) { (result) in
+            switch result {
+            case .error(let error):
+                completion(.error(error))
+            case .success(let data):
+                print("data: \(String(describing:  String(data: data, encoding: String.Encoding.utf8) ))")
+
+                do {
+                    let session = try self.decoder.decode(Session.self, from: data)
+                    self.tokenManager.save(token: session.session_token)
+                } catch {
+                    return completion(.error(RestManagerError.invalidResponse))
+                }
+
+                completion(.success(true))
+            }
+        }
     }
 
     func moin(user username: String, completion: @escaping (Result<Bool>) -> Void) {
@@ -33,25 +61,29 @@ class RestManager {
                 completion(.error(error))
 
             case .success(let data):
-                print("data: \(data)")
+                print("data: \(String(describing:  String(data: data, encoding: String.Encoding.utf8) ))")
                 completion(.success(true))
             }
         }
     }
 
-    private func request<T>(endpoint: String, withData payload: T, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
+    private func request<T>(endpoint: String, withData payload: T? = nil, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
         let endpointURL = self.baseURL.appendingPathComponent(endpoint)
 
-        let jsonEncoder = JSONEncoder()
-        guard let payloadData = try? jsonEncoder.encode(payload) else {
-            return completion(.error(RestManagerError.invalidPayload))
+        var urlRequest = URLRequest(url: endpointURL)
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.addValue(self.tokenManager.sessionToken, forHTTPHeaderField: "Session")
+
+        if let payload = payload {
+            guard let payloadData = try? self.encoder.encode(payload) else {
+                return completion(.error(RestManagerError.invalidPayload))
+            }
+
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = payloadData
         }
 
-        var urlRequest = URLRequest(url: endpointURL)
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = payloadData
         let task = self.urlSession.dataTask(with: urlRequest) { (data: Data?, urlResponse: URLResponse?, error: Error?) in
             guard error == nil else {
                 return completion(.error(error!))
@@ -63,8 +95,7 @@ class RestManager {
             }
 
             guard response.statusCode == 200 else {
-                let jsonDecoder = JSONDecoder()
-                let errorInfo = try? jsonDecoder.decode(RestError.self, from: data)
+                let errorInfo = try? self.decoder.decode(RestError.self, from: data)
 
                 return completion(.error(RestManagerError.endpointError(response.statusCode, errorInfo)))
             }
@@ -79,6 +110,15 @@ struct RestError : Decodable {
     let code: String
     let message: String
     let fields: String?
+}
+
+struct UserLogin : Encodable {
+    let name: String
+    let password: String
+}
+
+struct Session : Decodable {
+    let session_token: String
 }
 
 struct MoinReceiver : Encodable {
