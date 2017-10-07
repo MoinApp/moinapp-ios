@@ -7,17 +7,22 @@
 //
 
 import Foundation
+import KeychainSwift
 
 class TokenManager {
-    private let urlSession: URLSession
+    private static let tokenKey = "token"
 
-    init(urlSession: URLSession) {
-        self.urlSession = urlSession
+    private let keychain: KeychainSwift
+
+    init() {
+        self.keychain = KeychainSwift()
     }
 
-    private(set) var sessionToken = ""
+    var sessionToken: String? {
+        return self.keychain.get(TokenManager.tokenKey)
+    }
 
     func save(token: String) {
-        self.sessionToken = token
+        self.keychain.set(token, forKey: TokenManager.tokenKey)
     }
 }

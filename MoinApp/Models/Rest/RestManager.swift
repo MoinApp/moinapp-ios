@@ -27,7 +27,7 @@ class RestManager {
     init(urlSession: URLSession) {
         self.urlSession = urlSession
 
-        self.tokenManager = TokenManager(urlSession: self.urlSession)
+        self.tokenManager = TokenManager()
     }
 
     func authenticate(as username: String, password: String, completion: @escaping (Result<Bool>) -> Void) {
@@ -70,7 +70,9 @@ class RestManager {
         var urlRequest = URLRequest(url: endpointURL)
         urlRequest.addValue("Moin-iOS", forHTTPHeaderField: "User-Agent")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.addValue(self.tokenManager.sessionToken, forHTTPHeaderField: "Authorization")
+        if let sessionToken = self.tokenManager.sessionToken {
+            urlRequest.addValue(sessionToken, forHTTPHeaderField: "Authorization")
+        }
 
         if let payload = payload {
             guard let payloadData = try? self.encoder.encode(payload) else {
