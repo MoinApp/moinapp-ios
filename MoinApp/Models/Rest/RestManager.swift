@@ -31,9 +31,9 @@ class RestManager {
     }
 
     func authenticate(as username: String, password: String, completion: @escaping (Result<Bool>) -> Void) {
-        let userLogin = UserLogin(name: username, password: password)
+        let userLogin = UserLogin(username: username, password: password)
 
-        self.request(endpoint: "/users/auth", withData: userLogin) { (result) in
+        self.request(endpoint: "/auth", withData: userLogin) { (result) in
             switch result {
             case .error(let error):
                 completion(.error(error))
@@ -42,7 +42,7 @@ class RestManager {
 
                 do {
                     let session = try self.decoder.decode(Session.self, from: data)
-                    self.tokenManager.save(token: session.session_token)
+                    self.tokenManager.save(token: session.token)
                 } catch {
                     return completion(.error(RestManagerError.invalidResponse))
                 }
@@ -71,8 +71,9 @@ class RestManager {
         let endpointURL = self.baseURL.appendingPathComponent(endpoint)
 
         var urlRequest = URLRequest(url: endpointURL)
+        urlRequest.addValue("Moin-iOS", forHTTPHeaderField: "User-Agent")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.addValue(self.tokenManager.sessionToken, forHTTPHeaderField: "Session")
+        urlRequest.addValue(self.tokenManager.sessionToken, forHTTPHeaderField: "Authorization")
 
         if let payload = payload {
             guard let payloadData = try? self.encoder.encode(payload) else {
@@ -113,12 +114,12 @@ struct RestError : Decodable {
 }
 
 struct UserLogin : Encodable {
-    let name: String
+    let username: String
     let password: String
 }
 
 struct Session : Decodable {
-    let session_token: String
+    let token: String
 }
 
 struct MoinReceiver : Encodable {
