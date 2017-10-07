@@ -12,7 +12,7 @@ class UsersTableViewController: UITableViewController {
 
     private let mockData = [
         User(id: "1", name: "sgade", password: nil, email: "58a3ac45170c5815f333fce4d9158696"),
-        User(id: "2", name: "jhbruhn", password: nil, email: "7b0ad26f7447ed5e4f9e0ac671f07057"),
+        User(id: "2", name: "bruhnjh", password: nil, email: "7b0ad26f7447ed5e4f9e0ac671f07057"),
         User(id: "3", name: "Gerrits Puff", password: nil, email: ""),
     ]
 

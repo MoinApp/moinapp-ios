@@ -38,8 +38,6 @@ class RestManager {
             case .error(let error):
                 completion(.error(error))
             case .success(let data):
-                print("data: \(String(describing:  String(data: data, encoding: String.Encoding.utf8) ))")
-
                 do {
                     let session = try self.decoder.decode(Session.self, from: data)
                     self.tokenManager.save(token: session.token)
@@ -60,8 +58,7 @@ class RestManager {
             case .error(let error):
                 completion(.error(error))
 
-            case .success(let data):
-                print("data: \(String(describing:  String(data: data, encoding: String.Encoding.utf8) ))")
+            case .success(_):
                 completion(.success(true))
             }
         }
