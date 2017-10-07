@@ -25,4 +25,8 @@ class TokenManager {
     func save(token: String) {
         self.keychain.set(token, forKey: TokenManager.tokenKey)
     }
+
+    func clear() {
+        self.keychain.delete(TokenManager.tokenKey)
+    }
 }

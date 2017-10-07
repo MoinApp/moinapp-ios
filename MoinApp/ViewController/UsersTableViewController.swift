@@ -11,18 +11,41 @@ import UIKit
 class UsersTableViewController: UITableViewController {
 
     private let mockData = [
-        User(id: "1", name: "sgade", password: nil, email: "58a3ac45170c5815f333fce4d9158696"),
-        User(id: "2", name: "bruhnjh", password: nil, email: "7b0ad26f7447ed5e4f9e0ac671f07057"),
-        User(id: "3", name: "Gerrits Puff", password: nil, email: ""),
+        User(id: "1", username: "sgade", email_hash: "58a3ac45170c5815f333fce4d9158696"),
+        User(id: "2", username: "bruhnjh", email_hash: "7b0ad26f7447ed5e4f9e0ac671f07057"),
+        User(id: "3", username: "Gerrits Puff", email_hash: ""),
     ]
+
+    private var users = [User]()
 
     private var restManager: RestManager!
 
     override func viewDidLoad() {
+        self.users = self.mockData
+
         self.restManager = RestManager(urlSession: URLSession.shared)
+        self.restManager.recentUsers { (result) in
+            switch result {
+            case .error(let error):
+                switch error {
+                case RestManagerError.unauthenticated:
+                    OperationQueue.main.addOperation {
+                        self.presentLogin()
+                    }
+                default:
+                    print("Error getting users: \( error ).")
+                }
+
+            case .success(let users):
+                self.users = users.elements
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    private func presentLogin() {
         let loginController = UIAlertController(title: "Login", message: nil, preferredStyle: .alert)
         loginController.addAction(UIAlertAction(title: "Login", style: .default, handler: { (_) in
             guard let textFields = loginController.textFields else {
@@ -58,29 +81,29 @@ class UsersTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.mockData.count
+        return self.users.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
 
-        let user = self.mockData[indexPath.row]
+        let user = self.users[indexPath.row]
         cell.configure(withUser: user)
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipient = self.mockData[indexPath.row]
+        let recipient = self.users[indexPath.row]
 
-        let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.name)...", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.username)...", preferredStyle: .alert)
         self.present(alertController, animated: true) {
-            self.restManager.moin(user: recipient.name, completion: { (result: Result<Bool>) in
+            self.restManager.moin(user: recipient.username, completion: { (result: Result<Bool>) in
 
                 OperationQueue.main.addOperation {
                     switch result {
                     case .error(let error):
-                        alertController.message = "Failed to moin \( recipient.name ): \( error )."
+                        alertController.message = "Failed to moin \( recipient.username ): \( error )."
                         alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                     default:
                         alertController.dismiss(animated: true) {

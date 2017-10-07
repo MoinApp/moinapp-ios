@@ -12,6 +12,7 @@ enum RestManagerError : Error {
     case invalidState
     case invalidPayload
     case invalidResponse
+    case unauthenticated
 
     case endpointError(Int, RestError?)
 }
@@ -50,6 +51,21 @@ class RestManager {
         }
     }
 
+    func recentUsers(completion: @escaping (Result<Users>) -> Void) {
+        self.get(endpoint: "/user/recents") { (result) in
+            switch result {
+            case .error(let error):
+                completion(.error(error))
+            case .success(let data):
+                guard let users = try? self.decoder.decode([User].self, from: data) else {
+                    return completion(.error(RestManagerError.invalidResponse))
+                }
+                let usersObject = Users(elements: users)
+                completion(.success(usersObject))
+            }
+        }
+    }
+
     func moin(user username: String, completion: @escaping (Result<Bool>) -> Void) {
         let moinReceiver = MoinReceiver(username: username)
 
@@ -64,7 +80,11 @@ class RestManager {
         }
     }
 
-    private func request<T>(endpoint: String, withData payload: T? = nil, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
+    private func get(endpoint: String, completion: @escaping (Result<Data>) -> Void) {
+        let value: String? = nil
+        self.request(endpoint: endpoint, withData: value, completion: completion)
+    }
+    private func request<T>(endpoint: String, withData payload: T?, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
         let endpointURL = self.baseURL.appendingPathComponent(endpoint)
 
         var urlRequest = URLRequest(url: endpointURL)
@@ -95,6 +115,11 @@ class RestManager {
             }
 
             guard response.statusCode == 200 else {
+                if response.statusCode == 403 {
+                    self.tokenManager.clear()
+                    return completion(.error(RestManagerError.unauthenticated))
+                }
+
                 let errorInfo = try? self.decoder.decode(RestError.self, from: data)
 
                 return completion(.error(RestManagerError.endpointError(response.statusCode, errorInfo)))
