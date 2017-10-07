@@ -10,20 +10,16 @@ import UIKit
 
 class UsersTableViewController: UITableViewController {
 
-    private let mockData = [
-        User(id: "1", username: "sgade", email_hash: "58a3ac45170c5815f333fce4d9158696"),
-        User(id: "2", username: "bruhnjh", email_hash: "7b0ad26f7447ed5e4f9e0ac671f07057"),
-        User(id: "3", username: "Gerrits Puff", email_hash: ""),
-    ]
-
     private var users = [User]()
 
     private var restManager: RestManager!
+    private var gravatar: Gravatar!
 
     override func viewDidLoad() {
-        self.users = self.mockData
+        let urlSession = URLSession.shared
+        self.restManager = RestManager(urlSession: urlSession)
+        self.gravatar = Gravatar(urlSession: urlSession)
 
-        self.restManager = RestManager(urlSession: URLSession.shared)
         self.restManager.recentUsers { (result) in
             switch result {
             case .error(let error):
@@ -88,7 +84,7 @@ class UsersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
 
         let user = self.users[indexPath.row]
-        cell.configure(withUser: user)
+        cell.configure(withUser: user, gravatar: self.gravatar)
 
         return cell
     }

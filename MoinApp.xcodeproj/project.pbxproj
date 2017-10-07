@@ -17,6 +17,7 @@
 		4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF271F81683400392D86 /* UserTableViewCell.swift */; };
 		4597EF2B1F8168ED00392D86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF2A1F8168ED00392D86 /* User.swift */; };
 		45AB14E81F88FECE00B28961 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14E71F88FECE00B28961 /* TokenManager.swift */; };
+		45AB14EB1F89113000B28961 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EA1F89113000B28961 /* Gravatar.swift */; };
 		8642EC2407199AD24EB50906 /* Pods_MoinApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3696831B1B33C172C80CFFE7 /* Pods_MoinApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		4597EF271F81683400392D86 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		4597EF2A1F8168ED00392D86 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		45AB14E71F88FECE00B28961 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		45AB14EA1F89113000B28961 /* Gravatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravatar.swift; sourceTree = "<group>"; };
 		833E354C3D598B0F5A68694C /* Pods-MoinApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoinApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 			children = (
 				458693D71F88E058008D52BC /* Rest */,
 				4597EF2A1F8168ED00392D86 /* User.swift */,
+				45AB14EA1F89113000B28961 /* Gravatar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				458693DB1F88E080008D52BC /* Result.swift in Sources */,
+				45AB14EB1F89113000B28961 /* Gravatar.swift in Sources */,
 				4597EF2B1F8168ED00392D86 /* User.swift in Sources */,
 				458693D91F88E061008D52BC /* RestManager.swift in Sources */,
 				4597EF241F8165F300392D86 /* UsersTableViewController.swift in Sources */,
