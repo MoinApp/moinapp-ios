@@ -7,38 +7,19 @@
 //
 
 import UIKit
+import Swift_EventBus
 
-class UsersTableViewController: UITableViewController {
+class UsersTableViewController: UITableViewController, DataManagerUpdates {
 
-    private var users = [User]()
-
-    private var restManager: RestManager!
-    private var gravatar: Gravatar!
+    private let eventBus = EventBus()
+    private var dataManager: DataManager!
+    private var users: [User] = []
 
     override func viewDidLoad() {
-        let urlSession = URLSession.shared
-        self.restManager = RestManager(urlSession: urlSession)
-        self.gravatar = Gravatar(urlSession: urlSession)
+        self.eventBus.add(subscriber: self, for: DataManagerUpdates.self)
 
-        self.restManager.recentUsers { (result) in
-            switch result {
-            case .error(let error):
-                switch error {
-                case RestManagerError.unauthenticated:
-                    OperationQueue.main.addOperation {
-                        self.presentLogin()
-                    }
-                default:
-                    print("Error getting users: \( error ).")
-                }
-
-            case .success(let users):
-                self.users = users.elements
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        self.dataManager = DataManager(eventBus: self.eventBus)
+        self.dataManager.begin()
     }
 
     private func presentLogin() {
@@ -51,14 +32,7 @@ class UsersTableViewController: UITableViewController {
             let textFieldUsername = textFields[0]
             let textFieldPassword = textFields[1]
 
-            self.restManager.authenticate(as: textFieldUsername.text!, password: textFieldPassword.text!, completion: { (result) in
-                switch result {
-                case .error(let error):
-                    print("Could not login: \(error).")
-                default:
-                    break
-                }
-            })
+            self.dataManager.login(as: textFieldUsername.text!, with: textFieldPassword.text!)
         }))
         loginController.addTextField { (textField) in
             textField.placeholder = "Username"
@@ -69,6 +43,20 @@ class UsersTableViewController: UITableViewController {
         }
 
         self.present(loginController, animated: true, completion: nil)
+    }
+
+//MARK: DataManagerUpdates
+    func needsAuthentication() {
+        OperationQueue.main.addOperation {
+            self.presentLogin()
+        }
+    }
+
+    func update(users: [User], from: [User]) {
+        self.users = users
+        OperationQueue.main.addOperation {
+            self.tableView.reloadData()
+        }
     }
 
 //MARK: UITableViewDataSource
@@ -84,7 +72,7 @@ class UsersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
 
         let user = self.users[indexPath.row]
-        cell.configure(withUser: user, gravatar: self.gravatar)
+        cell.configure(with: user, dataManager: self.dataManager)
 
         return cell
     }
@@ -94,7 +82,7 @@ class UsersTableViewController: UITableViewController {
 
         let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.username)...", preferredStyle: .alert)
         self.present(alertController, animated: true) {
-            self.restManager.moin(user: recipient.username, completion: { (result: Result<Bool>) in
+            self.dataManager.restManager.moin(user: recipient.username, completion: { (result: Result<Bool>) in
 
                 OperationQueue.main.addOperation {
                     switch result {

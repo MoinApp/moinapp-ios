@@ -23,7 +23,7 @@ class Gravatar {
     }
 
     func image(forHash hash: String, completion: @escaping (Result<UIImage>) -> Void) {
-        if let cacheImage = self.checkCacheForImage(withHash: hash) {
+        if let cacheImage = self.cachedImage(for: hash) {
             return completion(.success(cacheImage))
         }
 
@@ -51,7 +51,7 @@ class Gravatar {
         task.resume()
     }
 
-    private func checkCacheForImage(withHash hash: String) -> UIImage? {
+    func cachedImage(for hash: String) -> UIImage? {
         guard let file = self.cacheFile(forHash: hash) else {
             return nil
         }

@@ -18,6 +18,7 @@
 		4597EF2B1F8168ED00392D86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597EF2A1F8168ED00392D86 /* User.swift */; };
 		45AB14E81F88FECE00B28961 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14E71F88FECE00B28961 /* TokenManager.swift */; };
 		45AB14EB1F89113000B28961 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EA1F89113000B28961 /* Gravatar.swift */; };
+		45AB14ED1F891BD100B28961 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EC1F891BD100B28961 /* DataManager.swift */; };
 		8642EC2407199AD24EB50906 /* Pods_MoinApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3696831B1B33C172C80CFFE7 /* Pods_MoinApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		4597EF2A1F8168ED00392D86 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		45AB14E71F88FECE00B28961 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		45AB14EA1F89113000B28961 /* Gravatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravatar.swift; sourceTree = "<group>"; };
+		45AB14EC1F891BD100B28961 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		833E354C3D598B0F5A68694C /* Pods-MoinApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoinApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 		4597EF291F8168DF00392D86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				45AB14EC1F891BD100B28961 /* DataManager.swift */,
 				458693D71F88E058008D52BC /* Rest */,
 				4597EF2A1F8168ED00392D86 /* User.swift */,
 				45AB14EA1F89113000B28961 /* Gravatar.swift */,
@@ -248,10 +251,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Swift-EventBus/Swift_EventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swift_EventBus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -290,6 +295,7 @@
 				4597EF241F8165F300392D86 /* UsersTableViewController.swift in Sources */,
 				4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */,
 				4597EF0F1F81654800392D86 /* AppDelegate.swift in Sources */,
+				45AB14ED1F891BD100B28961 /* DataManager.swift in Sources */,
 				45AB14E81F88FECE00B28961 /* TokenManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
