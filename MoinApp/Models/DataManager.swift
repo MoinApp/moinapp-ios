@@ -11,18 +11,48 @@ import Swift_EventBus
 
 protocol DataManagerUpdates {
     func needsAuthentication()
+
     func update(users: [User], from: [User])
+
+    func update(image: UIImage, for user: User)
+}
+
+extension DataManagerUpdates {
+    func needsAuthentication() {
+        
+    }
+
+    func update(users: [User], from: [User]) {
+
+    }
+
+    func update(image: UIImage, for user: User) {
+        
+    }
 }
 
 class DataManager {
 
     let restManager: RestManager
     private let gravatar: Gravatar
-    private let eventBus: EventBus
+    let eventBus: EventBus
 
     private(set) var users: [User] = []
     func image(for user: User) -> UIImage? {
-        return self.gravatar.cachedImage(for: user.email_hash)
+        let image = self.gravatar.cachedImage(for: user.email_hash)
+
+        if image == nil {
+            self.gravatar.image(forHash: user.email_hash, completion: { (result) in
+                switch result {
+                case .success(let image):
+                    self.change(to: image, for: user)
+                default:
+                    break
+                }
+            })
+        }
+
+        return image
     }
 
     private func notifyOfUnauthentication() {
@@ -37,6 +67,12 @@ class DataManager {
 
         self.eventBus.notify(DataManagerUpdates.self) { s in
             s.update(users: newUsers, from: oldValue)
+        }
+    }
+
+    private func change(to image: UIImage, for user: User) {
+        self.eventBus.notify(DataManagerUpdates.self) { (s) in
+            s.update(image: image, for: user)
         }
     }
 
