@@ -31,6 +31,8 @@ class UserTableViewCell: UITableViewCell, DataManagerUpdates {
                 return
         }
 
-        self.avatarImageView.image = image
+        OperationQueue.main.addOperation {
+            self.avatarImageView.image = image
+        }
     }
 }
