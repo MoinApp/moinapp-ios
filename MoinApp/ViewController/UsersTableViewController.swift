@@ -51,15 +51,29 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 
 //MARK: UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
-        guard let search = searchController.searchBar.text?.lowercased() else {
-            self.users = self.dataManager.users
-            return
+        guard let search = searchController.searchBar.text?.lowercased(),
+            !search.isEmpty else {
+                self.users = self.dataManager.users
+                self.tableView.reloadData()
+                return
         }
 
         self.users = self.dataManager.users.filter { (user) -> Bool in
             return user.username.lowercased().contains(search)
         }
         self.tableView.reloadData()
+
+        self.dataManager.restManager.search(for: search) { (result) in
+            switch result {
+            case .error(let error):
+                print("Error searching for \(search): \(error).")
+            case .success(let users):
+                self.users = users.elements
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
 //MARK: DataManagerUpdates

@@ -66,6 +66,21 @@ class RestManager {
         }
     }
 
+    func search(for username: String, completion: @escaping (Result<Users>) -> Void) {
+        self.get(endpoint: "/user", withQuery: [ "username": username ]) { (result) in
+            switch result {
+            case .error(let error):
+                completion(.error(error))
+            case .success(let data):
+                guard let users = try? self.decoder.decode([User].self, from: data) else {
+                    return completion(.error(RestManagerError.invalidResponse))
+                }
+                let usersObject = Users(elements: users)
+                completion(.success(usersObject))
+            }
+        }
+    }
+
     func moin(user username: String, completion: @escaping (Result<Bool>) -> Void) {
         let moinReceiver = MoinReceiver(username: username)
 
@@ -80,12 +95,26 @@ class RestManager {
         }
     }
 
-    private func get(endpoint: String, completion: @escaping (Result<Data>) -> Void) {
+    private func get(endpoint: String, withQuery parameters: [String: String]? = nil, completion: @escaping (Result<Data>) -> Void) {
         let value: String? = nil
-        self.request(endpoint: endpoint, withData: value, completion: completion)
+        self.request(endpoint: endpoint, withQuery: parameters, withData: value, completion: completion)
     }
-    private func request<T>(endpoint: String, withData payload: T?, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
-        let endpointURL = self.baseURL.appendingPathComponent(endpoint)
+    private func request<T>(endpoint: String, withQuery parameters: [String: String]? = nil, withData payload: T?, completion: @escaping (Result<Data>) -> Void) where T : Encodable {
+        var endpointURL = self.baseURL.appendingPathComponent(endpoint)
+        if let parameters = parameters {
+            let queryStrings = parameters.map({ (k, v) -> String in
+                guard let key = k.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                    let value = v.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                        return ""
+                }
+                return "\(key)=\(value)"
+            })
+            let queryString = queryStrings.joined(separator: "&")
+
+            if let queryEndpoint = URL(string: "\(endpointURL.absoluteString)?\(queryString)") {
+                endpointURL = queryEndpoint
+            }
+        }
 
         var urlRequest = URLRequest(url: endpointURL)
         urlRequest.addValue("Moin-iOS", forHTTPHeaderField: "User-Agent")
