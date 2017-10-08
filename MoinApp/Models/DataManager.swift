@@ -117,6 +117,10 @@ class DataManager {
                 self.notifyOfUnauthentication()
             case .success(_):
                 self.updateUsers()
+                
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.setupRemoteNotifications()
+                }
             }
         }
     }

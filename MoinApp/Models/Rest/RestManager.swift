@@ -94,6 +94,18 @@ class RestManager {
             }
         }
     }
+    
+    func upload(apnToken: String) {
+        let token = PushToken(apnDeviceToken: apnToken)
+        self.request(endpoint: "/user/addapn", withData: token) { (result) in
+            switch result {
+            case .success(_):
+                NSLog("Successfully uploaded APN token.")
+            case .error(let error):
+                NSLog("Error uploading APN token: \( error ).")
+            }
+        }
+    }
 
     private func get(endpoint: String, withQuery parameters: [String: String]? = nil, completion: @escaping (Result<Data>) -> Void) {
         let value: String? = nil
@@ -177,4 +189,8 @@ struct Session : Decodable {
 
 struct MoinReceiver : Encodable {
     let username: String
+}
+
+struct PushToken: Encodable {
+    let apnDeviceToken: String
 }

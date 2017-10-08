@@ -39,6 +39,11 @@
 		45AB14E71F88FECE00B28961 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		45AB14EA1F89113000B28961 /* Gravatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravatar.swift; sourceTree = "<group>"; };
 		45AB14EC1F891BD100B28961 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		45AB14EE1F8A945F00B28961 /* MoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoinApp.entitlements; sourceTree = "<group>"; };
+		45DF19121F8A9C8C005DF610 /* moin4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin4.wav; sourceTree = "<group>"; };
+		45DF19131F8A9C8C005DF610 /* moin5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin5.wav; sourceTree = "<group>"; };
+		45DF19141F8A9C8C005DF610 /* moin1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin1.wav; sourceTree = "<group>"; };
+		45DF19151F8A9C8C005DF610 /* moin3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin3.wav; sourceTree = "<group>"; };
 		833E354C3D598B0F5A68694C /* Pods-MoinApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoinApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				4597EF201F8165C300392D86 /* Supporting Files */,
+				45DF19111F8A9C37005DF610 /* Sounds */,
 				4597EF211F8165CE00392D86 /* Storyboards */,
 				4597EF0E1F81654800392D86 /* AppDelegate.swift */,
 				4597EF221F8165DC00392D86 /* ViewController */,
@@ -99,6 +105,7 @@
 			children = (
 				4597EF1A1F81654800392D86 /* Info.plist */,
 				4597EF151F81654800392D86 /* Assets.xcassets */,
+				45AB14EE1F8A945F00B28961 /* MoinApp.entitlements */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,6 +145,17 @@
 				45AB14EA1F89113000B28961 /* Gravatar.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		45DF19111F8A9C37005DF610 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				45DF19141F8A9C8C005DF610 /* moin1.wav */,
+				45DF19151F8A9C8C005DF610 /* moin3.wav */,
+				45DF19121F8A9C8C005DF610 /* moin4.wav */,
+				45DF19131F8A9C8C005DF610 /* moin5.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		D244F6788AB6408A39FEEBCA /* Pods */ = {
@@ -193,6 +211,11 @@
 					4597EF0A1F81654800392D86 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -434,6 +457,7 @@
 			baseConfigurationReference = 31704510083BCD270752E5BF /* Pods-MoinApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MoinApp/Supporting Files/MoinApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2TG6MC867;
 				INFOPLIST_FILE = "$(SRCROOT)/MoinApp/Supporting Files/Info.plist";
@@ -450,6 +474,7 @@
 			baseConfigurationReference = 833E354C3D598B0F5A68694C /* Pods-MoinApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MoinApp/Supporting Files/MoinApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2TG6MC867;
 				INFOPLIST_FILE = "$(SRCROOT)/MoinApp/Supporting Files/Info.plist";

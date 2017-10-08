@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        let tokenManager = TokenManager()
+        if tokenManager.sessionToken != nil {
+            self.setupRemoteNotifications()
+        }
+
         return true
     }
 
@@ -41,6 +49,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+//MARK: Remote Notifications
+    func setupRemoteNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            guard settings.authorizationStatus == .notDetermined else {
+                return
+            }
+            UNUserNotificationCenter.current().requestAuthorization(options: [ .alert, .sound ]) { (success, error) in
+                guard error == nil else {
+                    print("Error requesting push notification authorization: \( error! ).")
+                    return
+                }
+                print("Status of push notifications: \( success ).")
 
+                guard success else {
+                    return
+                }
+
+                OperationQueue.main.addOperation {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+
+        }
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        let token = tokenParts.joined()
+        print("Remote push token: \(token)")
+        
+        let restManager = RestManager(urlSession: URLSession.shared)
+        restManager.upload(apnToken: token)
+        
+        let keychain = KeychainSwift()
+        keychain.set(token, forKey: "apnToken")
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("Could not register for remote notifications: \(error).")
+    }
 }
 
