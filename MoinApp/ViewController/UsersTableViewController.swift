@@ -23,7 +23,9 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
         self.navigationItem.searchController = searchController
+        self.definesPresentationContext = true
     }
 
     private func presentLogin() {
@@ -63,7 +65,7 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
         }
         self.tableView.reloadData()
 
-        self.dataManager.restManager.search(for: search) { (result) in
+        self.dataManager.search(for: search) { (result) in
             switch result {
             case .error(let error):
                 print("Error searching for \(search): \(error).")
@@ -111,10 +113,11 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipient = self.users[indexPath.row]
 
+        let areWeInSearch = Users(elements: self.users) != Users(elements: self.dataManager.users)
+
         let alertController = UIAlertController(title: "Moin", message: "Sending moin to \(recipient.username)...", preferredStyle: .alert)
         self.present(alertController, animated: true) {
-            self.dataManager.restManager.moin(user: recipient.username, completion: { (result: Result<Bool>) in
-
+            self.dataManager.moin(username: recipient.username, completion: { (result) in
                 OperationQueue.main.addOperation {
                     switch result {
                     case .error(let error):
@@ -123,6 +126,16 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
                     default:
                         alertController.dismiss(animated: true) {
                             tableView.deselectRow(at: indexPath, animated: true)
+
+                            if areWeInSearch {
+                                self.navigationItem.searchController?.dismiss(animated: true) {
+                                    self.navigationItem.searchController?.searchBar.text = ""
+                                }
+
+                                self.users = self.dataManager.users
+                                self.tableView.reloadData()
+                            }
+
                         }
                     }
                 }

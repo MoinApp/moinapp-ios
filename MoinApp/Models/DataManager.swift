@@ -33,7 +33,7 @@ extension DataManagerUpdates {
 
 class DataManager {
 
-    let restManager: RestManager
+    private let restManager: RestManager
     private let gravatar: Gravatar
     let eventBus: EventBus
 
@@ -119,5 +119,23 @@ class DataManager {
                 self.updateUsers()
             }
         }
+    }
+
+    func search(for username: String, completion: @escaping (Result<Users>) -> Void) {
+        self.restManager.search(for: username, completion: completion)
+    }
+
+    func moin(username: String, completion: @escaping (Result<Bool>) -> Void) {
+        self.restManager.moin(user: username, completion: { (result: Result<Bool>) in
+
+            switch result {
+            case .success(_):
+                self.updateUsers()
+            default:
+                break
+            }
+
+            completion(result)
+        })
     }
 }
