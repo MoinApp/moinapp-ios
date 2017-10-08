@@ -19,6 +19,7 @@
 		45AB14E81F88FECE00B28961 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14E71F88FECE00B28961 /* TokenManager.swift */; };
 		45AB14EB1F89113000B28961 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EA1F89113000B28961 /* Gravatar.swift */; };
 		45AB14ED1F891BD100B28961 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EC1F891BD100B28961 /* DataManager.swift */; };
+		45BFE7BD1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45BFE7BC1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist */; };
 		8642EC2407199AD24EB50906 /* Pods_MoinApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3696831B1B33C172C80CFFE7 /* Pods_MoinApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		45AB14EA1F89113000B28961 /* Gravatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravatar.swift; sourceTree = "<group>"; };
 		45AB14EC1F891BD100B28961 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		45AB14EE1F8A945F00B28961 /* MoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoinApp.entitlements; sourceTree = "<group>"; };
+		45BFE7BC1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-MoinApp-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		45DF19121F8A9C8C005DF610 /* moin4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin4.wav; sourceTree = "<group>"; };
 		45DF19131F8A9C8C005DF610 /* moin5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin5.wav; sourceTree = "<group>"; };
 		45DF19141F8A9C8C005DF610 /* moin1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin1.wav; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		4597EF201F8165C300392D86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				45BFE7BC1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist */,
 				4597EF1A1F81654800392D86 /* Info.plist */,
 				4597EF151F81654800392D86 /* Assets.xcassets */,
 				45AB14EE1F8A945F00B28961 /* MoinApp.entitlements */,
@@ -242,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45BFE7BD1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist in Resources */,
 				4597EF191F81654800392D86 /* LaunchScreen.storyboard in Resources */,
 				4597EF161F81654800392D86 /* Assets.xcassets in Resources */,
 				4597EF141F81654800392D86 /* Main.storyboard in Resources */,
@@ -273,11 +277,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swift-EventBus/Swift_EventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swift_EventBus.framework",
 			);

@@ -8,4 +8,5 @@ target 'MoinApp' do
   # Pods for MoinApp
   pod 'KeychainSwift', '~> 9.0.2'
   pod 'Swift-EventBus', '~> 0.1.0'
+  pod 'AcknowList', '~> 1.4'
 end

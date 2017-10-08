@@ -10,6 +10,8 @@ import UIKit
 import UserNotifications
 import KeychainSwift
 
+import AcknowList
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

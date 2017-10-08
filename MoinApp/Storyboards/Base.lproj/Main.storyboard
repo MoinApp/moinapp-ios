@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -68,11 +69,35 @@
                             <outlet property="delegate" destination="qko-2p-5NR" id="M9I-6x-QEn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="MoinApp" id="ZHJ-aG-8J0"/>
+                    <navigationItem key="navigationItem" title="MoinApp" id="ZHJ-aG-8J0">
+                        <barButtonItem key="rightBarButtonItem" title="Licenses" id="eIa-iu-SZm">
+                            <connections>
+                                <segue destination="X5F-UR-T8g" kind="show" id="jAs-SI-e6X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaT-a5-9Kq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1085.5999999999999" y="-125.4872563718141"/>
+        </scene>
+        <!--Acknow List View Controller-->
+        <scene sceneID="li1-ld-UP2">
+            <objects>
+                <viewController id="X5F-UR-T8g" customClass="AcknowListViewController" customModule="AcknowList" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zcN-9b-iH1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZwR-Hc-EVX"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="acknowledgementsPlistName" value="Pods-MoinApp-acknowledgements"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sP4-uC-U8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910" y="-125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Wq-YK-k2H">

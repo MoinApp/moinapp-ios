@@ -7,73 +7,112 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		059BAC5D536842C15C650ECD4425ADB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		08AA89D020B5C4FD74D1529A3E972AB9 /* KeychainSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A180F41E28EF15B69787A7031FFEB15 /* KeychainSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52322A09E0B898C22C24DE9B8C8CACCE /* Swift-EventBus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D87883E1AC41EA9CC8387B192084868 /* Swift-EventBus-dummy.m */; };
-		63E3E54D78ECF2A2C25FB5F202B96D40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		666E31C6D96D90EA76F6FB3122E9A93C /* Pods-MoinApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D54FADB7154EF1F03F8215EDE3E8 /* Pods-MoinApp-dummy.m */; };
-		78AF0841949402A685BC134C1050886E /* Swift-EventBus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8B890F8E28D6BCC9A474A6E4FB5CED /* Swift-EventBus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7C0F17488B3552EAAFC074CFC4491DD5 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AD03F6F266550C8085EBB1778D5CD7 /* TegKeychainConstants.swift */; };
-		7FC4FDBBC3CF4D8FADF8F059D06874D8 /* Pods-MoinApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3027250313628C86E655E121FE0F3289 /* Pods-MoinApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8EE335682C90EECD82E623C09D99343B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		966BD3D7C89C4E7AB6F154A4A2127D53 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD1C6462D56BB2114A7173E10AF48D /* EventBus.swift */; };
-		AD0E8D5F58B0B824D2631BDA9D541DFE /* KeychainSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3983F9A6A07B512BAE71F164CDDB02 /* KeychainSwift-dummy.m */; };
-		CCBE57237E9F0DBAAF02A5575244F3BE /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C370C0DDDA5DDC849FAE3139F209D5DB /* KeychainSwift.swift */; };
-		EBA8B955A11296BD7AA307752FE82ED4 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84D94DB6399CC0EB8E51364BA861D4 /* KeychainSwiftAccessOptions.swift */; };
+		026F09DC2F790B3CCBFC47610A47613E /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C980516C51126510B2BBC975EFA729 /* EventBus.swift */; };
+		08AA89D020B5C4FD74D1529A3E972AB9 /* KeychainSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5876501DE3B1D341214BB970F42AD555 /* KeychainSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13E854C1957252DA415E6B308ECE6976 /* AcknowList.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BBCD9A62D19AE9D4ADE7A1F3DEF46E0 /* AcknowList.bundle */; };
+		2AC7119008B685013BA9875358D3D3F3 /* AcknowParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110A5F5DC74CE25C8FA571270D088207 /* AcknowParser.swift */; };
+		2E8F26084EACF6371CB5817F919661A0 /* AcknowList-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5874B57AF61C2E88C83BF9F4B55E7DD5 /* AcknowList-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33583FCD105E97864E082D3AF199741C /* Pods-MoinApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3027250313628C86E655E121FE0F3289 /* Pods-MoinApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		338A705D90E1956388D6CDAAF3C18EEF /* Pods-MoinApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D54FADB7154EF1F03F8215EDE3E8 /* Pods-MoinApp-dummy.m */; };
+		63E3E54D78ECF2A2C25FB5F202B96D40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		665F552B2204DB60AEEAC87AE9A4976F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		75957667828EA89180858396A55763F4 /* Acknow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E361AB2D6E0BFED748FBFBD2B945BFD /* Acknow.swift */; };
+		77FEB58ED8B83D797E14110BD1F12BDE /* Swift-EventBus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2789372BFD7E775740EF937A906C81 /* Swift-EventBus-dummy.m */; };
+		7C0F17488B3552EAAFC074CFC4491DD5 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD40E12DFB05838CE53E1654598D108 /* TegKeychainConstants.swift */; };
+		7DFC4C0742E281613ADC1E36015F02DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
+		A474A2FDE7C562C41365F931AACD9EE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		A88EDECB4BA5F48E21E2DC7F3D760382 /* AcknowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D15CF60531B027D7ECF282AEA733E2 /* AcknowViewController.swift */; };
+		AD0E8D5F58B0B824D2631BDA9D541DFE /* KeychainSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E81B3E6BF53750AA9DCC224F3ACB6EFC /* KeychainSwift-dummy.m */; };
+		C8D214DB566A9C330FD793E2ED4D6B35 /* AcknowList-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9386467189C775C68B44B340A6EBE517 /* AcknowList-dummy.m */; };
+		CCBE57237E9F0DBAAF02A5575244F3BE /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E8DEDA719B79A8C8176C5C9A0B36 /* KeychainSwift.swift */; };
+		CDFD149F3BD30D6C9979AC0A6C902B35 /* Swift-EventBus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B170BAD7F35E820D116B5394A10F0AAA /* Swift-EventBus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D716D0C9ADE5E7A0A62AB4EF0FA56675 /* AcknowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA611F3EF0760ADDAA9726CA8B75E2F4 /* AcknowListViewController.swift */; };
+		E2FA06864BF0696CB7B176720C03E400 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		E320CB56392BCDB8D11F99B839EF08FB /* AcknowLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B12B763A7F16B6226E70DE5001A488F /* AcknowLocalization.swift */; };
+		EBA8B955A11296BD7AA307752FE82ED4 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E441F40BB7DCCB0367A3A0936E8ED /* KeychainSwiftAccessOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0A40209A3A33D6E53DD2ADEA7876983C /* PBXContainerItemProxy */ = {
+		253C0318F1BA806E974A7B02271F0640 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0B30A906D57B5DCFCD32CA87CE43518B;
+			remoteGlobalIDString = 34C4DE7D9826447B9F12069777D3BB55;
 			remoteInfo = "Swift-EventBus";
 		};
-		D48AC8D20B43CB0AD3C8E0C1A6C95408 /* PBXContainerItemProxy */ = {
+		36F2B93D683E1423D1124BD169F97D18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 38ACA430605AFB4229712A18BDDF5086;
 			remoteInfo = KeychainSwift;
 		};
+		D084062592AE004B4CF98D2415746219 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C4B25DA191884B406DDFDE48CCFD90A;
+			remoteInfo = AcknowList;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02FD2FB4BE9DE33B63DF6B4D0A22B255 /* KeychainSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-prefix.pch"; sourceTree = "<group>"; };
-		1F1958D45454B32B90E0AEC66C9FB21D /* KeychainSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainSwift.xcconfig; sourceTree = "<group>"; };
+		0738E4327EBD63207DFF98FA226D13E4 /* KeychainSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KeychainSwift.framework; path = KeychainSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AFBBE05B40BA1404AF923F7D9E98CBF /* Swift-EventBus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Swift-EventBus.modulemap"; sourceTree = "<group>"; };
+		0B12B763A7F16B6226E70DE5001A488F /* AcknowLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AcknowLocalization.swift; path = Source/AcknowLocalization.swift; sourceTree = "<group>"; };
+		0D4B01BAF1716F176B6E1BB015233818 /* KeychainSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KeychainSwift.modulemap; sourceTree = "<group>"; };
+		0E361AB2D6E0BFED748FBFBD2B945BFD /* Acknow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Acknow.swift; path = Source/Acknow.swift; sourceTree = "<group>"; };
+		110A5F5DC74CE25C8FA571270D088207 /* AcknowParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AcknowParser.swift; path = Source/AcknowParser.swift; sourceTree = "<group>"; };
 		23A500DE7A69B97D7BD76475644469BA /* Pods-MoinApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MoinApp-resources.sh"; sourceTree = "<group>"; };
-		288427CE9211533400CB2C30A298D751 /* Swift-EventBus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swift-EventBus-prefix.pch"; sourceTree = "<group>"; };
 		3027250313628C86E655E121FE0F3289 /* Pods-MoinApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MoinApp-umbrella.h"; sourceTree = "<group>"; };
-		3D8B890F8E28D6BCC9A474A6E4FB5CED /* Swift-EventBus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swift-EventBus-umbrella.h"; sourceTree = "<group>"; };
-		3E20FC04F0817131F4B4963CD2A48A51 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		363112B7F825B182AA0C0FCD837A0420 /* AcknowList.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AcknowList.xcconfig; sourceTree = "<group>"; };
+		372CA46B91E5E106FAB466B0D934D5BE /* AcknowList-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AcknowList-prefix.pch"; sourceTree = "<group>"; };
+		3A808DE2C9EEF394E2A87C39539DCEDD /* KeychainSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainSwift.xcconfig; sourceTree = "<group>"; };
+		3E42FC250473560A8DC3BC509E8A379D /* Swift-EventBus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swift-EventBus-prefix.pch"; sourceTree = "<group>"; };
+		3FD40E12DFB05838CE53E1654598D108 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TegKeychainConstants.swift; path = Sources/TegKeychainConstants.swift; sourceTree = "<group>"; };
+		40C980516C51126510B2BBC975EFA729 /* EventBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventBus.swift; path = EventBus/EventBus.swift; sourceTree = "<group>"; };
+		4EF9E8DEDA719B79A8C8176C5C9A0B36 /* KeychainSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwift.swift; path = Sources/KeychainSwift.swift; sourceTree = "<group>"; };
+		4FD0B1CE5DBAE7227FA7ECDA0D66F711 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51FF33590EF0FFE767CE53E22D08B686 /* KeychainSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-prefix.pch"; sourceTree = "<group>"; };
 		527C235CEB92E4DC446984695E30E26F /* Pods-MoinApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MoinApp.debug.xcconfig"; sourceTree = "<group>"; };
 		558A6A3BF1E17CE784D29D95A715511A /* Pods-MoinApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MoinApp-frameworks.sh"; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6A180F41E28EF15B69787A7031FFEB15 /* KeychainSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-umbrella.h"; sourceTree = "<group>"; };
+		5874B57AF61C2E88C83BF9F4B55E7DD5 /* AcknowList-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AcknowList-umbrella.h"; sourceTree = "<group>"; };
+		5876501DE3B1D341214BB970F42AD555 /* KeychainSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-umbrella.h"; sourceTree = "<group>"; };
 		6A3E4A11D89609F7C291218BBDE34A7B /* Pods-MoinApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MoinApp.modulemap"; sourceTree = "<group>"; };
-		70CCF5426568C47D7ABCB2553DFD64E2 /* Swift-EventBus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Swift-EventBus.xcconfig"; sourceTree = "<group>"; };
-		71AD03F6F266550C8085EBB1778D5CD7 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TegKeychainConstants.swift; path = Sources/TegKeychainConstants.swift; sourceTree = "<group>"; };
-		88E1405993C3D7D47CD63101B7B26D19 /* Swift_EventBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Swift_EventBus.framework; path = "Swift-EventBus.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D87883E1AC41EA9CC8387B192084868 /* Swift-EventBus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Swift-EventBus-dummy.m"; sourceTree = "<group>"; };
+		6DFDFD02CADAA20C2EE787013250A0F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D15CF60531B027D7ECF282AEA733E2 /* AcknowViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AcknowViewController.swift; path = Source/AcknowViewController.swift; sourceTree = "<group>"; };
+		7BBCD9A62D19AE9D4ADE7A1F3DEF46E0 /* AcknowList.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = AcknowList.bundle; path = Resources/AcknowList.bundle; sourceTree = "<group>"; };
+		92632DAE84B96F8F9E046DB4A68008D2 /* AcknowList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AcknowList.framework; path = AcknowList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9386467189C775C68B44B340A6EBE517 /* AcknowList-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AcknowList-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A8AD1C6462D56BB2114A7173E10AF48D /* EventBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventBus.swift; path = EventBus/EventBus.swift; sourceTree = "<group>"; };
-		AC36FE04F3BD5723A142E85855D05543 /* KeychainSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KeychainSwift.framework; path = KeychainSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC84D94DB6399CC0EB8E51364BA861D4 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwiftAccessOptions.swift; path = Sources/KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
+		95ADEA552D7E2C4C5241D49E1CA87840 /* Pods_MoinApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MoinApp.framework; path = "Pods-MoinApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D2789372BFD7E775740EF937A906C81 /* Swift-EventBus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Swift-EventBus-dummy.m"; sourceTree = "<group>"; };
+		A784220504D4D8B8C4015F29DD867AB8 /* Swift_EventBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Swift_EventBus.framework; path = "Swift-EventBus.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B170BAD7F35E820D116B5394A10F0AAA /* Swift-EventBus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Swift-EventBus-umbrella.h"; sourceTree = "<group>"; };
 		B3B8D54FADB7154EF1F03F8215EDE3E8 /* Pods-MoinApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MoinApp-dummy.m"; sourceTree = "<group>"; };
-		B4AF3B9F8AD1EF69F4B699A5ACFF4005 /* Swift-EventBus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Swift-EventBus.modulemap"; sourceTree = "<group>"; };
-		B929C7115F6F8DB6009CF4BF03336A41 /* Pods_MoinApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MoinApp.framework; path = "Pods-MoinApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C370C0DDDA5DDC849FAE3139F209D5DB /* KeychainSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwift.swift; path = Sources/KeychainSwift.swift; sourceTree = "<group>"; };
-		CEA4CEECEBEA72A44331DC9B91555A90 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		CFC58AF7C3151FB271D81B978FE545FF /* Pods-MoinApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MoinApp.release.xcconfig"; sourceTree = "<group>"; };
 		D3284813CBCD580C94A22698327E6457 /* Pods-MoinApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MoinApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DC0018DFFCD0D1F869EC5CF92072EF79 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE9E441F40BB7DCCB0367A3A0936E8ED /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwiftAccessOptions.swift; path = Sources/KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
+		E81B3E6BF53750AA9DCC224F3ACB6EFC /* KeychainSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainSwift-dummy.m"; sourceTree = "<group>"; };
+		EA611F3EF0760ADDAA9726CA8B75E2F4 /* AcknowListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AcknowListViewController.swift; path = Source/AcknowListViewController.swift; sourceTree = "<group>"; };
+		EB00174FB41A615E9165ACAFAE7F99F9 /* AcknowList.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AcknowList.modulemap; sourceTree = "<group>"; };
 		EB4332AC6AE3101CB13C80E8ECB876AD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC3983F9A6A07B512BAE71F164CDDB02 /* KeychainSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainSwift-dummy.m"; sourceTree = "<group>"; };
-		FAEA9F9DF98EBBBE905D1F6DD290B45A /* KeychainSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KeychainSwift.modulemap; sourceTree = "<group>"; };
+		ED0FFDAECBFF50E9BB55DA86317DB023 /* Swift-EventBus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Swift-EventBus.xcconfig"; sourceTree = "<group>"; };
 		FF0E06C711D58C4B102287EA508359CC /* Pods-MoinApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MoinApp-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2F856A44AF32A1C256A8D445D458856F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A474A2FDE7C562C41365F931AACD9EE2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4644C6D96A73768B60CF66E22FD3B879 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,61 +121,69 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		54F6F65A5F284781E32DE892005B66E4 /* Frameworks */ = {
+		778EDCD316D15748D24295A67F4FFE1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059BAC5D536842C15C650ECD4425ADB6 /* Foundation.framework in Frameworks */,
+				E2FA06864BF0696CB7B176720C03E400 /* Foundation.framework in Frameworks */,
+				7DFC4C0742E281613ADC1E36015F02DA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A9CDC6A3BBBEA672A96EBE457118AD33 /* Frameworks */ = {
+		8F0D6D223BDCFA49094236758A1D6776 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EE335682C90EECD82E623C09D99343B /* Foundation.framework in Frameworks */,
+				665F552B2204DB60AEEAC87AE9A4976F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F2549AF862D011E9484188AB8DEC57E /* Swift-EventBus */ = {
+		0ADF9CB896CAFE3D6A02BA4051A6944C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A8AD1C6462D56BB2114A7173E10AF48D /* EventBus.swift */,
-				2420F41B41433E0002FD295AA5E15769 /* Support Files */,
-			);
-			name = "Swift-EventBus";
-			path = "Swift-EventBus";
-			sourceTree = "<group>";
-		};
-		2420F41B41433E0002FD295AA5E15769 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				CEA4CEECEBEA72A44331DC9B91555A90 /* Info.plist */,
-				B4AF3B9F8AD1EF69F4B699A5ACFF4005 /* Swift-EventBus.modulemap */,
-				70CCF5426568C47D7ABCB2553DFD64E2 /* Swift-EventBus.xcconfig */,
-				8D87883E1AC41EA9CC8387B192084868 /* Swift-EventBus-dummy.m */,
-				288427CE9211533400CB2C30A298D751 /* Swift-EventBus-prefix.pch */,
-				3D8B890F8E28D6BCC9A474A6E4FB5CED /* Swift-EventBus-umbrella.h */,
+				4FD0B1CE5DBAE7227FA7ECDA0D66F711 /* Info.plist */,
+				0AFBBE05B40BA1404AF923F7D9E98CBF /* Swift-EventBus.modulemap */,
+				ED0FFDAECBFF50E9BB55DA86317DB023 /* Swift-EventBus.xcconfig */,
+				9D2789372BFD7E775740EF937A906C81 /* Swift-EventBus-dummy.m */,
+				3E42FC250473560A8DC3BC509E8A379D /* Swift-EventBus-prefix.pch */,
+				B170BAD7F35E820D116B5394A10F0AAA /* Swift-EventBus-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Swift-EventBus";
 			sourceTree = "<group>";
 		};
-		438CCEA76CEE0A95CCFE2736FDF4CFA1 /* Support Files */ = {
+		22976EACCA9AFA3FED56EAA5992C1367 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E20FC04F0817131F4B4963CD2A48A51 /* Info.plist */,
-				FAEA9F9DF98EBBBE905D1F6DD290B45A /* KeychainSwift.modulemap */,
-				1F1958D45454B32B90E0AEC66C9FB21D /* KeychainSwift.xcconfig */,
-				EC3983F9A6A07B512BAE71F164CDDB02 /* KeychainSwift-dummy.m */,
-				02FD2FB4BE9DE33B63DF6B4D0A22B255 /* KeychainSwift-prefix.pch */,
-				6A180F41E28EF15B69787A7031FFEB15 /* KeychainSwift-umbrella.h */,
+				DC0018DFFCD0D1F869EC5CF92072EF79 /* Info.plist */,
+				0D4B01BAF1716F176B6E1BB015233818 /* KeychainSwift.modulemap */,
+				3A808DE2C9EEF394E2A87C39539DCEDD /* KeychainSwift.xcconfig */,
+				E81B3E6BF53750AA9DCC224F3ACB6EFC /* KeychainSwift-dummy.m */,
+				51FF33590EF0FFE767CE53E22D08B686 /* KeychainSwift-prefix.pch */,
+				5876501DE3B1D341214BB970F42AD555 /* KeychainSwift-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/KeychainSwift";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438B396F6B4147076630CAEFE34282C1 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
+				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		5AE6D1DA3A671315E49150916AFA08F3 /* Pods-MoinApp */ = {
@@ -157,12 +204,13 @@
 			path = "Target Support Files/Pods-MoinApp";
 			sourceTree = "<group>";
 		};
-		749A46004E67E3C5390993C798CF1F62 /* Products */ = {
+		61E5A9E7EC4153D8ACEBB8F381686FB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AC36FE04F3BD5723A142E85855D05543 /* KeychainSwift.framework */,
-				B929C7115F6F8DB6009CF4BF03336A41 /* Pods_MoinApp.framework */,
-				88E1405993C3D7D47CD63101B7B26D19 /* Swift_EventBus.framework */,
+				92632DAE84B96F8F9E046DB4A68008D2 /* AcknowList.framework */,
+				0738E4327EBD63207DFF98FA226D13E4 /* KeychainSwift.framework */,
+				95ADEA552D7E2C4C5241D49E1CA87840 /* Pods_MoinApp.framework */,
+				A784220504D4D8B8C4015F29DD867AB8 /* Swift_EventBus.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,48 +219,70 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				CC1BE862B28A71A800AB62ECEAD988F8 /* Pods */,
-				749A46004E67E3C5390993C798CF1F62 /* Products */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				E17BC96593D420334FF3058E6F554A77 /* Pods */,
+				61E5A9E7EC4153D8ACEBB8F381686FB9 /* Products */,
 				DF744303D88739B98F0ADCA5664CBBFC /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		AA7C2F07EF92E17E4DB0C492084B9F62 /* KeychainSwift */ = {
+		919A699021952CCB38BA8F01AF918291 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C370C0DDDA5DDC849FAE3139F209D5DB /* KeychainSwift.swift */,
-				AC84D94DB6399CC0EB8E51364BA861D4 /* KeychainSwiftAccessOptions.swift */,
-				71AD03F6F266550C8085EBB1778D5CD7 /* TegKeychainConstants.swift */,
-				438CCEA76CEE0A95CCFE2736FDF4CFA1 /* Support Files */,
+				7BBCD9A62D19AE9D4ADE7A1F3DEF46E0 /* AcknowList.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		94E7DD2BF290AC46ADBE562FD6DFCCD8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB00174FB41A615E9165ACAFAE7F99F9 /* AcknowList.modulemap */,
+				363112B7F825B182AA0C0FCD837A0420 /* AcknowList.xcconfig */,
+				9386467189C775C68B44B340A6EBE517 /* AcknowList-dummy.m */,
+				372CA46B91E5E106FAB466B0D934D5BE /* AcknowList-prefix.pch */,
+				5874B57AF61C2E88C83BF9F4B55E7DD5 /* AcknowList-umbrella.h */,
+				6DFDFD02CADAA20C2EE787013250A0F7 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AcknowList";
+			sourceTree = "<group>";
+		};
+		A8DB5AB9EE44534D82F9E0E1DD8F66F4 /* AcknowList */ = {
+			isa = PBXGroup;
+			children = (
+				0E361AB2D6E0BFED748FBFBD2B945BFD /* Acknow.swift */,
+				EA611F3EF0760ADDAA9726CA8B75E2F4 /* AcknowListViewController.swift */,
+				0B12B763A7F16B6226E70DE5001A488F /* AcknowLocalization.swift */,
+				110A5F5DC74CE25C8FA571270D088207 /* AcknowParser.swift */,
+				77D15CF60531B027D7ECF282AEA733E2 /* AcknowViewController.swift */,
+				919A699021952CCB38BA8F01AF918291 /* Resources */,
+				94E7DD2BF290AC46ADBE562FD6DFCCD8 /* Support Files */,
+			);
+			name = AcknowList;
+			path = AcknowList;
+			sourceTree = "<group>";
+		};
+		C4CECF6A298D1FDB33A812723FC81280 /* KeychainSwift */ = {
+			isa = PBXGroup;
+			children = (
+				4EF9E8DEDA719B79A8C8176C5C9A0B36 /* KeychainSwift.swift */,
+				DE9E441F40BB7DCCB0367A3A0936E8ED /* KeychainSwiftAccessOptions.swift */,
+				3FD40E12DFB05838CE53E1654598D108 /* TegKeychainConstants.swift */,
+				22976EACCA9AFA3FED56EAA5992C1367 /* Support Files */,
 			);
 			name = KeychainSwift;
 			path = KeychainSwift;
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		CD0F7BBF13D0F2B63BEAFD585448A113 /* Swift-EventBus */ = {
 			isa = PBXGroup;
 			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+				40C980516C51126510B2BBC975EFA729 /* EventBus.swift */,
+				0ADF9CB896CAFE3D6A02BA4051A6944C /* Support Files */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CC1BE862B28A71A800AB62ECEAD988F8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AA7C2F07EF92E17E4DB0C492084B9F62 /* KeychainSwift */,
-				0F2549AF862D011E9484188AB8DEC57E /* Swift-EventBus */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
+			name = "Swift-EventBus";
+			path = "Swift-EventBus";
 			sourceTree = "<group>";
 		};
 		DF744303D88739B98F0ADCA5664CBBFC /* Targets Support Files */ = {
@@ -223,22 +293,40 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		E17BC96593D420334FF3058E6F554A77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8DB5AB9EE44534D82F9E0E1DD8F66F4 /* AcknowList */,
+				C4CECF6A298D1FDB33A812723FC81280 /* KeychainSwift */,
+				CD0F7BBF13D0F2B63BEAFD585448A113 /* Swift-EventBus */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		10DB34F67B1E97D3718FBE255913C994 /* Headers */ = {
+		6DFD09C9FC418789E79099665A31BAA8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FC4FDBBC3CF4D8FADF8F059D06874D8 /* Pods-MoinApp-umbrella.h in Headers */,
+				CDFD149F3BD30D6C9979AC0A6C902B35 /* Swift-EventBus-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE3C8B13DBC81F52AF05D6482A8A2685 /* Headers */ = {
+		8F760E7F9BBE6A9663C67D5B807BE5EB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AF0841949402A685BC134C1050886E /* Swift-EventBus-umbrella.h in Headers */,
+				2E8F26084EACF6371CB5817F919661A0 /* AcknowList-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC2B8867F83F522129328AD3E7FB80FD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33583FCD105E97864E082D3AF199741C /* Pods-MoinApp-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,13 +341,31 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0B30A906D57B5DCFCD32CA87CE43518B /* Swift-EventBus */ = {
+		2C4B25DA191884B406DDFDE48CCFD90A /* AcknowList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2AA37B98F06ED568A365656634D28DF0 /* Build configuration list for PBXNativeTarget "Swift-EventBus" */;
+			buildConfigurationList = 7B7D7D191E488D4D53EB2F8CBEF0E612 /* Build configuration list for PBXNativeTarget "AcknowList" */;
 			buildPhases = (
-				3F8099D7336D4A5A9DAE27EAC3A1F621 /* Sources */,
-				54F6F65A5F284781E32DE892005B66E4 /* Frameworks */,
-				DE3C8B13DBC81F52AF05D6482A8A2685 /* Headers */,
+				39533EA85AEB651248EC9E34540A67D8 /* Sources */,
+				778EDCD316D15748D24295A67F4FFE1B /* Frameworks */,
+				A8868573F5E1E90F16C44D865A7E987E /* Resources */,
+				8F760E7F9BBE6A9663C67D5B807BE5EB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcknowList;
+			productName = AcknowList;
+			productReference = 92632DAE84B96F8F9E046DB4A68008D2 /* AcknowList.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		34C4DE7D9826447B9F12069777D3BB55 /* Swift-EventBus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F31EC64BF7361CF0ABD186FE0658B37B /* Build configuration list for PBXNativeTarget "Swift-EventBus" */;
+			buildPhases = (
+				9C379AA094EEFEAB6CBFF9385B1A9CAF /* Sources */,
+				2F856A44AF32A1C256A8D445D458856F /* Frameworks */,
+				6DFD09C9FC418789E79099665A31BAA8 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -267,7 +373,7 @@
 			);
 			name = "Swift-EventBus";
 			productName = "Swift-EventBus";
-			productReference = 88E1405993C3D7D47CD63101B7B26D19 /* Swift_EventBus.framework */;
+			productReference = A784220504D4D8B8C4015F29DD867AB8 /* Swift_EventBus.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		38ACA430605AFB4229712A18BDDF5086 /* KeychainSwift */ = {
@@ -284,26 +390,27 @@
 			);
 			name = KeychainSwift;
 			productName = KeychainSwift;
-			productReference = AC36FE04F3BD5723A142E85855D05543 /* KeychainSwift.framework */;
+			productReference = 0738E4327EBD63207DFF98FA226D13E4 /* KeychainSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4B7D1D24B3A60BD4018BC22376CC2A5E /* Pods-MoinApp */ = {
+		A62E22623EAEC3315A928240909BB57F /* Pods-MoinApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 144031064BB989E5AEC98B202DB06A45 /* Build configuration list for PBXNativeTarget "Pods-MoinApp" */;
+			buildConfigurationList = CE01D9913D9870C6D905DE180E663D46 /* Build configuration list for PBXNativeTarget "Pods-MoinApp" */;
 			buildPhases = (
-				C5560237B861FE682A13A44E7BAA9283 /* Sources */,
-				A9CDC6A3BBBEA672A96EBE457118AD33 /* Frameworks */,
-				10DB34F67B1E97D3718FBE255913C994 /* Headers */,
+				9CFFD8200D2A960286BAC2599554DFC8 /* Sources */,
+				8F0D6D223BDCFA49094236758A1D6776 /* Frameworks */,
+				EC2B8867F83F522129328AD3E7FB80FD /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FAE12EF42B2EB46121A71AFB4551C71E /* PBXTargetDependency */,
-				A60B946CDD84F67C7C2499ACD10B4B50 /* PBXTargetDependency */,
+				5D15D5E9A8E77DC3DDCB81A3ED8E9FE1 /* PBXTargetDependency */,
+				E83126BC528895DB82E230705D14CD35 /* PBXTargetDependency */,
+				E6725374C9CA35333C58CADAA524AC97 /* PBXTargetDependency */,
 			);
 			name = "Pods-MoinApp";
 			productName = "Pods-MoinApp";
-			productReference = B929C7115F6F8DB6009CF4BF03336A41 /* Pods_MoinApp.framework */;
+			productReference = 95ADEA552D7E2C4C5241D49E1CA87840 /* Pods_MoinApp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -323,24 +430,57 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 749A46004E67E3C5390993C798CF1F62 /* Products */;
+			productRefGroup = 61E5A9E7EC4153D8ACEBB8F381686FB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2C4B25DA191884B406DDFDE48CCFD90A /* AcknowList */,
 				38ACA430605AFB4229712A18BDDF5086 /* KeychainSwift */,
-				4B7D1D24B3A60BD4018BC22376CC2A5E /* Pods-MoinApp */,
-				0B30A906D57B5DCFCD32CA87CE43518B /* Swift-EventBus */,
+				A62E22623EAEC3315A928240909BB57F /* Pods-MoinApp */,
+				34C4DE7D9826447B9F12069777D3BB55 /* Swift-EventBus */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		A8868573F5E1E90F16C44D865A7E987E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13E854C1957252DA415E6B308ECE6976 /* AcknowList.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		3F8099D7336D4A5A9DAE27EAC3A1F621 /* Sources */ = {
+		39533EA85AEB651248EC9E34540A67D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				966BD3D7C89C4E7AB6F154A4A2127D53 /* EventBus.swift in Sources */,
-				52322A09E0B898C22C24DE9B8C8CACCE /* Swift-EventBus-dummy.m in Sources */,
+				75957667828EA89180858396A55763F4 /* Acknow.swift in Sources */,
+				C8D214DB566A9C330FD793E2ED4D6B35 /* AcknowList-dummy.m in Sources */,
+				D716D0C9ADE5E7A0A62AB4EF0FA56675 /* AcknowListViewController.swift in Sources */,
+				E320CB56392BCDB8D11F99B839EF08FB /* AcknowLocalization.swift in Sources */,
+				2AC7119008B685013BA9875358D3D3F3 /* AcknowParser.swift in Sources */,
+				A88EDECB4BA5F48E21E2DC7F3D760382 /* AcknowViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C379AA094EEFEAB6CBFF9385B1A9CAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				026F09DC2F790B3CCBFC47610A47613E /* EventBus.swift in Sources */,
+				77FEB58ED8B83D797E14110BD1F12BDE /* Swift-EventBus-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CFFD8200D2A960286BAC2599554DFC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				338A705D90E1956388D6CDAAF3C18EEF /* Pods-MoinApp-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,28 +495,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5560237B861FE682A13A44E7BAA9283 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				666E31C6D96D90EA76F6FB3122E9A93C /* Pods-MoinApp-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A60B946CDD84F67C7C2499ACD10B4B50 /* PBXTargetDependency */ = {
+		5D15D5E9A8E77DC3DDCB81A3ED8E9FE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AcknowList;
+			target = 2C4B25DA191884B406DDFDE48CCFD90A /* AcknowList */;
+			targetProxy = D084062592AE004B4CF98D2415746219 /* PBXContainerItemProxy */;
+		};
+		E6725374C9CA35333C58CADAA524AC97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Swift-EventBus";
-			target = 0B30A906D57B5DCFCD32CA87CE43518B /* Swift-EventBus */;
-			targetProxy = 0A40209A3A33D6E53DD2ADEA7876983C /* PBXContainerItemProxy */;
+			target = 34C4DE7D9826447B9F12069777D3BB55 /* Swift-EventBus */;
+			targetProxy = 253C0318F1BA806E974A7B02271F0640 /* PBXContainerItemProxy */;
 		};
-		FAE12EF42B2EB46121A71AFB4551C71E /* PBXTargetDependency */ = {
+		E83126BC528895DB82E230705D14CD35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = KeychainSwift;
 			target = 38ACA430605AFB4229712A18BDDF5086 /* KeychainSwift */;
-			targetProxy = D48AC8D20B43CB0AD3C8E0C1A6C95408 /* PBXContainerItemProxy */;
+			targetProxy = 36F2B93D683E1423D1124BD169F97D18 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -436,9 +574,9 @@
 			};
 			name = Release;
 		};
-		1483EAC2A49295312489A181EFF05725 /* Debug */ = {
+		19F03B14780B8ABE500C552F3BB20320 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 527C235CEB92E4DC446984695E30E26F /* Pods-MoinApp.debug.xcconfig */;
+			baseConfigurationReference = 363112B7F825B182AA0C0FCD837A0420 /* AcknowList.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -449,30 +587,28 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MoinApp/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AcknowList/AcknowList-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AcknowList/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MoinApp/Pods-MoinApp.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_MoinApp;
+				MODULEMAP_FILE = "Target Support Files/AcknowList/AcknowList.modulemap";
+				PRODUCT_NAME = AcknowList;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		1BF162ECB23784C0E7C5C62CA7011FF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F1958D45454B32B90E0AEC66C9FB21D /* KeychainSwift.xcconfig */;
+			baseConfigurationReference = 3A808DE2C9EEF394E2A87C39539DCEDD /* KeychainSwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -503,7 +639,7 @@
 		};
 		2511EE2FF6B2A27D44E80BFB5C439F57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F1958D45454B32B90E0AEC66C9FB21D /* KeychainSwift.xcconfig */;
+			baseConfigurationReference = 3A808DE2C9EEF394E2A87C39539DCEDD /* KeychainSwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -526,40 +662,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		573EA90EA663B4621E8ED49BC4A1D040 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFC58AF7C3151FB271D81B978FE545FF /* Pods-MoinApp.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MoinApp/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MoinApp/Pods-MoinApp.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_MoinApp;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -627,9 +729,43 @@
 			};
 			name = Debug;
 		};
-		A28220480C769D2FEE43219551E0914C /* Debug */ = {
+		97C9DDE8BE65267E08E721F7585F26BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70CCF5426568C47D7ABCB2553DFD64E2 /* Swift-EventBus.xcconfig */;
+			baseConfigurationReference = CFC58AF7C3151FB271D81B978FE545FF /* Pods-MoinApp.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MoinApp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MoinApp/Pods-MoinApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MoinApp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E60547059176370FF23E27CD96FE637 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED0FFDAECBFF50E9BB55DA86317DB023 /* Swift-EventBus.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -658,9 +794,74 @@
 			};
 			name = Debug;
 		};
-		C0416A040B2052B82A3929C4FF9F6C19 /* Release */ = {
+		AFEB4FC9CC17BB05E9958DF6FA98FFF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70CCF5426568C47D7ABCB2553DFD64E2 /* Swift-EventBus.xcconfig */;
+			baseConfigurationReference = 527C235CEB92E4DC446984695E30E26F /* Pods-MoinApp.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MoinApp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MoinApp/Pods-MoinApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MoinApp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E4EAD0673C90645DFD1F0CD6F4FB9EEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 363112B7F825B182AA0C0FCD837A0420 /* AcknowList.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AcknowList/AcknowList-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AcknowList/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AcknowList/AcknowList.modulemap";
+				PRODUCT_NAME = AcknowList;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EB358E208FAD813F84E29D1D999A01B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED0FFDAECBFF50E9BB55DA86317DB023 /* Swift-EventBus.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -693,15 +894,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		144031064BB989E5AEC98B202DB06A45 /* Build configuration list for PBXNativeTarget "Pods-MoinApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1483EAC2A49295312489A181EFF05725 /* Debug */,
-				573EA90EA663B4621E8ED49BC4A1D040 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		16C5D5A8E6CDB4211B0732F819F55A47 /* Build configuration list for PBXNativeTarget "KeychainSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -711,20 +903,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AA37B98F06ED568A365656634D28DF0 /* Build configuration list for PBXNativeTarget "Swift-EventBus" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A28220480C769D2FEE43219551E0914C /* Debug */,
-				C0416A040B2052B82A3929C4FF9F6C19 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
 				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B7D7D191E488D4D53EB2F8CBEF0E612 /* Build configuration list for PBXNativeTarget "AcknowList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4EAD0673C90645DFD1F0CD6F4FB9EEF /* Debug */,
+				19F03B14780B8ABE500C552F3BB20320 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE01D9913D9870C6D905DE180E663D46 /* Build configuration list for PBXNativeTarget "Pods-MoinApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFEB4FC9CC17BB05E9958DF6FA98FFF5 /* Debug */,
+				97C9DDE8BE65267E08E721F7585F26BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F31EC64BF7361CF0ABD186FE0658B37B /* Build configuration list for PBXNativeTarget "Swift-EventBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E60547059176370FF23E27CD96FE637 /* Debug */,
+				EB358E208FAD813F84E29D1D999A01B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
