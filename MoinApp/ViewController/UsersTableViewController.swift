@@ -9,7 +9,7 @@
 import UIKit
 import Swift_EventBus
 
-class UsersTableViewController: UITableViewController, DataManagerUpdates {
+class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating {
 
     private let eventBus = EventBus()
     private var dataManager: DataManager!
@@ -20,6 +20,10 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates {
 
         self.dataManager = DataManager(eventBus: self.eventBus)
         self.dataManager.begin()
+
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
     }
 
     private func presentLogin() {
@@ -45,6 +49,19 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates {
         self.present(loginController, animated: true, completion: nil)
     }
 
+//MARK: UISearchResultsUpdating
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let search = searchController.searchBar.text?.lowercased() else {
+            self.users = self.dataManager.users
+            return
+        }
+
+        self.users = self.dataManager.users.filter { (user) -> Bool in
+            return user.username.lowercased().contains(search)
+        }
+        self.tableView.reloadData()
+    }
+    
 //MARK: DataManagerUpdates
     func needsAuthentication() {
         OperationQueue.main.addOperation {
