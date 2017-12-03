@@ -125,7 +125,7 @@ class DataManager {
         self.restManager.signUp(as: username, password: password, withEmail: email) { (result) in
             switch result {
             case .error(let error):
-                print("Error signing up: \(error).")
+                print("Error signing up: \( error ).")
                 self.notifyOfUnauthentication()
             case .success(_):
                 self.onLogin()

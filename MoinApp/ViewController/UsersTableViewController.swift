@@ -49,7 +49,11 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 //MARK:
 
     func signUpViewController(_ viewController: SignUpViewController, provides username: String, password: String, email: String) {
-        viewController.dismiss(animated: true, completion: nil)
+        if let loginVC = viewController.presentingViewController as? LoginViewController {
+            viewController.dismiss(animated: false) {
+                loginVC.dismiss(animated: false, completion: nil)
+            }
+        }
 
         self.dataManager.signUp(as: username, with: password, andEmail: email)
     }
