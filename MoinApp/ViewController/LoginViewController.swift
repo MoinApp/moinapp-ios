@@ -20,7 +20,10 @@ class LoginViewController: UIViewController {
     public weak var delegate: LoginViewControllerDelegate?
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         self.usernameTextField.becomeFirstResponder()
+        self.passwordTextField.text = ""
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
@@ -30,5 +33,19 @@ class LoginViewController: UIViewController {
         }
 
         self.delegate?.loginViewController(self, provides: username, and: password)
+    }
+
+    @IBAction func backFromSignUp(segue: UIStoryboardSegue) {
+        // alright
+
+        // transfer inputs
+        if let signUpVC = segue.source as? SignUpViewController {
+            guard let username = signUpVC.usernameTextField.text,
+                username != "" else {
+                    return
+            }
+
+            self.usernameTextField.text = username
+        }
     }
 }

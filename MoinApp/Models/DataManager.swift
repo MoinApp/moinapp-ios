@@ -127,6 +127,11 @@ class DataManager {
         }
     }
 
+    func logout() {
+        self.restManager.unauthenticate()
+        self.notifyOfUnauthentication()
+    }
+
     func search(for username: String, completion: @escaping (Result<Users>) -> Void) {
         self.restManager.search(for: username, completion: completion)
     }

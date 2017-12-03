@@ -51,6 +51,10 @@ class RestManager {
         }
     }
 
+    func unauthenticate() {
+        self.tokenManager.clear()
+    }
+
     func recentUsers(completion: @escaping (Result<Users>) -> Void) {
         self.get(endpoint: "/user/recents") { (result) in
             switch result {
@@ -157,7 +161,7 @@ class RestManager {
 
             guard response.statusCode == 200 else {
                 if response.statusCode == 403 {
-                    self.tokenManager.clear()
+                    self.unauthenticate()
                     return completion(.error(RestManagerError.unauthenticated))
                 }
 
