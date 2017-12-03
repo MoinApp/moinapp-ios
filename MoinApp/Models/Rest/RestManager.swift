@@ -40,8 +40,7 @@ class RestManager {
                 completion(.error(error))
             case .success(let data):
                 do {
-                    let session = try self.decoder.decode(Session.self, from: data)
-                    self.tokenManager.save(token: session.token)
+                    try self.useSessionToken(fromResponse: data)
                 } catch {
                     return completion(.error(RestManagerError.invalidResponse))
                 }
@@ -49,6 +48,30 @@ class RestManager {
                 completion(.success(true))
             }
         }
+    }
+
+    func signUp(as username: String, password: String, withEmail email: String, completion: @escaping (Result<Bool>) -> Void) {
+        let user = UserRegister(username: username, password: password, email: email)
+
+        self.request(endpoint: "/signup", withData: user) { (result) in
+            switch result {
+            case .error(let error):
+                completion(.error(error))
+            case .success(let data):
+                do {
+                    try self.useSessionToken(fromResponse: data)
+                } catch {
+                    return completion(.error(RestManagerError.invalidResponse))
+                }
+
+                completion(.success(true))
+            }
+        }
+    }
+
+    private func useSessionToken(fromResponse data: Data) throws {
+        let session = try self.decoder.decode(Session.self, from: data)
+        self.tokenManager.save(token: session.token)
     }
 
     func unauthenticate() {
@@ -185,6 +208,12 @@ struct RestError : Decodable {
 struct UserLogin : Encodable {
     let username: String
     let password: String
+}
+
+struct UserRegister : Encodable {
+    let username: String
+    let password: String
+    let email: String
 }
 
 struct Session : Decodable {
