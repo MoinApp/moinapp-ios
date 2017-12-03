@@ -9,7 +9,7 @@
 import UIKit
 import Swift_EventBus
 
-class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating {
+class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating, LoginViewControllerDelegate {
 
     private let eventBus = EventBus()
     private var dataManager: DataManager!
@@ -28,27 +28,18 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
         self.definesPresentationContext = true
     }
 
-    private func presentLogin() {
-        let loginController = UIAlertController(title: "Login", message: nil, preferredStyle: .alert)
-        loginController.addAction(UIAlertAction(title: "Login", style: .default, handler: { (_) in
-            guard let textFields = loginController.textFields else {
-                return
-            }
-
-            let textFieldUsername = textFields[0]
-            let textFieldPassword = textFields[1]
-
-            self.dataManager.login(as: textFieldUsername.text!, with: textFieldPassword.text!)
-        }))
-        loginController.addTextField { (textField) in
-            textField.placeholder = "Username"
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let loginVC = segue.destination as? LoginViewController {
+            loginVC.delegate = self
         }
-        loginController.addTextField { (textField) in
-            textField.placeholder = "Password"
-            textField.isSecureTextEntry = true
-        }
+    }
 
-        self.present(loginController, animated: true, completion: nil)
+//MARK: LoginViewControllerDelegate
+
+    func loginViewController(_ viewController: LoginViewController, provides username: String, and password: String) {
+        viewController.dismiss(animated: true, completion: nil)
+
+        self.dataManager.login(as: username, with: password)
     }
 
 //MARK: UISearchResultsUpdating
@@ -81,7 +72,7 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 //MARK: DataManagerUpdates
     func needsAuthentication() {
         OperationQueue.main.addOperation {
-            self.presentLogin()
+            self.performSegue(withIdentifier: "showLoginSegue", sender: self)
         }
     }
 

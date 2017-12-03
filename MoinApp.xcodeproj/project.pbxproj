@@ -20,6 +20,7 @@
 		45AB14EB1F89113000B28961 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EA1F89113000B28961 /* Gravatar.swift */; };
 		45AB14ED1F891BD100B28961 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB14EC1F891BD100B28961 /* DataManager.swift */; };
 		45BFE7BD1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45BFE7BC1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist */; };
+		45BFE7BF1F8AA89F00485A0C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFE7BE1F8AA89F00485A0C /* LoginViewController.swift */; };
 		8642EC2407199AD24EB50906 /* Pods_MoinApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3696831B1B33C172C80CFFE7 /* Pods_MoinApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		45AB14EC1F891BD100B28961 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		45AB14EE1F8A945F00B28961 /* MoinApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoinApp.entitlements; sourceTree = "<group>"; };
 		45BFE7BC1F8AA0C700485A0C /* Pods-MoinApp-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-MoinApp-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-MoinApp/Pods-MoinApp-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		45BFE7BE1F8AA89F00485A0C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		45DF19121F8A9C8C005DF610 /* moin4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin4.wav; sourceTree = "<group>"; };
 		45DF19131F8A9C8C005DF610 /* moin5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin5.wav; sourceTree = "<group>"; };
 		45DF19141F8A9C8C005DF610 /* moin1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moin1.wav; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				4597EF261F81682800392D86 /* Cells */,
 				4597EF231F8165F300392D86 /* UsersTableViewController.swift */,
+				45BFE7BE1F8AA89F00485A0C /* LoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				4597EF281F81683400392D86 /* UserTableViewCell.swift in Sources */,
 				4597EF0F1F81654800392D86 /* AppDelegate.swift in Sources */,
 				45AB14ED1F891BD100B28961 /* DataManager.swift in Sources */,
+				45BFE7BF1F8AA89F00485A0C /* LoginViewController.swift in Sources */,
 				45AB14E81F88FECE00B28961 /* TokenManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
