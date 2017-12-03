@@ -191,30 +191,42 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlo-iY-76z">
-                                <rect key="frame" x="24" y="242" width="327" height="30"/>
+                                <rect key="frame" x="24" y="280" width="327" height="30"/>
                                 <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="Hc0-g0-Hth" eventType="touchUpInside" id="wg4-jK-XcE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mA-Nr-cfn">
-                                <rect key="frame" x="24" y="296" width="327" height="30"/>
+                                <rect key="frame" x="24" y="334" width="327" height="30"/>
                                 <state key="normal" title="Already have an account?"/>
                                 <connections>
                                     <segue destination="gsW-aP-Y8g" kind="unwind" unwindAction="backFromSignUpWithSegue:" id="ZcP-45-nQW"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gravatar Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNH-kb-klQ">
+                                <rect key="frame" x="24" y="234" width="327" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Wlo-iY-76z" firstAttribute="trailing" secondItem="Vlf-RC-NBC" secondAttribute="trailing" id="29m-Gt-LrJ"/>
                             <constraint firstItem="8mA-Nr-cfn" firstAttribute="leading" secondItem="Wlo-iY-76z" secondAttribute="leading" id="34q-Hx-Iib"/>
+                            <constraint firstItem="rNH-kb-klQ" firstAttribute="trailing" secondItem="Vlf-RC-NBC" secondAttribute="trailing" id="5ua-hm-c70"/>
                             <constraint firstItem="8mA-Nr-cfn" firstAttribute="top" secondItem="Wlo-iY-76z" secondAttribute="bottom" constant="24" id="AmP-uf-kkO"/>
                             <constraint firstItem="e5i-8V-TQZ" firstAttribute="centerX" secondItem="AHe-V7-SQ4" secondAttribute="centerX" id="B6v-5h-tKf"/>
                             <constraint firstItem="AHe-V7-SQ4" firstAttribute="trailing" secondItem="OWW-p2-brl" secondAttribute="trailing" constant="24" id="DUa-9c-Eqx"/>
                             <constraint firstItem="Vlf-RC-NBC" firstAttribute="top" secondItem="Wk0-gz-TBY" secondAttribute="bottom" constant="8" id="Fsm-qK-R66"/>
-                            <constraint firstItem="Wlo-iY-76z" firstAttribute="top" secondItem="Vlf-RC-NBC" secondAttribute="bottom" constant="16" id="FyN-3M-0a1"/>
+                            <constraint firstItem="rNH-kb-klQ" firstAttribute="top" secondItem="Vlf-RC-NBC" secondAttribute="bottom" constant="8" id="IBj-fH-qh7"/>
                             <constraint firstItem="Vlf-RC-NBC" firstAttribute="trailing" secondItem="Wk0-gz-TBY" secondAttribute="trailing" id="bFx-uI-XfW"/>
                             <constraint firstItem="8mA-Nr-cfn" firstAttribute="trailing" secondItem="Wlo-iY-76z" secondAttribute="trailing" id="cbS-mZ-ZkI"/>
                             <constraint firstItem="OWW-p2-brl" firstAttribute="leading" secondItem="AHe-V7-SQ4" secondAttribute="leading" constant="24" id="d3t-dP-qHi"/>
                             <constraint firstItem="e5i-8V-TQZ" firstAttribute="top" secondItem="AHe-V7-SQ4" secondAttribute="top" constant="36" id="f4T-Ur-mMB"/>
+                            <constraint firstItem="rNH-kb-klQ" firstAttribute="leading" secondItem="Vlf-RC-NBC" secondAttribute="leading" id="fZr-o6-igy"/>
+                            <constraint firstItem="Wlo-iY-76z" firstAttribute="top" secondItem="rNH-kb-klQ" secondAttribute="bottom" constant="16" id="gPw-rH-ai8"/>
                             <constraint firstItem="Vlf-RC-NBC" firstAttribute="leading" secondItem="Wk0-gz-TBY" secondAttribute="leading" id="hBc-Fr-U8A"/>
                             <constraint firstItem="Wk0-gz-TBY" firstAttribute="trailing" secondItem="OWW-p2-brl" secondAttribute="trailing" id="hFs-iR-elZ"/>
                             <constraint firstItem="Wk0-gz-TBY" firstAttribute="top" secondItem="OWW-p2-brl" secondAttribute="bottom" constant="8" id="hHa-Zl-zv2"/>
@@ -225,9 +237,9 @@
                         <viewLayoutGuide key="safeArea" id="AHe-V7-SQ4"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="rNH-kb-klQ" id="gLf-Er-2y1"/>
                         <outlet property="passwordConfirmTextField" destination="Vlf-RC-NBC" id="3sj-sT-ZtR"/>
                         <outlet property="passwordTextField" destination="Wk0-gz-TBY" id="ZXg-c3-74K"/>
-                        <outlet property="signUpTapped" destination="Wlo-iY-76z" id="EGX-lr-2vP"/>
                         <outlet property="usernameTextField" destination="OWW-p2-brl" id="gc0-c4-j9K"/>
                     </connections>
                 </viewController>

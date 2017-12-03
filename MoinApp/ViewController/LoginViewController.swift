@@ -18,6 +18,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     public weak var delegate: LoginViewControllerDelegate?
+    public weak var signUpDelegate: SignUpViewControllerDelegate?
+
+    public func setDelegates(forLogin loginDelegate: LoginViewControllerDelegate?, andSignup signupDelegate: SignUpViewControllerDelegate?) {
+        self.delegate = loginDelegate
+        self.signUpDelegate = signupDelegate
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -33,6 +39,12 @@ class LoginViewController: UIViewController {
         }
 
         self.delegate?.loginViewController(self, provides: username, and: password)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let signUpVC = segue.destination as? SignUpViewController {
+            signUpVC.delegate = self.signUpDelegate
+        }
     }
 
     @IBAction func backFromSignUp(segue: UIStoryboardSegue) {

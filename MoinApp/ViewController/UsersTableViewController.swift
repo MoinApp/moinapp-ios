@@ -9,7 +9,7 @@
 import UIKit
 import Swift_EventBus
 
-class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating, LoginViewControllerDelegate {
+class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating, LoginViewControllerDelegate, SignUpViewControllerDelegate {
 
     private let eventBus = EventBus()
     private var dataManager: DataManager!
@@ -34,7 +34,7 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let loginVC = segue.destination as? LoginViewController {
-            loginVC.delegate = self
+            loginVC.setDelegates(forLogin: self, andSignup: self)
         }
     }
 
@@ -44,6 +44,14 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
         viewController.dismiss(animated: true, completion: nil)
 
         self.dataManager.login(as: username, with: password)
+    }
+
+//MARK:
+
+    func signUpViewController(_ viewController: SignUpViewController, provides username: String, password: String, email: String) {
+        viewController.dismiss(animated: true, completion: nil)
+
+        self.dataManager.signUp(as: username, with: password, andEmail: email)
     }
 
 //MARK: UISearchResultsUpdating

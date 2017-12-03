@@ -116,13 +116,29 @@ class DataManager {
                 print("Error authenticating: \( error ).")
                 self.notifyOfUnauthentication()
             case .success(_):
-                self.updateUsers()
+                self.onLogin()
+            }
+        }
+    }
 
-                OperationQueue.main.addOperation {
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.setupRemoteNotifications()
-                    }
-                }
+    func signUp(as username: String, with password: String, andEmail email: String) {
+        self.restManager.signUp(as: username, password: password, withEmail: email) { (result) in
+            switch result {
+            case .error(let error):
+                print("Error signing up: \(error).")
+                self.notifyOfUnauthentication()
+            case .success(_):
+                self.onLogin()
+            }
+        }
+    }
+
+    private func onLogin() {
+        self.updateUsers()
+
+        OperationQueue.main.addOperation {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.setupRemoteNotifications()
             }
         }
     }
