@@ -19,7 +19,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let username = self.dataManager.username ?? "unknown"
+        let username = self.dataManager.username ?? "<unknown>"
         self.signedInAsLabel.text = "Signed in as \( username )"
     }
 
@@ -27,8 +27,12 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1): // logout
-            // TODO
-            break
+            if let navController = self.navigationController {
+                navController.popViewController(animated: false)
+            } else {
+                self.dismiss(animated: false, completion: nil)
+            }
+            self.dataManager.logout()
             
         case (1, 0): // source code
             self.openSourceCodeURL(completion: { (_) in
