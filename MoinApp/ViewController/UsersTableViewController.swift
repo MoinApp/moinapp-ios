@@ -28,13 +28,12 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
         self.definesPresentationContext = true
     }
 
-    @IBAction func logout(_ sender: UIBarButtonItem) {
-        self.dataManager.logout()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let loginVC = segue.destination as? LoginViewController {
             loginVC.setDelegates(forLogin: self, andSignup: self)
+        }
+        if let settingsVC = segue.destination as? SettingsTableViewController {
+            settingsVC.dataManager = self.dataManager
         }
     }
 
