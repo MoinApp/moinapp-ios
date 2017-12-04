@@ -10,6 +10,7 @@ import Foundation
 import KeychainSwift
 
 class TokenManager {
+    private static let usernameToken = "username"
     private static let tokenKey = "token"
 
     private let keychain: KeychainSwift
@@ -22,11 +23,17 @@ class TokenManager {
         return self.keychain.get(TokenManager.tokenKey)
     }
 
-    func save(token: String) {
+    var username: String? {
+        return self.keychain.get(TokenManager.usernameToken)
+    }
+
+    func save(token: String, for username: String) {
+        self.keychain.set(username, forKey: TokenManager.usernameToken)
         self.keychain.set(token, forKey: TokenManager.tokenKey)
     }
 
     func clear() {
+        self.keychain.delete(TokenManager.usernameToken)
         self.keychain.delete(TokenManager.tokenKey)
     }
 }

@@ -19,7 +19,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.signedInAsLabel.text = "Signed in as ?"
+        let username = self.dataManager.username ?? "unknown"
+        self.signedInAsLabel.text = "Signed in as \( username )"
     }
 
 //MARK: UITableViewDataSource

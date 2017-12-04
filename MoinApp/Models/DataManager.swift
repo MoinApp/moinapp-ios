@@ -55,6 +55,10 @@ class DataManager {
         return image
     }
 
+    public var username: String? {
+        return self.restManager.username
+    }
+
     private func notifyOfUnauthentication() {
         self.eventBus.notify(DataManagerUpdates.self) { (s) in
             s.needsAuthentication()

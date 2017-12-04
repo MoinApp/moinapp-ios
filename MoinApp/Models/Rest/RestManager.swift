@@ -31,6 +31,10 @@ class RestManager {
         self.tokenManager = TokenManager()
     }
 
+    public var username: String? {
+        return self.tokenManager.username
+    }
+
     func authenticate(as username: String, password: String, completion: @escaping (Result<Bool>) -> Void) {
         let userLogin = UserLogin(username: username, password: password)
 
@@ -40,7 +44,7 @@ class RestManager {
                 completion(.error(error))
             case .success(let data):
                 do {
-                    try self.useSessionToken(fromResponse: data)
+                    try self.useSessionToken(fromResponse: data, for: username)
                 } catch {
                     return completion(.error(RestManagerError.invalidResponse))
                 }
@@ -59,7 +63,7 @@ class RestManager {
                 completion(.error(error))
             case .success(let data):
                 do {
-                    try self.useSessionToken(fromResponse: data)
+                    try self.useSessionToken(fromResponse: data, for: username)
                 } catch {
                     return completion(.error(RestManagerError.invalidResponse))
                 }
@@ -69,9 +73,9 @@ class RestManager {
         }
     }
 
-    private func useSessionToken(fromResponse data: Data) throws {
+    private func useSessionToken(fromResponse data: Data, for username: String) throws {
         let session = try self.decoder.decode(Session.self, from: data)
-        self.tokenManager.save(token: session.token)
+        self.tokenManager.save(token: session.token, for: username)
     }
 
     func unauthenticate() {
