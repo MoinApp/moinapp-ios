@@ -11,6 +11,7 @@ import Swift_EventBus
 
 protocol DataManagerUpdates {
     func needsAuthentication()
+    func isAuthenticated()
 
     func update(users: [User], from: [User])
 
@@ -20,6 +21,10 @@ protocol DataManagerUpdates {
 extension DataManagerUpdates {
     func needsAuthentication() {
         
+    }
+
+    func isAuthenticated() {
+
     }
 
     func update(users: [User], from: [User]) {
@@ -59,6 +64,12 @@ class DataManager {
         return self.restManager.username
     }
 
+    private func notifyOfAuthentication() {
+        self.eventBus.notify(DataManagerUpdates.self) { (s) in
+            s.isAuthenticated()
+        }
+    }
+
     private func notifyOfUnauthentication() {
         self.eventBus.notify(DataManagerUpdates.self) { (s) in
             s.needsAuthentication()
@@ -88,6 +99,11 @@ class DataManager {
     }
 
     func begin() {
+        guard self.username != nil else {
+            self.notifyOfUnauthentication()
+            return
+        }
+
         self.updateUsers()
     }
 
@@ -113,31 +129,36 @@ class DataManager {
         }
     }
 
-    func login(as username: String, with password: String) {
+    func login(as username: String, with password: String, completion: @escaping (Result<Bool>) -> Void) {
         self.restManager.authenticate(as: username, password: password) { (result) in
             switch result {
             case .error(let error):
                 print("Error authenticating: \( error ).")
+                completion(.error(error))
                 self.notifyOfUnauthentication()
             case .success(_):
+                completion(.success(true))
                 self.onLogin()
             }
         }
     }
 
-    func signUp(as username: String, with password: String, andEmail email: String) {
+    func signUp(as username: String, with password: String, andEmail email: String, completion: @escaping (Result<Bool>) -> Void) {
         self.restManager.signUp(as: username, password: password, withEmail: email) { (result) in
             switch result {
             case .error(let error):
                 print("Error signing up: \( error ).")
+                completion(.error(error))
                 self.notifyOfUnauthentication()
             case .success(_):
+                completion(.success(true))
                 self.onLogin()
             }
         }
     }
 
     private func onLogin() {
+        self.notifyOfAuthentication()
         self.updateUsers()
 
         OperationQueue.main.addOperation {

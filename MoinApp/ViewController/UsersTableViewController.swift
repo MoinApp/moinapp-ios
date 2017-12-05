@@ -9,7 +9,7 @@
 import UIKit
 import Swift_EventBus
 
-class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating, LoginViewControllerDelegate, SignUpViewControllerDelegate {
+class UsersTableViewController: UITableViewController, DataManagerUpdates, UISearchResultsUpdating {
 
     private let eventBus = EventBus()
     private var dataManager: DataManager!
@@ -30,31 +30,11 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let loginVC = segue.destination as? LoginViewController {
-            loginVC.setDelegates(forLogin: self, andSignup: self)
+            loginVC.dataManager = self.dataManager
         }
         if let settingsVC = segue.destination as? SettingsTableViewController {
             settingsVC.dataManager = self.dataManager
         }
-    }
-
-//MARK: LoginViewControllerDelegate
-
-    func loginViewController(_ viewController: LoginViewController, provides username: String, and password: String) {
-        viewController.dismiss(animated: true, completion: nil)
-
-        self.dataManager.login(as: username, with: password)
-    }
-
-//MARK: SignUpViewControllerDelegate
-
-    func signUpViewController(_ viewController: SignUpViewController, provides username: String, password: String, email: String) {
-        if let loginVC = viewController.presentingViewController as? LoginViewController {
-            viewController.dismiss(animated: false) {
-                loginVC.dismiss(animated: false, completion: nil)
-            }
-        }
-
-        self.dataManager.signUp(as: username, with: password, andEmail: email)
     }
 
 //MARK: UISearchResultsUpdating
@@ -86,6 +66,10 @@ class UsersTableViewController: UITableViewController, DataManagerUpdates, UISea
     
 //MARK: DataManagerUpdates
     func needsAuthentication() {
+        guard self.presentedViewController == nil else {
+            return
+        }
+
         OperationQueue.main.addOperation {
             self.performSegue(withIdentifier: "showLoginSegue", sender: self)
         }

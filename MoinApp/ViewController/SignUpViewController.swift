@@ -8,18 +8,37 @@
 
 import UIKit
 
-protocol SignUpViewControllerDelegate: class {
-    func signUpViewController(_ viewController: SignUpViewController, provides username: String, password: String, email: String)
-}
-
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, DataManagerUpdates {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var haveAccountButton: UIButton!
+    
+    public weak var dataManager: DataManager!
 
-    public weak var delegate: SignUpViewControllerDelegate?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.dataManager.eventBus.add(subscriber: self, for: DataManagerUpdates.self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.dataManager.eventBus.add(subscriber: self, for: DataManagerUpdates.self)
+    }
+
+    private func setUI(toState enabled: Bool) {
+        self.usernameTextField.isEnabled = enabled
+        self.passwordTextField.isEnabled = enabled
+        self.passwordConfirmTextField.isEnabled = enabled
+        self.emailTextField.isEnabled = enabled
+        self.signUpButton.isEnabled = enabled
+        self.haveAccountButton.isEnabled = enabled
+    }
 
     @IBAction func signUpTapped(_ sender: UIButton) {
         guard let username = self.usernameTextField.text,
@@ -30,7 +49,12 @@ class SignUpViewController: UIViewController {
                 return
         }
 
-        self.delegate?.signUpViewController(self, provides: username, password: password, email: email)
+        self.setUI(toState: false)
+        self.dataManager.signUp(as: username, with: password, andEmail: email) { (_) in
+            OperationQueue.main.addOperation {
+                self.setUI(toState: true)
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +63,15 @@ class SignUpViewController: UIViewController {
         self.usernameTextField.becomeFirstResponder()
         self.passwordTextField.text = ""
         self.passwordConfirmTextField.text = ""
+    }
+
+//MARK: DataManagerUpdates
+    func isAuthenticated() {
+        // dismissed by parent
+    }
+
+    func needsAuthentication() {
+        // failed
     }
     
 }

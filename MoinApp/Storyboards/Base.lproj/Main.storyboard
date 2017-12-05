@@ -145,6 +145,8 @@
                         <viewLayoutGuide key="safeArea" id="e0Y-vJ-sKz"/>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="b32-CU-Lyo" id="UzE-6k-gfH"/>
+                        <outlet property="needAccountButton" destination="pPP-OR-Dwz" id="80G-MN-7fG"/>
                         <outlet property="passwordTextField" destination="ItM-vo-5XY" id="RjP-jN-YN1"/>
                         <outlet property="usernameTextField" destination="gvb-OA-V76" id="tr1-za-cZv"/>
                     </connections>
@@ -233,8 +235,10 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="rNH-kb-klQ" id="gLf-Er-2y1"/>
+                        <outlet property="haveAccountButton" destination="8mA-Nr-cfn" id="MFh-dr-T3C"/>
                         <outlet property="passwordConfirmTextField" destination="Vlf-RC-NBC" id="3sj-sT-ZtR"/>
                         <outlet property="passwordTextField" destination="Wk0-gz-TBY" id="ZXg-c3-74K"/>
+                        <outlet property="signUpButton" destination="Wlo-iY-76z" id="lr7-Vh-97S"/>
                         <outlet property="usernameTextField" destination="OWW-p2-brl" id="gc0-c4-j9K"/>
                     </connections>
                 </viewController>
