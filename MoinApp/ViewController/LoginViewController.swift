@@ -46,9 +46,15 @@ class LoginViewController: UIViewController, DataManagerUpdates {
         }
 
         self.setUI(toState: false)
-        self.dataManager.login(as: username, with: password) { (_) in
+        self.dataManager.login(as: username, with: password) { (result) in
             OperationQueue.main.addOperation {
                 self.setUI(toState: true)
+
+                if case let Result.error(error) = result {
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }

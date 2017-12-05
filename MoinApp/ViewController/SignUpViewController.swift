@@ -50,9 +50,15 @@ class SignUpViewController: UIViewController, DataManagerUpdates {
         }
 
         self.setUI(toState: false)
-        self.dataManager.signUp(as: username, with: password, andEmail: email) { (_) in
+        self.dataManager.signUp(as: username, with: password, andEmail: email) { (result) in
             OperationQueue.main.addOperation {
                 self.setUI(toState: true)
+
+                if case let Result.error(error) = result {
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
